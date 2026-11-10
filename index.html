@@ -313,16 +313,16 @@ h1 em{font-style:italic;color:var(--rio)}
   <div class="wrap">
     <h2>O terreno hoje e o que ele pode virar</h2>
     <figure class="largo">
-      <video src="media/casas.mp4" poster="media/casas-capa.jpg" controls muted loop playsinline preload="none"></video>
+      <video src="media/casas-som.mp4" poster="media/casas-capa.jpg" controls loop playsinline preload="none"></video>
       <figcaption><b>Projeto ilustrativo</b>Simulação de como o loteamento pode ficar com as casas construídas pelos compradores. Não é uma obra existente.</figcaption>
     </figure>
     <div class="duo">
       <figure>
-        <video src="media/obra.mp4" poster="media/obra.jpg" controls muted playsinline preload="none"></video>
+        <video src="media/obra-som.mp4" poster="media/obra.jpg" controls playsinline preload="none"></video>
         <figcaption><b>A rua sendo aberta</b>Imagens reais da máquina nivelando a rua principal.</figcaption>
       </figure>
       <figure>
-        <video src="media/planta.mp4" poster="media/planta.jpg" controls muted playsinline preload="none"></video>
+        <video src="media/planta-som.mp4" poster="media/planta.jpg" controls playsinline preload="none"></video>
         <figcaption><b>Planta animada</b>Desenho visto de cima com a posição e o número de cada lote, seguindo a planta.</figcaption>
       </figure>
     </div>
@@ -575,6 +575,7 @@ function carrega(){
   }).catch(function(){});
 }
 monta(); carrega(); setInterval(carrega,60000);
+document.querySelectorAll('#videos video').forEach(function(v){v.addEventListener('play',function(){document.querySelectorAll('#videos video').forEach(function(o){if(o!==v)o.pause()})})});
 if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
   var hv=document.querySelector('.quadro video'); if(hv){hv.removeAttribute('autoplay');hv.pause();hv.controls=true;}
 }
