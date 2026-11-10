@@ -110,6 +110,7 @@ nav a:hover{color:var(--folha)}
 .frente .lote{justify-content:center;padding:0;min-height:44px}
 .lote:hover{background:#84a091}
 .lote.meu{background:var(--areia);color:#2b2416}.lote{color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.18)}.lote.meu{text-shadow:none}
+.lote.oc{background:#3d4744;color:#8f9a95;text-shadow:none;text-decoration:line-through}.lote.oc:hover{background:#3d4744}
 .lote.sel{outline:3px solid #fff;outline-offset:1px}
 .fixo{border-radius:6px;min-height:34px;display:flex;align-items:center;justify-content:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#b3bdb7;border:1px dashed #5d6b66;text-align:center;padding:2px 6px}
 .nota-mapa{font-size:.85rem;color:#b3bdb7;margin-top:20px;max-width:75ch}
@@ -243,9 +244,11 @@ input:focus{border-color:var(--folha);outline:0}
     <div class="cab">
       <h2>Escolha seu lote</h2>
       <p class="lead">O mapa segue a planta do empreendimento. Toque em um lote para ver a medida e reservar.</p>
+      <p id="cont" style="font-weight:600;color:var(--areia)"></p>
       <div class="legenda">
         <span><i style="background:#6d8a7c"></i>Disponível</span>
         <span><i style="background:var(--areia)"></i>Reservado por você</span>
+        <span><i style="background:#3d4744;border:1px solid #5d6b66"></i>Reservado</span>
         <span><i style="border:1px dashed #6f8a7c"></i>Área verde ou institucional</span>
       </div>
     </div>
@@ -346,7 +349,7 @@ input:focus{border-color:var(--folha);outline:0}
       </div>
       <div class="preco"><b>R$ 20.000</b><span>sinal de R$ 2.000 após a documentação</span></div>
       <button class="btn" type="button" id="ir2">Reservar este lote</button>
-      <p class="miudo">Reserva gratuita. Você não paga nada agora.</p>
+      <p class="miudo" id="nota1">Reserva gratuita. Você não paga nada agora.</p>
     </div>
 
     <div id="p2" class="pilha" hidden>
@@ -406,12 +409,14 @@ add(103,'550,00 m²','12,5 × 44 m','Lado oeste',38+47*15);
 
 var minhas = {};
 try{ minhas = JSON.parse(localStorage.getItem('pn_reservas')||'{}') || {}; }catch(e){ minhas = {}; }
+var ocupados = {};
 function salva(){ try{ localStorage.setItem('pn_reservas',JSON.stringify(minhas)); }catch(e){} }
 
 function botao(n,curto){
   var b=document.createElement('button');
-  b.type='button'; b.className='lote'+(minhas[n]?' meu':''); b.dataset.n=n;
-  b.setAttribute('aria-label','Lote '+n+', '+L[n].area+(minhas[n]?', reservado por você':', disponível'));
+  var oc = ocupados[n] && !minhas[n];
+  b.type='button'; b.className='lote'+(minhas[n]?' meu':(oc?' oc':'')); b.dataset.n=n;
+  b.setAttribute('aria-label','Lote '+n+', '+L[n].area+(minhas[n]?', reservado por você':(oc?', reservado':', disponível')));
   b.innerHTML = curto ? String(n) : '<span>'+n+'</span><small>'+L[n].area.replace(' m²','').replace('≈ ','')+'</small>';
   b.addEventListener('click',function(){abre(n)});
   return b;
@@ -460,7 +465,10 @@ function abre(n){
   document.getElementById('jarea').textContent=l.area;
   document.getElementById('jmed').textContent=l.med;
   document.getElementById('jpos').textContent=l.dist?('a '+l.dist+' m da estrada'):'na beira da estrada';
-  document.getElementById('jsit').textContent=minhas[n]?'Reservado por você':'Disponível';
+  var oc = ocupados[n] && !minhas[n];
+  document.getElementById('jsit').textContent=minhas[n]?'Reservado por você':(oc?'Reservado':'Disponível');
+  document.getElementById('ir2').hidden=!!oc;
+  document.getElementById('nota1').textContent=oc?'Este lote já foi reservado. Escolha outro no mapa.':'Reserva gratuita. Você não paga nada agora.';
   if(minhas[n]){ mostraOk(minhas[n]); passo(3); } else { passo(1); }
   if(jan.showModal) jan.showModal(); else jan.setAttribute('open','');
 }
@@ -489,14 +497,32 @@ document.getElementById('form').addEventListener('submit',function(e){
   if(msg){erro.textContent=msg;erro.hidden=false;return}
   erro.hidden=true;
   var r={lote:atual,nome:nome,zap:zap,email:v('f-email'),cidade:v('f-cidade'),
-    corretor:tem?v('f-cnome'):'',creci:tem?v('f-creci'):'',czap:tem?v('f-czap'):'',
-    codigo:'PN-'+String(atual).padStart(3,'0')+'-'+Math.random().toString(36).slice(2,6).toUpperCase(),quando:new Date().toISOString()};
-  minhas[atual]=r; salva(); monta();
-  var el=document.querySelector('.lote[data-n="'+atual+'"]'); if(el) el.classList.add('sel');
-  mostraOk(r); passo(3);
+    corretor:tem?v('f-cnome'):'',creci:tem?v('f-creci'):'',czap:tem?v('f-czap'):'',quando:new Date().toISOString()};
+  var bt=e.target.querySelector('button[type=submit]'); bt.disabled=true; bt.textContent='Registrando...';
+  function fim(){bt.disabled=false;bt.textContent='Confirmar reserva'}
+  fetch('/api/reservar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(r)})
+    .then(function(x){return x.json().then(function(j){return {s:x.status,j:j}})})
+    .then(function(o){
+      fim();
+      if(o.s!==200||!o.j.ok){
+        erro.textContent=(o.j&&o.j.erro)||'Não foi possível registrar a reserva. Tente de novo.';erro.hidden=false;
+        if(o.s===409){ocupados[atual]=true;monta();}
+        return;
+      }
+      r.codigo=o.j.codigo; minhas[atual]=r; ocupados[atual]=true; salva(); monta();
+      var el=document.querySelector('.lote[data-n="'+atual+'"]'); if(el) el.classList.add('sel');
+      mostraOk(r); passo(3);
+    })
+    .catch(function(){fim();erro.textContent='Sem conexão com o servidor. Tente de novo ou fale pelo WhatsApp (93) 99127-2550.';erro.hidden=false;});
 });
 
-monta();
+function carrega(){
+  fetch('/api/lotes',{cache:'no-store'}).then(function(x){return x.json()}).then(function(j){
+    ocupados={}; (j.reservados||[]).forEach(function(n){ocupados[n]=true}); monta();
+    var livres=102-(j.reservados||[]).length, c=document.getElementById('cont'); if(c) c.textContent=livres+' de 102 lotes disponíveis agora';
+  }).catch(function(){});
+}
+monta(); carrega(); setInterval(carrega,60000);
 if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
   var hv=document.querySelector('.quadro video'); if(hv){hv.removeAttribute('autoplay');hv.pause();hv.controls=true;}
 }

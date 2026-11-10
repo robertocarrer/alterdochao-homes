@@ -1,0 +1,8 @@
+name = "alterdochao-portonovo"
+pages_build_output_dir = "./"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "alterdochao-portonovo"
+database_id = "969c4b37-e723-4acb-8a58-04ed434cb4e4"
