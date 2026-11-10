@@ -131,6 +131,8 @@ nav a:hover{color:var(--folha)}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
 .duo figure{margin:0;display:flex;flex-direction:column;gap:12px}
 .duo video{border-radius:14px;width:100%;aspect-ratio:9/13;object-fit:cover;background:var(--mata)}
+.largo{margin:28px 0 0;display:flex;flex-direction:column;gap:12px}.largo video{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:14px;background:var(--mata)}
+.largo figcaption{color:var(--suave);font-size:.95rem}.largo figcaption b{color:var(--tinta);display:block}
 .duo figcaption{color:var(--suave);font-size:.95rem}
 .duo figcaption b{color:var(--tinta);display:block}
 @media(max-width:700px){.duo{grid-template-columns:1fr}}
@@ -295,14 +297,18 @@ h1 em{font-style:italic;color:var(--rio)}
 <section class="videos" id="videos">
   <div class="wrap">
     <h2>O terreno hoje e o que ele pode virar</h2>
+    <figure class="largo">
+      <video src="media/ilustrativo.mp4" poster="media/ilus.jpg" controls muted loop playsinline preload="none"></video>
+      <figcaption><b>Projeto ilustrativo</b>Simulação de como o loteamento pode ficar com as casas construídas pelos compradores. Não é uma obra existente.</figcaption>
+    </figure>
     <div class="duo">
       <figure>
         <video src="media/obra.mp4" poster="media/obra.jpg" controls muted playsinline preload="none"></video>
         <figcaption><b>A rua sendo aberta</b>Imagens reais da máquina nivelando a rua principal.</figcaption>
       </figure>
       <figure>
-        <video src="media/ilustrativo.mp4" poster="media/ilus.jpg" controls muted playsinline preload="none"></video>
-        <figcaption><b>Projeto ilustrativo</b>Desenho visto de cima, seguindo a planta: um chalé por lote, de frente para a rua, com a mata mantida no fundo. Não é uma obra existente.</figcaption>
+        <video src="media/planta.mp4" poster="media/planta.jpg" controls muted playsinline preload="none"></video>
+        <figcaption><b>Planta animada</b>Desenho visto de cima com a posição e o número de cada lote, seguindo a planta.</figcaption>
       </figure>
     </div>
   </div>
@@ -331,7 +337,7 @@ h1 em{font-style:italic;color:var(--rio)}
       <details><summary>Quando eu pago alguma coisa?</summary><p>No pré-lançamento, nada. Quando as vendas abrirem, o sinal de 5% do valor do lote é pago por Pix e confirma a reserva. O sinal é descontado do valor total e o saldo é pago em parcelas fixas de R$ 500, sem reajuste. A documentação do empreendimento fica disponível para você conferir antes de pagar.</p></details>
       <details><summary>Posso visitar antes?</summary><p>Pode e deve. Depois da reserva, combinamos a visita pelo WhatsApp e mostramos o seu lote na rua.</p></details>
       <details><summary>O que já existe no local?</summary><p>A rua principal está aberta e sendo nivelada. O cronograma de energia, água e demarcação dos lotes é informado junto com a documentação.</p></details>
-      <details><summary>Os chalés do desenho já estão construídos?</summary><p>Não. O desenho mostra o que pode ser construído em cada lote. O que está à venda é o lote.</p></details>
+      <details><summary>As casas do vídeo já estão construídas?</summary><p>Não. O vídeo é uma simulação do que pode ser construído. O que está à venda é o lote.</p></details>
     </div>
   </div>
 </section>
