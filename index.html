@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alter do Chão Homes</title>
+<link rel="icon" type="image/png" href="media/favicon.png">
+<meta name="description" content="Lotes de 660 m² na mata, na Estrada Interpraias, entre Alter do Chão e Belterra. Escolha seu lote no mapa e reserve online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: coluna única de leitura; o mapa repete a planta real, uma rua de areia com lotes dos dois lados. */
+  --mata:#38433f;      /* verde da copa, fundo escuro e títulos */
+  --folha:#4a5855;     /* ação principal e lote disponível */
+  --areia:#c9a765;     /* a rua de terra */
+  --rio:#8a6a2f;       /* Tapajós, destaques secundários */
+  --papel:#f5f1ea;     /* fundo */
+  --tinta:#232a27;     /* texto */
+  --nevoa:#e2dcd1;     /* linhas e superfícies */
+  --suave:#5d6661;     /* texto secundário */
+  --branco:#ffffff;
+  --alerta:#b4541a;
+  --display:"Marcellus","Palatino Linotype",Georgia,serif;
+  --corpo:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--corpo);font-size:17px;line-height:1.55}
+img,video{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0;color:var(--mata)}
+h1{font-size:clamp(2.3rem,6.2vw,4.2rem);font-weight:400;letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:400}
+h3{font-size:1.2rem;font-weight:400}
+p{margin:0}
+a{color:var(--rio)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:64px 0}
+.lead{font-size:1.15rem;color:var(--suave);max-width:60ch}
+:focus-visible{outline:3px solid var(--rio);outline-offset:2px}
+
+/* faixa e cabeçalho */
+.faixa{background:var(--mata);color:#efe9df;font-size:.9rem;text-align:center;padding:8px 16px}
+.faixa b{color:var(--areia)}
+header.topo{position:sticky;top:0;z-index:20;background:rgba(245,241,234,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--nevoa)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--mata)}.marca .botos{height:40px;width:auto}.marca .lk{display:flex;flex-direction:column;gap:5px}.marca .lk img{height:17px;width:auto}
+.marca strong{font-family:var(--display);font-size:1.35rem;line-height:1}
+.marca span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:var(--tinta);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a:hover{color:var(--folha)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--folha);color:#fff;border:0;border-radius:10px;padding:14px 22px;font:600 1rem var(--corpo);text-decoration:none;cursor:pointer}
+.btn:hover{background:#38433f}
+.btn.sec{background:transparent;color:var(--mata);border:1.5px solid var(--mata)}
+.btn.sec:hover{background:var(--mata);color:#fff}
+.btn.zap{background:#1faa59}
+.btn[disabled]{background:var(--nevoa);color:var(--suave);cursor:not-allowed}
+.btn.peq{padding:10px 16px;font-size:.92rem}
+@media(max-width:760px){nav a:not(.btn){display:none}}
+
+/* abertura */
+.abre{padding:48px 0 56px}
+.abre .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.abre .txt{display:flex;flex-direction:column;gap:22px}
+.onde{font-weight:600;color:var(--rio);font-size:.95rem;letter-spacing:.02em}
+.acoes{display:flex;gap:12px;flex-wrap:wrap}
+.quadro{border-radius:18px;overflow:hidden;background:var(--mata);aspect-ratio:9/14;max-height:600px;justify-self:end;width:100%;max-width:400px;box-shadow:0 24px 50px -24px rgba(56,67,63,.5)}
+.quadro video{width:100%;height:100%;object-fit:cover}
+@media(max-width:860px){.abre .wrap{grid-template-columns:1fr;gap:28px}.quadro{justify-self:stretch;max-width:none;aspect-ratio:4/5}}
+
+/* números */
+.numeros{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--nevoa);border-bottom:1px solid var(--nevoa)}
+.numeros div{padding:22px 18px;border-left:1px solid var(--nevoa)}
+.numeros div:first-child{border-left:0;padding-left:0}
+.numeros b{display:block;font-family:var(--display);font-size:1.8rem;color:var(--mata);line-height:1.1;font-variant-numeric:tabular-nums}
+.numeros span{color:var(--suave);font-size:.92rem}
+@media(max-width:700px){.numeros{grid-template-columns:1fr 1fr}.numeros div:nth-child(3){border-left:0;padding-left:0}.numeros div:nth-child(n+3){border-top:1px solid var(--nevoa)}}
+
+/* localização */
+.local .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}
+.local img{border-radius:16px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.local .txt{display:flex;flex-direction:column;gap:18px}
+.dist{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.dist li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--nevoa)}
+.dist b{font-family:var(--display);color:var(--mata)}
+@media(max-width:820px){.local .wrap{grid-template-columns:1fr}.local img{aspect-ratio:16/10}}
+
+/* mapa */
+.mapa{background:var(--mata);color:#efe9df}
+.mapa h2{color:#fff}
+.mapa .lead{color:#c9d0cb}
+.cab{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.legenda{display:flex;gap:18px;flex-wrap:wrap;font-size:.9rem;color:#d9ded9}
+.legenda i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:7px;vertical-align:-2px}
+.trechos{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+@media(max-width:860px){.trechos{grid-template-columns:1fr}}
+.trecho{background:#2b3431;border:1px solid #4a5855;border-radius:16px;padding:18px}
+.trecho h3{color:#fff;margin-bottom:4px}
+.trecho .sub{font-size:.85rem;color:#b3bdb7;margin-bottom:14px}
+.estrada{background:#b9a57d;color:#2b2416;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:7px;border-radius:6px;margin-bottom:6px}
+.grade{display:grid;grid-template-columns:1fr 34px 1fr;gap:4px 6px}
+.rua{grid-column:2;background:repeating-linear-gradient(180deg,var(--areia) 0 14px,#cdb688 14px 28px);border-radius:5px;position:relative}
+.rua span{position:sticky;top:90px;display:block;writing-mode:vertical-rl;margin:14px auto;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#5c4b25;font-weight:700}
+.frente{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.lote{appearance:none;border:0;border-radius:6px;background:#6d8a7c;color:#fff;font:600 .9rem var(--corpo);min-height:34px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-variant-numeric:tabular-nums;width:100%}
+.lote small{font-weight:500;opacity:.8;font-size:.72rem}
+.frente .lote{justify-content:center;padding:0;min-height:44px}
+.lote:hover{background:#84a091}
+.lote.meu{background:var(--areia);color:#2b2416}.lote{color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.18)}.lote.meu{text-shadow:none}
+.lote.sel{outline:3px solid #fff;outline-offset:1px}
+.fixo{border-radius:6px;min-height:34px;display:flex;align-items:center;justify-content:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#b3bdb7;border:1px dashed #5d6b66;text-align:center;padding:2px 6px}
+.nota-mapa{font-size:.85rem;color:#b3bdb7;margin-top:20px;max-width:75ch}
+
+/* passos */
+.passos ol{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:p}
+.passos li{counter-increment:p;border-top:3px solid var(--mata);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.passos li::before{content:counter(p);font-family:var(--display);font-size:2rem;color:var(--rio);line-height:1}
+.passos li p{color:var(--suave)}
+@media(max-width:760px){.passos ol{grid-template-columns:1fr}}
+
+/* vídeos */
+.videos{background:#ece6db}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+.duo figure{margin:0;display:flex;flex-direction:column;gap:12px}
+.duo video{border-radius:14px;width:100%;aspect-ratio:9/13;object-fit:cover;background:var(--mata)}
+.duo figcaption{color:var(--suave);font-size:.95rem}
+.duo figcaption b{color:var(--tinta);display:block}
+@media(max-width:700px){.duo{grid-template-columns:1fr}}
+
+/* corretores */
+.corr .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.corr .txt{display:flex;flex-direction:column;gap:16px}
+.corr ul{margin:0;padding:0;list-style:none;display:grid;gap:0}
+.corr li{padding:14px 0;border-bottom:1px solid var(--nevoa)}
+.corr li b{display:block;color:var(--mata)}
+.corr li span{color:var(--suave);font-size:.95rem}
+@media(max-width:820px){.corr .wrap{grid-template-columns:1fr}}
+
+/* dúvidas */
+details{border-bottom:1px solid var(--nevoa);padding:16px 0}
+summary{cursor:pointer;font-weight:600;font-size:1.05rem;color:var(--mata)}
+details p{margin-top:10px;color:var(--suave);max-width:70ch}
+.faq{max-width:800px;margin-top:20px}
+
+footer{background:var(--mata);color:#c9d0cb;padding:40px 0;font-size:.9rem}
+footer .wrap{display:flex;flex-direction:column;gap:14px}
+footer strong{color:#fff;font-family:var(--display);font-size:1.2rem}
+footer a{color:var(--areia)}
+
+/* janela do lote */
+dialog{border:0;border-radius:18px;padding:0;width:min(520px,calc(100vw - 24px));max-height:calc(100dvh - 24px);background:var(--branco);color:var(--tinta);overflow:auto}
+dialog::backdrop{background:rgba(10,25,19,.6)}
+.jan{padding:26px;display:flex;flex-direction:column;gap:18px}
+.jan .fechar{position:absolute;top:12px;right:12px;background:var(--papel);border:0;border-radius:50%;width:38px;height:38px;font-size:1.2rem;cursor:pointer;color:var(--tinta)}
+.jan h3{font-size:1.7rem}
+.ficha{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;border-top:1px solid var(--nevoa)}
+.ficha div{padding:12px 0;border-bottom:1px solid var(--nevoa)}
+.ficha span{display:block;font-size:.8rem;color:var(--suave);text-transform:uppercase;letter-spacing:.08em}
+.ficha b{font-family:var(--display);font-size:1.15rem;color:var(--mata);font-variant-numeric:tabular-nums}
+.preco{background:var(--papel);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.preco b{font-family:var(--display);font-size:1.9rem;color:var(--mata)}
+.preco span{color:var(--suave);font-size:.92rem}
+form{display:grid;gap:14px}
+label{display:grid;gap:6px;font-weight:600;font-size:.92rem}
+input[type=text],input[type=tel],input[type=email]{font:400 1rem var(--corpo);padding:12px 14px;border:1.5px solid #c5d0c7;border-radius:10px;background:#fff;color:var(--tinta);width:100%}
+input:focus{border-color:var(--folha);outline:0}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500}
+.check input{margin-top:5px;width:18px;height:18px;accent-color:var(--folha)}
+.bloco-corr{display:grid;gap:14px;padding:14px;background:var(--papel);border-radius:12px}
+.erro{color:var(--alerta);font-size:.9rem;font-weight:600}
+.miudo{font-size:.84rem;color:var(--suave)}
+.codigo{font-family:var(--display);font-size:1.5rem;letter-spacing:.06em;color:var(--mata);background:var(--papel);border-radius:10px;padding:12px 16px;text-align:center}
+.pilha{display:grid;gap:10px}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.numeros b,.ficha b,.dist b,.preco b,.codigo{font-weight:400}
+</style>
+</head>
+<body>
+
+<div class="faixa"><b>Pré-lançamento.</b> Reserve seu lote agora, sem pagar nada. O sinal só é cobrado depois que você recebe a documentação.</div>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Alter do Chão, início"><img class="botos" src="media/botos-ouro.png" alt=""><span class="lk"><img src="media/marca-escuro.png" alt="Alter do Chão"><span>Porto Novo · Lotes</span></span></a>
+    <nav>
+      <a href="#local">Localização</a>
+      <a href="#mapa">Lotes</a>
+      <a href="#como">Como funciona</a>
+      <a href="#corretores">Corretores</a>
+      <a class="btn peq" href="#mapa">Escolher lote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="abre">
+  <div class="wrap">
+    <div class="txt">
+      <p class="onde">Porto Novo · Estrada Interpraias, Santarém (PA)</p>
+      <h1>Seu lote de 660&nbsp;m² na mata, perto das praias do Tapajós.</h1>
+      <p class="lead">Uma rua reta de 800 metros, 102 lotes dos dois lados e floresta em volta. Escolha o seu no mapa e reserve pelo celular em dois minutos.</p>
+      <div class="acoes">
+        <a class="btn" href="#mapa">Escolher meu lote</a>
+        <a class="btn sec" href="#videos">Ver o terreno</a>
+      </div>
+    </div>
+    <div class="quadro">
+      <video src="media/hero.mp4" poster="media/poster.jpg" autoplay muted loop playsinline aria-label="Vista aérea da rua do loteamento e do rio Tapajós"></video>
+    </div>
+  </div>
+  <div class="wrap" style="display:block">
+    <div class="numeros" style="margin-top:48px">
+      <div><b>R$&nbsp;20.000</b><span>valor de cada lote</span></div>
+      <div><b>15&nbsp;×&nbsp;44&nbsp;m</b><span>lote padrão, cerca de 660 m²</span></div>
+      <div><b>102</b><span>lotes à venda</span></div>
+      <div><b>15 min</b><span>da praia de Pindobal</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="local" id="local">
+  <div class="wrap">
+    <img src="media/rio.jpg" alt="Vista aérea da mata com o rio Tapajós ao fundo" loading="lazy">
+    <div class="txt">
+      <h2>Entre Alter do Chão e Belterra, com o rio logo ali.</h2>
+      <p class="lead">A entrada do loteamento fica na beira da Estrada Interpraias. Você chega de carro comum e está a poucos minutos da areia.</p>
+      <ul class="dist">
+        <li><span>Porto Novo</span><b>10 minutos</b></li>
+        <li><span>Praia de Pindobal</span><b>15 minutos</b></li>
+        <li><span>Frente para a estrada</span><b>6 lotes</b></li>
+        <li><span>Áreas verdes e institucional</span><b>reservadas na planta</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="mapa" id="mapa">
+  <div class="wrap">
+    <div class="cab">
+      <h2>Escolha seu lote</h2>
+      <p class="lead">O mapa segue a planta do empreendimento. Toque em um lote para ver a medida e reservar.</p>
+      <div class="legenda">
+        <span><i style="background:#6d8a7c"></i>Disponível</span>
+        <span><i style="background:var(--areia)"></i>Reservado por você</span>
+        <span><i style="border:1px dashed #6f8a7c"></i>Área verde ou institucional</span>
+      </div>
+    </div>
+    <div class="trechos">
+      <div class="trecho">
+        <h3>Trecho 1</h3>
+        <p class="sub">Da estrada até 470 m para dentro · lotes 1 a 32 e 53 a 84</p>
+        <div class="estrada">Estrada Interpraias</div>
+        <div class="grade" id="t1"></div>
+      </div>
+      <div class="trecho">
+        <h3>Trecho 2</h3>
+        <p class="sub">Continuação da mesma rua, até a área verde · lotes 33 a 52 e 85 a 103</p>
+        <div class="grade" id="t2"></div>
+      </div>
+    </div>
+    <p class="nota-mapa">Medidas conforme a planta do empreendimento, sujeitas a conferência na demarcação. O mapa é um esquema e não está em escala.</p>
+  </div>
+</section>
+
+<section class="passos" id="como">
+  <div class="wrap">
+    <h2>Como funciona</h2>
+    <ol>
+      <li><h3>Escolha no mapa</h3><p>Veja a medida, a posição na rua e o valor de cada lote. Todos custam R$ 20.000.</p></li>
+      <li><h3>Reserve com seus dados</h3><p>Nome e WhatsApp bastam. A reserva não custa nada e segura o lote enquanto você analisa.</p></li>
+      <li><h3>Receba a documentação e pague o sinal</h3><p>Enviamos os documentos do empreendimento e o contrato. Só depois disso o sinal de R$ 2.000 é pago por Pix.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="videos" id="videos">
+  <div class="wrap">
+    <h2>O terreno hoje e o que ele pode virar</h2>
+    <div class="duo">
+      <figure>
+        <video src="media/obra.mp4" poster="media/obra.jpg" controls muted playsinline preload="none"></video>
+        <figcaption><b>A rua sendo aberta</b>Imagens reais da máquina nivelando a rua principal.</figcaption>
+      </figure>
+      <figure>
+        <video src="media/ilustrativo.mp4" poster="media/ilus.jpg" controls muted playsinline preload="none"></video>
+        <figcaption><b>Projeto ilustrativo</b>Desenho visto de cima, seguindo a planta: um chalé por lote, de frente para a rua, com a mata mantida no fundo. Não é uma obra existente.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="corr" id="corretores">
+  <div class="wrap">
+    <div class="txt">
+      <h2>Corretor: feche a venda pelo site, junto com o cliente.</h2>
+      <p class="lead">Você abre o mapa com o comprador, escolhe o lote e preenche a reserva informando seu nome e CRECI. A venda fica registrada no seu nome.</p>
+      <a class="btn" href="#mapa" style="align-self:flex-start">Abrir o mapa de lotes</a>
+    </div>
+    <ul>
+      <li><b>Tabela única</b><span>O mesmo valor para todo mundo. Ninguém vende por fora mais barato.</span></li>
+      <li><b>Disponibilidade na hora</b><span>O mapa mostra quais lotes estão livres, sem precisar ligar para confirmar.</span></li>
+      <li><b>Venda registrada</b><span>Seu CRECI entra na reserva e a comissão é acertada com a administração do empreendimento.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="duvidas" style="padding-top:0">
+  <div class="wrap">
+    <h2>Dúvidas comuns</h2>
+    <div class="faq">
+      <details><summary>A reserva me obriga a comprar?</summary><p>Não. A reserva é gratuita e serve para segurar o lote enquanto você recebe e analisa a documentação.</p></details>
+      <details><summary>Quando eu pago alguma coisa?</summary><p>Só depois de receber os documentos do empreendimento e o contrato. O sinal é de R$ 2.000, pago por Pix, e o restante segue a condição combinada em contrato.</p></details>
+      <details><summary>Posso visitar antes?</summary><p>Pode e deve. Depois da reserva, combinamos a visita pelo WhatsApp e mostramos o seu lote na rua.</p></details>
+      <details><summary>O que já existe no local?</summary><p>A rua principal está aberta e sendo nivelada. O cronograma de energia, água e demarcação dos lotes é informado junto com a documentação.</p></details>
+      <details><summary>Os chalés do desenho já estão construídos?</summary><p>Não. O desenho mostra o que pode ser construído em cada lote. O que está à venda é o lote.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="media/marca-claro.png" alt="Alter do Chão" style="height:26px;width:auto;align-self:flex-start">
+    <span>Porto Novo, um empreendimento da vertical imobiliária do Alter do Chão Group · Santarém, Pará</span>
+    <span>Atendimento pelo WhatsApp: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">(93) 99127-2550</a></span>
+    <span class="miudo" style="color:#a9b3ad">Imagens de chalés e construções são ilustrativas. Medidas conforme planta, sujeitas a conferência. A venda de cada lote depende da apresentação da documentação ao comprador.</span>
+  </div>
+</footer>
+
+<dialog id="jan" aria-labelledby="jt">
+  <div class="jan">
+    <button class="fechar" type="button" id="fechar" aria-label="Fechar">×</button>
+
+    <div id="p1" class="pilha">
+      <p class="onde" id="jlado"></p>
+      <h3 id="jt">Lote</h3>
+      <div class="ficha">
+        <div><span>Área</span><b id="jarea"></b></div>
+        <div><span>Medidas</span><b id="jmed"></b></div>
+        <div><span>Posição</span><b id="jpos"></b></div>
+        <div><span>Situação</span><b id="jsit"></b></div>
+      </div>
+      <div class="preco"><b>R$ 20.000</b><span>sinal de R$ 2.000 após a documentação</span></div>
+      <button class="btn" type="button" id="ir2">Reservar este lote</button>
+      <p class="miudo">Reserva gratuita. Você não paga nada agora.</p>
+    </div>
+
+    <div id="p2" class="pilha" hidden>
+      <h3 id="jt2">Reservar</h3>
+      <form id="form" novalidate>
+        <label for="f-nome">Nome completo<input type="text" id="f-nome" autocomplete="name" required></label>
+        <label for="f-zap">WhatsApp com DDD<input type="tel" id="f-zap" autocomplete="tel" inputmode="tel" placeholder="(93) 90000-0000" required></label>
+        <label for="f-email">E-mail (opcional)<input type="email" id="f-email" autocomplete="email"></label>
+        <label for="f-cidade">Cidade<input type="text" id="f-cidade" autocomplete="address-level2"></label>
+        <label class="check" for="f-tem"><input type="checkbox" id="f-tem"><span>Estou sendo atendido por um corretor</span></label>
+        <div class="bloco-corr" id="bcorr" hidden>
+          <label for="f-cnome">Nome do corretor<input type="text" id="f-cnome"></label>
+          <label for="f-creci">CRECI<input type="text" id="f-creci" placeholder="Ex.: 12345-PA"></label>
+          <label for="f-czap">WhatsApp do corretor<input type="tel" id="f-czap" inputmode="tel"></label>
+        </div>
+        <p class="erro" id="erro" hidden></p>
+        <button class="btn" type="submit">Confirmar reserva</button>
+        <button class="btn sec" type="button" id="volta1">Voltar</button>
+      </form>
+    </div>
+
+    <div id="p3" class="pilha" hidden>
+      <h3>Lote reservado</h3>
+      <p id="okmsg"></p>
+      <div class="codigo" id="cod"></div>
+      <a class="btn zap" id="zaplink" href="#" target="_blank" rel="noopener">Enviar reserva pelo WhatsApp</a>
+      <button class="btn" type="button" disabled>Pagar sinal por Pix (liberado após a documentação)</button>
+      <p class="miudo">Envie a reserva pelo WhatsApp para a equipe confirmar seu lote e mandar a documentação. Atendimento: (93) 99127-2550.</p>
+      <button class="btn sec" type="button" id="fim">Voltar ao mapa</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ===== Configuração: mude aqui ===== */
+var PRECO = 20000, SINAL = 2000, WHATS = '5593991272550';
+/* ===== Lotes, conforme a planta ===== */
+function f2(n){return n.toFixed(2).replace('.',',')}
+var L = {};
+function add(n,area,med,lado,dist){L[n]={n:n,area:area,med:med,lado:lado,dist:dist}}
+// frente para a estrada
+add(1,'≈ 580 m²','16 × 38 m','Leste, frente para a estrada',0);
+add(2,'≈ 530 m²','14 × 38 m','Leste, frente para a estrada',0);
+add(3,'≈ 530 m²','14 × 38 m','Leste, frente para a estrada',0);
+add(53,'≈ 580 m²','16 × 38 m','Oeste, frente para a estrada',0);
+add(54,'≈ 530 m²','14 × 38 m','Oeste, frente para a estrada',0);
+add(55,'≈ 530 m²','14 × 38 m','Oeste, frente para a estrada',0);
+var i,n;
+add(4,'661,36 m²','15 × 44 m','Lado leste',38);
+for(n=5;n<=32;n++) add(n,f2(656.51-0.44*(n-5))+' m²','15 × 44 m','Lado leste',38+(n-4)*15);
+for(n=33;n<=51;n++) add(n,f2(644.22-0.44*(n-33))+' m²','15 × 43 m','Lado leste',38+(n-4)*15);
+add(52,'847,74 m²','20 × 42 m','Lado leste, último da rua',38+48*15);
+add(56,'655,55 m²','15 × 44 m','Lado oeste',38);
+for(n=57;n<=101;n++) if(n!==87) add(n,'660,00 m²','15 × 44 m','Lado oeste',38+(n-56)*15);
+add(102,'550,00 m²','12,5 × 44 m','Lado oeste',38+46*15);
+add(103,'550,00 m²','12,5 × 44 m','Lado oeste',38+47*15);
+
+var minhas = {};
+try{ minhas = JSON.parse(localStorage.getItem('pn_reservas')||'{}') || {}; }catch(e){ minhas = {}; }
+function salva(){ try{ localStorage.setItem('pn_reservas',JSON.stringify(minhas)); }catch(e){} }
+
+function botao(n,curto){
+  var b=document.createElement('button');
+  b.type='button'; b.className='lote'+(minhas[n]?' meu':''); b.dataset.n=n;
+  b.setAttribute('aria-label','Lote '+n+', '+L[n].area+(minhas[n]?', reservado por você':', disponível'));
+  b.innerHTML = curto ? String(n) : '<span>'+n+'</span><small>'+L[n].area.replace(' m²','').replace('≈ ','')+'</small>';
+  b.addEventListener('click',function(){abre(n)});
+  return b;
+}
+function fixo(t){var d=document.createElement('div');d.className='fixo';d.textContent=t;return d}
+function rua(k){var d=document.createElement('div');d.className='rua';d.style.gridRow='1 / span '+k;d.innerHTML='<span>Rua principal</span>';return d}
+
+function monta(){
+  var t1=document.getElementById('t1'), t2=document.getElementById('t2');
+  t1.innerHTML=''; t2.innerHTML='';
+  // Trecho 1
+  var fo=document.createElement('div'); fo.className='frente'; [55,54,53].forEach(function(x){fo.appendChild(botao(x,true))});
+  var fl=document.createElement('div'); fl.className='frente'; [3,2,1].forEach(function(x){fl.appendChild(botao(x,true))});
+  fo.style.gridColumn='1'; fl.style.gridColumn='3';
+  t1.appendChild(fo); t1.appendChild(rua(30)); t1.appendChild(fl);
+  for(i=0;i<29;i++){
+    var a=botao(56+i), b=botao(4+i);
+    a.style.gridColumn='1'; b.style.gridColumn='3';
+    t1.appendChild(a); t1.appendChild(b);
+  }
+  // Trecho 2
+  t2.appendChild(rua(20));
+  for(i=0;i<20;i++){
+    var no=85+i, a2;
+    if(no===87) a2=fixo('Área institucional');
+    else if(no>103) a2=fixo('Área verde');
+    else a2=botao(no);
+    var b2=botao(33+i);
+    a2.style.gridColumn='1'; b2.style.gridColumn='3';
+    t2.appendChild(a2); t2.appendChild(b2);
+  }
+  var v=fixo('Área verde no fim da rua'); v.style.gridColumn='1 / -1'; v.style.minHeight='56px'; v.style.gridRow='auto';
+  t2.appendChild(v);
+}
+
+/* ===== Janela do lote ===== */
+var jan=document.getElementById('jan'), atual=null;
+function passo(k){['p1','p2','p3'].forEach(function(id,ix){document.getElementById(id).hidden=(ix+1!==k)})}
+function abre(n){
+  atual=n; var l=L[n];
+  document.querySelectorAll('.lote.sel').forEach(function(e){e.classList.remove('sel')});
+  var el=document.querySelector('.lote[data-n="'+n+'"]'); if(el) el.classList.add('sel');
+  document.getElementById('jlado').textContent=l.lado;
+  document.getElementById('jt').textContent='Lote '+n;
+  document.getElementById('jt2').textContent='Reservar o lote '+n;
+  document.getElementById('jarea').textContent=l.area;
+  document.getElementById('jmed').textContent=l.med;
+  document.getElementById('jpos').textContent=l.dist?('a '+l.dist+' m da estrada'):'na beira da estrada';
+  document.getElementById('jsit').textContent=minhas[n]?'Reservado por você':'Disponível';
+  if(minhas[n]){ mostraOk(minhas[n]); passo(3); } else { passo(1); }
+  if(jan.showModal) jan.showModal(); else jan.setAttribute('open','');
+}
+function fecha(){ if(jan.close) jan.close(); else jan.removeAttribute('open'); }
+document.getElementById('fechar').addEventListener('click',fecha);
+document.getElementById('fim').addEventListener('click',fecha);
+jan.addEventListener('click',function(e){ if(e.target===jan) fecha(); });
+document.getElementById('ir2').addEventListener('click',function(){passo(2);document.getElementById('f-nome').focus()});
+document.getElementById('volta1').addEventListener('click',function(){passo(1)});
+document.getElementById('f-tem').addEventListener('change',function(e){document.getElementById('bcorr').hidden=!e.target.checked});
+
+function v(id){return document.getElementById(id).value.trim()}
+function mostraOk(r){
+  var l=L[r.lote];
+  document.getElementById('okmsg').textContent=r.nome.split(' ')[0]+', o lote '+r.lote+' ('+l.area+') está reservado no seu nome. Este é o código da sua reserva:';
+  document.getElementById('cod').textContent=r.codigo;
+  var t='Olá! Fiz uma reserva no site Alter do Chão Homes (Porto Novo).\n\nCódigo: '+r.codigo+'\nLote: '+r.lote+' ('+l.area+', '+l.med+')\nValor: R$ 20.000\nNome: '+r.nome+'\nWhatsApp: '+r.zap+(r.email?'\nE-mail: '+r.email:'')+(r.cidade?'\nCidade: '+r.cidade:'')+(r.corretor?'\n\nCorretor: '+r.corretor+' · CRECI '+r.creci+(r.czap?' · '+r.czap:''):'')+'\n\nQuero receber a documentação.';
+  document.getElementById('zaplink').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
+}
+document.getElementById('form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var erro=document.getElementById('erro'), nome=v('f-nome'), zap=v('f-zap'), tem=document.getElementById('f-tem').checked, msg='';
+  if(nome.split(/\s+/).length<2) msg='Digite seu nome e sobrenome.';
+  else if(zap.replace(/\D/g,'').length<10) msg='Digite o WhatsApp com DDD, por exemplo (93) 99999-0000.';
+  else if(tem && (!v('f-cnome') || !v('f-creci'))) msg='Preencha o nome e o CRECI do corretor.';
+  if(msg){erro.textContent=msg;erro.hidden=false;return}
+  erro.hidden=true;
+  var r={lote:atual,nome:nome,zap:zap,email:v('f-email'),cidade:v('f-cidade'),
+    corretor:tem?v('f-cnome'):'',creci:tem?v('f-creci'):'',czap:tem?v('f-czap'):'',
+    codigo:'PN-'+String(atual).padStart(3,'0')+'-'+Math.random().toString(36).slice(2,6).toUpperCase(),quando:new Date().toISOString()};
+  minhas[atual]=r; salva(); monta();
+  var el=document.querySelector('.lote[data-n="'+atual+'"]'); if(el) el.classList.add('sel');
+  mostraOk(r); passo(3);
+});
+
+monta();
+if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
+  var hv=document.querySelector('.quadro video'); if(hv){hv.removeAttribute('autoplay');hv.pause();hv.controls=true;}
+}
+</script>
+</body>
+</html>
