@@ -201,21 +201,28 @@ input:focus{border-color:var(--folha);outline:0}
 .numeros b,.ficha b,.dist b,.preco b,.codigo{font-weight:600}
 .numeros b{font-size:2.1rem}.ficha b,.dist b{font-size:1.3rem}.preco b{font-size:2.3rem}
 h1 em{font-style:italic;color:var(--rio)}
+.idiomas{display:flex;border:1px solid var(--nevoa);border-radius:99px;overflow:hidden;background:#fff}
+.idiomas button{border:0;background:transparent;font:600 .72rem var(--corpo);letter-spacing:.06em;color:var(--suave);padding:6px 8px;cursor:pointer}
+.idiomas button[aria-pressed="true"]{background:var(--mata);color:#fff}
+@media(max-width:520px){.topo .btn.peq{display:none}.marca .lk{display:none}}
 </style>
 </head>
 <body>
 
-<div class="faixa"><b>Pré-lançamento.</b> Reserve seu lote agora, sem pagar nada. Na abertura das vendas, o sinal de 5% confirma o lote e você recebe o contrato.</div>
+<div class="faixa" data-i="faixa"><b>Pré-lançamento.</b> Reserve seu lote agora, sem pagar nada. Na abertura das vendas, o sinal de 5% confirma o lote e você recebe o contrato.</div>
 
 <header class="topo">
   <div class="wrap">
-    <a class="marca" href="#inicio" aria-label="Alter do Chão, início"><img class="botos" src="media/botos-ouro.png" alt=""><span class="lk"><img src="media/marca-escuro.png" alt="Alter do Chão"><span>Porto Novo · Lotes</span></span></a>
+    <a class="marca" href="#inicio" aria-label="Alter do Chão, início"><img class="botos" src="media/botos-ouro.png" alt=""><span class="lk"><img src="media/marca-escuro.png" alt="Alter do Chão"><span data-i="mLot">Porto Novo · Lotes</span></span></a>
     <nav>
-      <a href="#local">Localização</a>
-      <a href="#mapa">Lotes</a>
-      <a href="#como">Como funciona</a>
-      <a href="/painel/">Corretor</a>
-      <a class="btn peq" href="#mapa">Escolher lote</a>
+      <a href="#local" data-i="nLoc">Localização</a>
+      <a href="#mapa" data-i="nLot">Lotes</a>
+      <a href="#como" data-i="nComo">Como funciona</a>
+      <a href="/painel/" data-i="nCor">Corretor</a>
+      <div class="idiomas" role="group" aria-label="Idioma / Language">
+        <button type="button" data-l="pt">PT</button><button type="button" data-l="en">EN</button><button type="button" data-l="es">ES</button><button type="button" data-l="fr">FR</button><button type="button" data-l="de">DE</button>
+      </div>
+      <a class="btn peq" href="#mapa" data-i="nEsc">Escolher lote</a>
     </nav>
   </div>
 </header>
@@ -225,11 +232,11 @@ h1 em{font-style:italic;color:var(--rio)}
   <div class="wrap">
     <div class="txt">
       <p class="onde">Porto Novo · Estrada Interpraias, Santarém (PA)</p>
-      <h1>Seu lote de 660&nbsp;m² na mata, <em>perto das praias</em> do Tapajós.</h1>
-      <p class="lead">Uma rua reta de 800 metros, 102 lotes dos dois lados e floresta em volta. Escolha o seu no mapa e reserve pelo celular em dois minutos.</p>
+      <h1 data-i="h1">Seu lote de 660&nbsp;m² na mata, <em>perto das praias</em> do Tapajós.</h1>
+      <p class="lead" data-i="hlead">Uma rua reta de 800 metros, 102 lotes dos dois lados e floresta em volta. Escolha o seu no mapa e reserve pelo celular em dois minutos.</p>
       <div class="acoes">
-        <a class="btn" href="#mapa">Escolher meu lote</a>
-        <a class="btn sec" href="#videos">Ver o terreno</a>
+        <a class="btn" href="#mapa" data-i="bEsc">Escolher meu lote</a>
+        <a class="btn sec" href="#videos" data-i="bVer">Ver o terreno</a>
       </div>
     </div>
     <div class="quadro">
@@ -238,10 +245,10 @@ h1 em{font-style:italic;color:var(--rio)}
   </div>
   <div class="wrap" style="display:block">
     <div class="numeros" style="margin-top:48px">
-      <div><b>R$&nbsp;20&nbsp;mil</b><span>lotes a partir deste valor</span></div>
-      <div><b>15&nbsp;×&nbsp;44&nbsp;m</b><span>lote padrão, cerca de 660 m²</span></div>
-      <div><b>102</b><span>lotes à venda</span></div>
-      <div><b>R$&nbsp;500</b><span>parcelas fixas, sem reajuste</span></div>
+      <div><b data-i="nb1">R$&nbsp;20&nbsp;mil</b><span data-i="n1">lotes a partir deste valor</span></div>
+      <div><b>15&nbsp;×&nbsp;44&nbsp;m</b><span data-i="n2">lote padrão, cerca de 660 m²</span></div>
+      <div><b>102</b><span data-i="n3">lotes à venda</span></div>
+      <div><b>R$&nbsp;500</b><span data-i="n4">parcelas fixas, sem reajuste</span></div>
     </div>
   </div>
 </section>
@@ -250,13 +257,13 @@ h1 em{font-style:italic;color:var(--rio)}
   <div class="wrap">
     <img src="media/rio.jpg" alt="Vista aérea da mata com o rio Tapajós ao fundo" loading="lazy">
     <div class="txt">
-      <h2>Entre Alter do Chão e Belterra, com o rio logo ali.</h2>
-      <p class="lead">A entrada do loteamento fica na beira da Estrada Interpraias. Você chega de carro comum e está a poucos minutos da areia.</p>
+      <h2 data-i="lH">Entre Alter do Chão e Belterra, com o rio logo ali.</h2>
+      <p class="lead" data-i="lLead">A entrada do loteamento fica na beira da Estrada Interpraias. Você chega de carro comum e está a poucos minutos da areia.</p>
       <ul class="dist">
-        <li><span>Porto Novo</span><b>10 minutos</b></li>
-        <li><span>Praia de Pindobal</span><b>15 minutos</b></li>
-        <li><span>Frente para a estrada</span><b>6 lotes</b></li>
-        <li><span>Áreas verdes e institucional</span><b>reservadas na planta</b></li>
+        <li><span>Porto Novo</span><b data-i="d1">10 minutos</b></li>
+        <li><span>Praia de Pindobal</span><b data-i="d2">15 minutos</b></li>
+        <li><span data-i="d3s">Frente para a estrada</span><b data-i="d3">6 lotes</b></li>
+        <li><span data-i="d4s">Áreas verdes e institucional</span><b data-i="d4">reservadas na planta</b></li>
       </ul>
     </div>
   </div>
@@ -265,72 +272,72 @@ h1 em{font-style:italic;color:var(--rio)}
 <section class="mapa" id="mapa">
   <div class="wrap">
     <div class="cab">
-      <h2>Escolha seu lote</h2>
-      <p class="lead">O mapa segue a planta do empreendimento. Toque em um lote para ver a medida e reservar.</p>
+      <h2 data-i="mH">Escolha seu lote</h2>
+      <p class="lead" data-i="mLead">O mapa segue a planta do empreendimento. Toque em um lote para ver a medida e reservar.</p>
       <div class="faixas">
-        <div><b>R$ 40 mil</b><span>Beira da estrada · lotes 1 a 3 e 53 a 55</span></div>
-        <div><b>R$ 30 mil</b><span>Primeira metade da rua · lotes 4 a 32 e 56 a 84</span></div>
-        <div><b>R$ 20 mil</b><span>Segunda metade, até a área verde · lotes 33 a 52 e 85 a 103</span></div>
+        <div><b data-i="fb1">R$ 40 mil</b><span data-i="fx1">Beira da estrada · lotes 1 a 3 e 53 a 55</span></div>
+        <div><b data-i="fb2">R$ 30 mil</b><span data-i="fx2">Primeira metade da rua · lotes 4 a 32 e 56 a 84</span></div>
+        <div><b data-i="fb3">R$ 20 mil</b><span data-i="fx3">Segunda metade, até a área verde · lotes 33 a 52 e 85 a 103</span></div>
       </div>
       <p id="cont" style="font-weight:600;color:var(--areia)"></p>
       <div class="legenda">
-        <span><i style="background:#6d8a7c"></i>Disponível</span>
-        <span><i style="background:var(--areia)"></i>Reservado por você</span>
-        <span><i style="background:#3d4744;border:1px solid #5d6b66"></i>Reservado</span>
-        <span><i style="border:1px dashed #6f8a7c"></i>Área verde ou institucional</span>
+        <span><i style="background:#6d8a7c"></i><span data-i="lg1">Disponível</span></span>
+        <span><i style="background:var(--areia)"></i><span data-i="lg2">Reservado por você</span></span>
+        <span><i style="background:#3d4744;border:1px solid #5d6b66"></i><span data-i="lg3">Reservado</span></span>
+        <span><i style="border:1px dashed #6f8a7c"></i><span data-i="lg4">Área verde ou institucional</span></span>
       </div>
     </div>
     <div class="trechos">
       <div class="trecho">
-        <h3>Trecho 1</h3>
-        <p class="sub">Da estrada até 470 m para dentro · lotes 1 a 32 e 53 a 84</p>
+        <h3 data-i="tr1">Trecho 1</h3>
+        <p class="sub" data-i="tr1s">Da estrada até 470 m para dentro · lotes 1 a 32 e 53 a 84</p>
         <div class="estrada">Estrada Interpraias</div>
         <div class="grade" id="t1"></div>
       </div>
       <div class="trecho">
-        <h3>Trecho 2</h3>
-        <p class="sub">Continuação da mesma rua, até a área verde · lotes 33 a 52 e 85 a 103</p>
+        <h3 data-i="tr2">Trecho 2</h3>
+        <p class="sub" data-i="tr2s">Continuação da mesma rua, até a área verde · lotes 33 a 52 e 85 a 103</p>
         <div class="grade" id="t2"></div>
       </div>
     </div>
-    <p class="nota-mapa">Medidas conforme a planta do empreendimento, sujeitas a conferência na demarcação. O mapa é um esquema e não está em escala.</p>
+    <p class="nota-mapa" data-i="nm">Medidas conforme a planta do empreendimento, sujeitas a conferência na demarcação. O mapa é um esquema e não está em escala.</p>
   </div>
 </section>
 
 <section class="passos" id="como">
   <div class="wrap">
-    <h2>Como funciona</h2>
+    <h2 data-i="cH">Como funciona</h2>
     <ol>
-      <li><h3>Escolha no mapa</h3><p>Veja a medida, a posição na rua e o valor de cada lote. São três faixas de preço: R$ 20 mil, R$ 30 mil e R$ 40 mil, conforme a posição.</p></li>
-      <li><h3>Reserve e pague o sinal de 5%</h3><p>Nome e WhatsApp bastam. O sinal é pago por Pix, garante o lote no seu nome e é descontado do valor total. No pré-lançamento a reserva é gratuita.</p></li>
-      <li><h3>Receba o contrato e o contato do corretor</h3><p>O contrato chega por WhatsApp ou e-mail, junto com o contato do corretor que atendeu você ou de um corretor da equipe.</p></li>
+      <li><h3 data-i="c1t">Escolha no mapa</h3><p data-i="c1">Veja a medida, a posição na rua e o valor de cada lote. São três faixas de preço: R$ 20 mil, R$ 30 mil e R$ 40 mil, conforme a posição.</p></li>
+      <li><h3 data-i="c2t">Reserve e pague o sinal de 5%</h3><p data-i="c2">Nome e WhatsApp bastam. O sinal é pago por Pix, garante o lote no seu nome e é descontado do valor total. No pré-lançamento a reserva é gratuita.</p></li>
+      <li><h3 data-i="c3t">Receba o contrato e o contato do corretor</h3><p data-i="c3">O contrato chega por WhatsApp ou e-mail, junto com o contato do corretor que atendeu você ou de um corretor da equipe.</p></li>
     </ol>
   </div>
 </section>
 
 <section class="videos" id="videos">
   <div class="wrap">
-    <h2>O terreno hoje e o que ele pode virar</h2>
+    <h2 data-i="vH">O terreno hoje e o que ele pode virar</h2>
     <figure class="largo">
       <video src="media/voo-rio.mp4" poster="media/voo-rio-capa.jpg" controls loop playsinline preload="none"></video>
-      <figcaption><b>Projeto ilustrativo</b>Simulação de como o loteamento pode ficar com as casas construídas pelos compradores. Não é uma obra existente.</figcaption>
+      <figcaption data-i="v1"><b>Projeto ilustrativo</b>Simulação de como o loteamento pode ficar com as casas construídas pelos compradores. Não é uma obra existente.</figcaption>
     </figure>
     <figure class="largo" style="max-width:420px">
       <video src="media/obra-som.mp4" poster="media/obra.jpg" controls playsinline preload="none" style="aspect-ratio:9/13"></video>
-      <figcaption><b>A rua sendo aberta</b>Imagens reais da máquina nivelando a rua principal.</figcaption>
+      <figcaption data-i="v2"><b>A rua sendo aberta</b>Imagens reais da máquina nivelando a rua principal.</figcaption>
     </figure>
   </div>
 </section>
 
 <section id="duvidas" style="padding-top:0">
   <div class="wrap">
-    <h2>Dúvidas comuns</h2>
+    <h2 data-i="qH">Dúvidas comuns</h2>
     <div class="faq">
-      <details><summary>A reserva me obriga a comprar?</summary><p>Não. No pré-lançamento a reserva é gratuita e serve para segurar o lote até a abertura das vendas.</p></details>
-      <details><summary>Quando eu pago alguma coisa?</summary><p>No pré-lançamento, nada. Quando as vendas abrirem, o sinal de 5% do valor do lote é pago por Pix e confirma a reserva. O sinal é descontado do valor total e o saldo é pago em parcelas fixas de R$ 500, sem reajuste. A documentação do empreendimento fica disponível para você conferir antes de pagar.</p></details>
-      <details><summary>Posso visitar antes?</summary><p>Pode e deve. Depois da reserva, combinamos a visita pelo WhatsApp e mostramos o seu lote na rua.</p></details>
-      <details><summary>O que já existe no local?</summary><p>A rua principal está aberta e sendo nivelada. O cronograma de energia, água e demarcação dos lotes é informado junto com a documentação.</p></details>
-      <details><summary>As casas do vídeo já estão construídas?</summary><p>Não. O vídeo é uma simulação do que pode ser construído. O que está à venda é o lote.</p></details>
+      <details><summary data-i="q1">A reserva me obriga a comprar?</summary><p data-i="a1">Não. No pré-lançamento a reserva é gratuita e serve para segurar o lote até a abertura das vendas.</p></details>
+      <details><summary data-i="q2">Quando eu pago alguma coisa?</summary><p data-i="a2">No pré-lançamento, nada. Quando as vendas abrirem, o sinal de 5% do valor do lote é pago por Pix e confirma a reserva. O sinal é descontado do valor total e o saldo é pago em parcelas fixas de R$ 500, sem reajuste. A documentação do empreendimento fica disponível para você conferir antes de pagar.</p></details>
+      <details><summary data-i="q3">Posso visitar antes?</summary><p data-i="a3">Pode e deve. Depois da reserva, combinamos a visita pelo WhatsApp e mostramos o seu lote na rua.</p></details>
+      <details><summary data-i="q4">O que já existe no local?</summary><p data-i="a4">A rua principal está aberta e sendo nivelada. O cronograma de energia, água e demarcação dos lotes é informado junto com a documentação.</p></details>
+      <details><summary data-i="q5">As casas do vídeo já estão construídas?</summary><p data-i="a5">Não. O vídeo é uma simulação do que pode ser construído. O que está à venda é o lote.</p></details>
     </div>
   </div>
 </section>
@@ -339,9 +346,9 @@ h1 em{font-style:italic;color:var(--rio)}
 <footer>
   <div class="wrap">
     <img src="media/marca-claro.png" alt="Alter do Chão" style="height:26px;width:auto;align-self:flex-start">
-    <span>Porto Novo, um empreendimento da vertical imobiliária do Alter do Chão Group · Santarém, Pará</span>
-    <span><a href="/painel/">Área do corretor</a> · Atendimento pelo WhatsApp: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">(93) 99127-2550</a></span>
-    <span class="miudo" style="color:#a9b3ad">Imagens de chalés e construções são ilustrativas. Medidas conforme planta, sujeitas a conferência. A venda de cada lote depende da apresentação da documentação ao comprador.</span>
+    <span data-i="f1">Porto Novo, um empreendimento da vertical imobiliária do Alter do Chão Group · Santarém, Pará</span>
+    <span data-i="f2"><a href="/painel/">Área do corretor</a> · Atendimento pelo WhatsApp: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">(93) 99127-2550</a></span>
+    <span class="miudo" style="color:#a9b3ad" data-i="f3">Imagens de chalés e construções são ilustrativas. Medidas conforme planta, sujeitas a conferência. A venda de cada lote depende da apresentação da documentação ao comprador.</span>
   </div>
 </footer>
 
@@ -353,49 +360,150 @@ h1 em{font-style:italic;color:var(--rio)}
       <p class="onde" id="jlado"></p>
       <h3 id="jt">Lote</h3>
       <div class="ficha">
-        <div><span>Área</span><b id="jarea"></b></div>
-        <div><span>Medidas</span><b id="jmed"></b></div>
-        <div><span>Posição</span><b id="jpos"></b></div>
-        <div><span>Situação</span><b id="jsit"></b></div>
+        <div><span data-i="fa">Área</span><b id="jarea"></b></div>
+        <div><span data-i="fm">Medidas</span><b id="jmed"></b></div>
+        <div><span data-i="fp">Posição</span><b id="jpos"></b></div>
+        <div><span data-i="fs">Situação</span><b id="jsit"></b></div>
       </div>
       <div class="preco"><b id="jpreco"></b><span id="jsinal"></span></div>
-      <button class="btn" type="button" id="ir2">Reservar este lote</button>
+      <button class="btn" type="button" id="ir2" data-i="ir2">Reservar este lote</button>
       <p class="miudo" id="nota1">Reserva gratuita. Você não paga nada agora.</p>
     </div>
 
     <div id="p2" class="pilha" hidden>
       <h3 id="jt2">Reservar</h3>
       <form id="form" novalidate>
-        <label for="f-nome">Nome completo<input type="text" id="f-nome" autocomplete="name" required></label>
-        <label for="f-zap">WhatsApp com DDD<input type="tel" id="f-zap" autocomplete="tel" inputmode="tel" placeholder="(93) 90000-0000" required></label>
-        <label for="f-email">E-mail (opcional)<input type="email" id="f-email" autocomplete="email"></label>
-        <label for="f-cidade">Cidade<input type="text" id="f-cidade" autocomplete="address-level2"></label>
+        <label for="f-nome"><span data-i="fn">Nome completo</span><input type="text" id="f-nome" autocomplete="name" required></label>
+        <label for="f-zap"><span data-i="fz">WhatsApp com DDD</span><input type="tel" id="f-zap" autocomplete="tel" inputmode="tel" placeholder="(93) 90000-0000" required></label>
+        <label for="f-email"><span data-i="fe">E-mail (opcional)</span><input type="email" id="f-email" autocomplete="email"></label>
+        <label for="f-cidade"><span data-i="fc">Cidade</span><input type="text" id="f-cidade" autocomplete="address-level2"></label>
         <p class="miudo" id="refbox" hidden style="background:var(--papel);border-radius:10px;padding:10px 12px;color:var(--tinta)"></p>
-        <label class="check" for="f-tem"><input type="checkbox" id="f-tem"><span>Estou sendo atendido por um corretor</span></label>
+        <label class="check" for="f-tem"><input type="checkbox" id="f-tem"><span data-i="ft">Estou sendo atendido por um corretor</span></label>
         <div class="bloco-corr" id="bcorr" hidden>
-          <label for="f-cnome">Nome do corretor<input type="text" id="f-cnome"></label>
+          <label for="f-cnome"><span data-i="fcn">Nome do corretor</span><input type="text" id="f-cnome"></label>
           <label for="f-creci">CRECI<input type="text" id="f-creci" placeholder="Ex.: 12345-PA"></label>
-          <label for="f-czap">WhatsApp do corretor<input type="tel" id="f-czap" inputmode="tel"></label>
+          <label for="f-czap"><span data-i="fcz">WhatsApp do corretor</span><input type="tel" id="f-czap" inputmode="tel"></label>
         </div>
         <p class="erro" id="erro" hidden></p>
-        <button class="btn" type="submit">Confirmar reserva</button>
-        <button class="btn sec" type="button" id="volta1">Voltar</button>
+        <button class="btn" type="submit" data-i="conf">Confirmar reserva</button>
+        <button class="btn sec" type="button" id="volta1" data-i="volt">Voltar</button>
       </form>
     </div>
 
     <div id="p3" class="pilha" hidden>
-      <h3>Lote reservado</h3>
+      <h3 data-i="okT">Lote reservado</h3>
       <p id="okmsg"></p>
       <div class="codigo" id="cod"></div>
-      <a class="btn zap" id="zaplink" href="#" target="_blank" rel="noopener">Enviar reserva pelo WhatsApp</a>
-      <button class="btn" type="button" disabled>Pagar sinal de 5% por Pix (em breve)</button>
-      <p class="miudo">Envie a reserva pelo WhatsApp para a equipe confirmar seu lote. O contrato e o contato do corretor chegam por WhatsApp ou e-mail. Atendimento: (93) 99127-2550.</p>
-      <button class="btn sec" type="button" id="fim">Voltar ao mapa</button>
+      <a class="btn zap" id="zaplink" data-i="zapB" href="#" target="_blank" rel="noopener">Enviar reserva pelo WhatsApp</a>
+      <button class="btn" type="button" disabled data-i="pay">Pagar sinal de 5% por Pix (em breve)</button>
+      <p class="miudo" data-i="p3m">Envie a reserva pelo WhatsApp para a equipe confirmar seu lote. O contrato e o contato do corretor chegam por WhatsApp ou e-mail. Atendimento: (93) 99127-2550.</p>
+      <button class="btn sec" type="button" id="fim" data-i="fimB">Voltar ao mapa</button>
     </div>
   </div>
 </dialog>
 
 <script>
+
+/* ===== Idiomas do site (PT · EN · ES · FR · DE) ===== */
+var LG='pt';
+var T={pt:{},
+en:{faixa:'<b>Pre-launch.</b> Reserve your lot now at no cost. When sales open, a 5% deposit confirms the lot and you receive the contract.',mLot:'Porto Novo · Lots',nLoc:'Location',nLot:'Lots',nComo:'How it works',nCor:'Brokers',nEsc:'Choose a lot',
+h1:'Your 660&nbsp;m² lot in the rainforest, <em>close to the beaches</em> of the Tapajós.',hlead:'A straight 800-metre road, 102 lots on both sides and forest all around. Pick yours on the map and reserve it from your phone in two minutes.',bEsc:'Choose my lot',bVer:'See the land',
+nb1:'R$&nbsp;20k',n1:'lots starting from',n2:'standard lot, about 660 m²',n3:'lots for sale',n4:'fixed instalments, no adjustment',
+lH:'Between Alter do Chão and Belterra, with the river right there.',lLead:'The entrance is right on the Interpraias road. You get there in an ordinary car and are only minutes from the sand.',d1:'10 minutes',d2:'15 minutes',d3s:'Facing the road',d3:'6 lots',d4s:'Green and community areas',d4:'set aside in the plan',
+mH:'Choose your lot',mLead:'The map follows the development plan. Tap a lot to see its size and reserve it.',fb1:'R$ 40k',fx1:'Roadside · lots 1 to 3 and 53 to 55',fb2:'R$ 30k',fx2:'First half of the road · lots 4 to 32 and 56 to 84',fb3:'R$ 20k',fx3:'Second half, up to the green area · lots 33 to 52 and 85 to 103',
+lg1:'Available',lg2:'Reserved by you',lg3:'Reserved',lg4:'Green or community area',tr1:'Section 1',tr1s:'From the road up to 470 m in · lots 1 to 32 and 53 to 84',tr2:'Section 2',tr2s:'Continuation of the same road, up to the green area · lots 33 to 52 and 85 to 103',nm:'Sizes as per the development plan, subject to confirmation when the lots are marked out. The map is a diagram and not to scale.',
+cH:'How it works',c1t:'Choose on the map',c1:'See the size, position on the road and price of each lot. There are three price tiers: R$ 20k, R$ 30k and R$ 40k, depending on the position.',c2t:'Reserve and pay the 5% deposit',c2:'Your name and WhatsApp are enough. The deposit is paid by Pix, secures the lot in your name and is deducted from the total price. During pre-launch the reservation is free.',c3t:'Receive the contract and your broker’s contact',c3:'The contract arrives by WhatsApp or e-mail, together with the contact of the broker who helped you or of a broker from our team.',
+vH:'The land today and what it can become',v1:'<b>Illustrative project</b>A simulation of how the development could look with homes built by the buyers. It is not an existing construction.',v2:'<b>The road being opened</b>Real footage of the machine levelling the main road.',
+qH:'Frequently asked questions',q1:'Does the reservation commit me to buy?',a1:'No. During pre-launch the reservation is free and holds the lot until sales open.',q2:'When do I pay anything?',a2:'Nothing during pre-launch. When sales open, the 5% deposit is paid by Pix and confirms the reservation. The deposit is deducted from the total price and the balance is paid in fixed instalments of R$ 500, with no adjustment. The development’s documents are available for you to check before paying.',q3:'Can I visit first?',a3:'Yes, and you should. After reserving, we arrange the visit by WhatsApp and show you your lot on the road.',q4:'What is already on site?',a4:'The main road is open and being levelled. The schedule for power, water and marking out the lots comes with the documentation.',q5:'Are the houses in the video already built?',a5:'No. The video is a simulation of what can be built. What is for sale is the lot.',
+f1:'Porto Novo, a development of the Alter do Chão Group real-estate division · Santarém, Pará, Brazil',f2:'<a href="/painel/">Broker area</a> · WhatsApp support: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">+55 93 99127-2550</a>',f3:'Images of chalets and buildings are illustrative. Sizes as per plan, subject to confirmation. The sale of each lot depends on the documentation being presented to the buyer.',
+fa:'Area',fm:'Dimensions',fp:'Position',fs:'Status',ir2:'Reserve this lot',fn:'Full name',fz:'WhatsApp with country code',fe:'E-mail (optional)',fc:'City',ft:'A broker is helping me',fcn:'Broker’s name',fcz:'Broker’s WhatsApp',conf:'Confirm reservation',volt:'Back',okT:'Lot reserved',zapB:'Send reservation by WhatsApp',pay:'Pay 5% deposit by Pix (coming soon)',p3m:'Send the reservation by WhatsApp so our team can confirm your lot. The contract and the broker’s contact arrive by WhatsApp or e-mail. Support: +55 93 99127-2550.',fimB:'Back to the map'},
+es:{faixa:'<b>Prelanzamiento.</b> Reserve su lote ahora, sin pagar nada. Al abrir las ventas, la seña del 5% confirma el lote y usted recibe el contrato.',mLot:'Porto Novo · Lotes',nLoc:'Ubicación',nLot:'Lotes',nComo:'Cómo funciona',nCor:'Corredores',nEsc:'Elegir lote',
+h1:'Su lote de 660&nbsp;m² en la selva, <em>cerca de las playas</em> del Tapajós.',hlead:'Una calle recta de 800 metros, 102 lotes a ambos lados y bosque alrededor. Elija el suyo en el mapa y resérvelo desde el celular en dos minutos.',bEsc:'Elegir mi lote',bVer:'Ver el terreno',
+nb1:'R$&nbsp;20&nbsp;mil',n1:'lotes desde este valor',n2:'lote estándar, unos 660 m²',n3:'lotes en venta',n4:'cuotas fijas, sin reajuste',
+lH:'Entre Alter do Chão y Belterra, con el río a un paso.',lLead:'La entrada del loteo está sobre la Estrada Interpraias. Se llega en auto común y queda a pocos minutos de la arena.',d1:'10 minutos',d2:'15 minutos',d3s:'Frente a la ruta',d3:'6 lotes',d4s:'Áreas verdes e institucional',d4:'reservadas en el plano',
+mH:'Elija su lote',mLead:'El mapa sigue el plano del emprendimiento. Toque un lote para ver la medida y reservarlo.',fb1:'R$ 40 mil',fx1:'Frente a la ruta · lotes 1 a 3 y 53 a 55',fb2:'R$ 30 mil',fx2:'Primera mitad de la calle · lotes 4 a 32 y 56 a 84',fb3:'R$ 20 mil',fx3:'Segunda mitad, hasta el área verde · lotes 33 a 52 y 85 a 103',
+lg1:'Disponible',lg2:'Reservado por usted',lg3:'Reservado',lg4:'Área verde o institucional',tr1:'Tramo 1',tr1s:'Desde la ruta hasta 470 m adentro · lotes 1 a 32 y 53 a 84',tr2:'Tramo 2',tr2s:'Continuación de la misma calle, hasta el área verde · lotes 33 a 52 y 85 a 103',nm:'Medidas según el plano del emprendimiento, sujetas a verificación en la demarcación. El mapa es un esquema y no está a escala.',
+cH:'Cómo funciona',c1t:'Elija en el mapa',c1:'Vea la medida, la posición en la calle y el precio de cada lote. Hay tres franjas de precio: R$ 20 mil, R$ 30 mil y R$ 40 mil, según la posición.',c2t:'Reserve y pague la seña del 5%',c2:'Basta su nombre y WhatsApp. La seña se paga por Pix, asegura el lote a su nombre y se descuenta del precio total. En el prelanzamiento la reserva es gratuita.',c3t:'Reciba el contrato y el contacto del corredor',c3:'El contrato llega por WhatsApp o correo electrónico, junto con el contacto del corredor que lo atendió o de uno del equipo.',
+vH:'El terreno hoy y lo que puede llegar a ser',v1:'<b>Proyecto ilustrativo</b>Simulación de cómo podría verse el loteo con las casas construidas por los compradores. No es una obra existente.',v2:'<b>La calle en apertura</b>Imágenes reales de la máquina nivelando la calle principal.',
+qH:'Preguntas frecuentes',q1:'¿La reserva me obliga a comprar?',a1:'No. En el prelanzamiento la reserva es gratuita y sirve para guardar el lote hasta la apertura de las ventas.',q2:'¿Cuándo pago algo?',a2:'En el prelanzamiento, nada. Al abrir las ventas, la seña del 5% se paga por Pix y confirma la reserva. La seña se descuenta del precio total y el saldo se paga en cuotas fijas de R$ 500, sin reajuste. La documentación del emprendimiento queda disponible para que la revise antes de pagar.',q3:'¿Puedo visitar antes?',a3:'Puede y debe. Después de reservar, coordinamos la visita por WhatsApp y le mostramos su lote en la calle.',q4:'¿Qué hay hoy en el lugar?',a4:'La calle principal está abierta y en nivelación. El cronograma de luz, agua y demarcación de los lotes se informa junto con la documentación.',q5:'¿Las casas del video ya están construidas?',a5:'No. El video es una simulación de lo que se puede construir. Lo que está a la venta es el lote.',
+f1:'Porto Novo, un emprendimiento de la división inmobiliaria de Alter do Chão Group · Santarém, Pará, Brasil',f2:'<a href="/painel/">Área del corredor</a> · Atención por WhatsApp: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">+55 93 99127-2550</a>',f3:'Las imágenes de chalés y construcciones son ilustrativas. Medidas según plano, sujetas a verificación. La venta de cada lote depende de presentar la documentación al comprador.',
+fa:'Área',fm:'Medidas',fp:'Posición',fs:'Situación',ir2:'Reservar este lote',fn:'Nombre completo',fz:'WhatsApp con código de país',fe:'Correo electrónico (opcional)',fc:'Ciudad',ft:'Me atiende un corredor',fcn:'Nombre del corredor',fcz:'WhatsApp del corredor',conf:'Confirmar reserva',volt:'Volver',okT:'Lote reservado',zapB:'Enviar reserva por WhatsApp',pay:'Pagar seña del 5% por Pix (próximamente)',p3m:'Envíe la reserva por WhatsApp para que el equipo confirme su lote. El contrato y el contacto del corredor llegan por WhatsApp o correo. Atención: +55 93 99127-2550.',fimB:'Volver al mapa'},
+fr:{faixa:'<b>Pré-lancement.</b> Réservez votre terrain dès maintenant, sans rien payer. À l’ouverture des ventes, un acompte de 5 % confirme le terrain et vous recevez le contrat.',mLot:'Porto Novo · Terrains',nLoc:'Situation',nLot:'Terrains',nComo:'Comment ça marche',nCor:'Agents',nEsc:'Choisir un terrain',
+h1:'Votre terrain de 660&nbsp;m² en forêt, <em>près des plages</em> du Tapajós.',hlead:'Une rue droite de 800 mètres, 102 terrains des deux côtés et la forêt tout autour. Choisissez le vôtre sur la carte et réservez-le depuis votre téléphone en deux minutes.',bEsc:'Choisir mon terrain',bVer:'Voir le terrain',
+nb1:'R$&nbsp;20&nbsp;000',n1:'terrains à partir de',n2:'terrain standard, environ 660 m²',n3:'terrains à vendre',n4:'mensualités fixes, sans révision',
+lH:'Entre Alter do Chão et Belterra, avec le fleuve tout près.',lLead:'L’entrée du lotissement donne sur la route Interpraias. On y arrive en voiture ordinaire, à quelques minutes du sable.',d1:'10 minutes',d2:'15 minutes',d3s:'Face à la route',d3:'6 terrains',d4s:'Espaces verts et collectifs',d4:'réservés sur le plan',
+mH:'Choisissez votre terrain',mLead:'La carte suit le plan du lotissement. Touchez un terrain pour voir ses dimensions et le réserver.',fb1:'R$ 40 000',fx1:'Bord de route · terrains 1 à 3 et 53 à 55',fb2:'R$ 30 000',fx2:'Première moitié de la rue · terrains 4 à 32 et 56 à 84',fb3:'R$ 20 000',fx3:'Seconde moitié, jusqu’à l’espace vert · terrains 33 à 52 et 85 à 103',
+lg1:'Disponible',lg2:'Réservé par vous',lg3:'Réservé',lg4:'Espace vert ou collectif',tr1:'Section 1',tr1s:'De la route jusqu’à 470 m · terrains 1 à 32 et 53 à 84',tr2:'Section 2',tr2s:'Suite de la même rue, jusqu’à l’espace vert · terrains 33 à 52 et 85 à 103',nm:'Dimensions selon le plan du lotissement, à confirmer lors du bornage. La carte est un schéma, pas à l’échelle.',
+cH:'Comment ça marche',c1t:'Choisissez sur la carte',c1:'Voyez la taille, la position dans la rue et le prix de chaque terrain. Il y a trois gammes de prix : R$ 20 000, R$ 30 000 et R$ 40 000, selon la position.',c2t:'Réservez et payez l’acompte de 5 %',c2:'Votre nom et votre WhatsApp suffisent. L’acompte se paie par Pix, réserve le terrain à votre nom et est déduit du prix total. Pendant le pré-lancement, la réservation est gratuite.',c3t:'Recevez le contrat et le contact de l’agent',c3:'Le contrat arrive par WhatsApp ou e-mail, avec le contact de l’agent qui vous a accompagné ou d’un agent de l’équipe.',
+vH:'Le terrain aujourd’hui et ce qu’il peut devenir',v1:'<b>Projet illustratif</b>Simulation de ce que pourrait devenir le lotissement avec les maisons construites par les acheteurs. Ce n’est pas une construction existante.',v2:'<b>La rue en cours d’ouverture</b>Images réelles de l’engin nivelant la rue principale.',
+qH:'Questions fréquentes',q1:'La réservation m’oblige-t-elle à acheter ?',a1:'Non. Pendant le pré-lancement, la réservation est gratuite et bloque le terrain jusqu’à l’ouverture des ventes.',q2:'Quand dois-je payer ?',a2:'Rien pendant le pré-lancement. À l’ouverture des ventes, l’acompte de 5 % se paie par Pix et confirme la réservation. Il est déduit du prix total et le solde se règle en mensualités fixes de R$ 500, sans révision. Les documents du lotissement sont disponibles pour vérification avant tout paiement.',q3:'Puis-je visiter avant ?',a3:'Oui, c’est même conseillé. Après la réservation, nous organisons la visite par WhatsApp et vous montrons votre terrain.',q4:'Qu’y a-t-il déjà sur place ?',a4:'La rue principale est ouverte et en cours de nivellement. Le calendrier de l’électricité, de l’eau et du bornage des terrains est communiqué avec la documentation.',q5:'Les maisons de la vidéo sont-elles déjà construites ?',a5:'Non. La vidéo est une simulation de ce qui peut être construit. C’est le terrain qui est à vendre.',
+f1:'Porto Novo, un projet de la division immobilière d’Alter do Chão Group · Santarém, Pará, Brésil',f2:'<a href="/painel/">Espace agent</a> · Assistance WhatsApp : <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">+55 93 99127-2550</a>',f3:'Les images de chalets et de constructions sont illustratives. Dimensions selon le plan, à confirmer. La vente de chaque terrain dépend de la présentation des documents à l’acheteur.',
+fa:'Surface',fm:'Dimensions',fp:'Position',fs:'Statut',ir2:'Réserver ce terrain',fn:'Nom complet',fz:'WhatsApp avec indicatif pays',fe:'E-mail (facultatif)',fc:'Ville',ft:'Un agent m’accompagne',fcn:'Nom de l’agent',fcz:'WhatsApp de l’agent',conf:'Confirmer la réservation',volt:'Retour',okT:'Terrain réservé',zapB:'Envoyer la réservation par WhatsApp',pay:'Payer l’acompte de 5 % par Pix (bientôt)',p3m:'Envoyez la réservation par WhatsApp pour que l’équipe confirme votre terrain. Le contrat et le contact de l’agent arrivent par WhatsApp ou e-mail. Assistance : +55 93 99127-2550.',fimB:'Retour à la carte'},
+de:{faixa:'<b>Vorverkauf.</b> Reservieren Sie Ihr Grundstück jetzt kostenlos. Mit Verkaufsstart bestätigt eine Anzahlung von 5 % das Grundstück und Sie erhalten den Vertrag.',mLot:'Porto Novo · Grundstücke',nLoc:'Lage',nLot:'Grundstücke',nComo:'So funktioniert’s',nCor:'Makler',nEsc:'Grundstück wählen',
+h1:'Ihr 660&nbsp;m²-Grundstück im Regenwald, <em>nah an den Stränden</em> des Tapajós.',hlead:'Eine gerade, 800 Meter lange Straße, 102 Grundstücke auf beiden Seiten und ringsum Wald. Wählen Sie Ihres auf der Karte und reservieren Sie es in zwei Minuten per Handy.',bEsc:'Mein Grundstück wählen',bVer:'Gelände ansehen',
+nb1:'R$&nbsp;20.000',n1:'Grundstücke ab',n2:'Standardgrundstück, ca. 660 m²',n3:'Grundstücke zum Verkauf',n4:'feste Raten, ohne Anpassung',
+lH:'Zwischen Alter do Chão und Belterra, der Fluss gleich nebenan.',lLead:'Die Zufahrt liegt direkt an der Estrada Interpraias. Man kommt mit einem normalen Auto hin und ist in wenigen Minuten am Strand.',d1:'10 Minuten',d2:'15 Minuten',d3s:'An der Straße',d3:'6 Grundstücke',d4s:'Grün- und Gemeinschaftsflächen',d4:'im Plan vorgesehen',
+mH:'Wählen Sie Ihr Grundstück',mLead:'Die Karte folgt dem Bebauungsplan. Tippen Sie auf ein Grundstück, um Größe zu sehen und zu reservieren.',fb1:'R$ 40.000',fx1:'An der Straße · Grundstücke 1 bis 3 und 53 bis 55',fb2:'R$ 30.000',fx2:'Erste Straßenhälfte · Grundstücke 4 bis 32 und 56 bis 84',fb3:'R$ 20.000',fx3:'Zweite Hälfte, bis zur Grünfläche · Grundstücke 33 bis 52 und 85 bis 103',
+lg1:'Verfügbar',lg2:'Von Ihnen reserviert',lg3:'Reserviert',lg4:'Grün- oder Gemeinschaftsfläche',tr1:'Abschnitt 1',tr1s:'Von der Straße bis 470 m hinein · Grundstücke 1 bis 32 und 53 bis 84',tr2:'Abschnitt 2',tr2s:'Fortsetzung derselben Straße bis zur Grünfläche · Grundstücke 33 bis 52 und 85 bis 103',nm:'Maße laut Bebauungsplan, vorbehaltlich der Vermessung. Die Karte ist eine Skizze und nicht maßstabsgetreu.',
+cH:'So funktioniert’s',c1t:'Auf der Karte wählen',c1:'Sehen Sie Größe, Lage an der Straße und Preis jedes Grundstücks. Es gibt drei Preisstufen: R$ 20.000, R$ 30.000 und R$ 40.000, je nach Lage.',c2t:'Reservieren und 5 % anzahlen',c2:'Name und WhatsApp genügen. Die Anzahlung wird per Pix bezahlt, sichert Ihnen das Grundstück und wird vom Gesamtpreis abgezogen. Im Vorverkauf ist die Reservierung kostenlos.',c3t:'Vertrag und Maklerkontakt erhalten',c3:'Der Vertrag kommt per WhatsApp oder E-Mail, zusammen mit dem Kontakt des Maklers, der Sie betreut hat, oder eines Maklers aus dem Team.',
+vH:'Das Gelände heute und was daraus werden kann',v1:'<b>Illustratives Projekt</b>Simulation, wie die Siedlung mit von den Käufern gebauten Häusern aussehen könnte. Es handelt sich nicht um ein bestehendes Bauwerk.',v2:'<b>Die Straße wird angelegt</b>Echte Aufnahmen der Maschine beim Planieren der Hauptstraße.',
+qH:'Häufige Fragen',q1:'Verpflichtet mich die Reservierung zum Kauf?',a1:'Nein. Im Vorverkauf ist die Reservierung kostenlos und hält das Grundstück bis zum Verkaufsstart frei.',q2:'Wann zahle ich etwas?',a2:'Im Vorverkauf nichts. Mit Verkaufsstart wird die Anzahlung von 5 % per Pix bezahlt und bestätigt die Reservierung. Sie wird vom Gesamtpreis abgezogen, der Rest wird in festen Raten von R$ 500 ohne Anpassung bezahlt. Die Unterlagen zum Projekt können Sie vor jeder Zahlung prüfen.',q3:'Kann ich vorher besichtigen?',a3:'Ja, unbedingt. Nach der Reservierung vereinbaren wir den Besuch per WhatsApp und zeigen Ihnen Ihr Grundstück.',q4:'Was gibt es vor Ort schon?',a4:'Die Hauptstraße ist angelegt und wird planiert. Der Zeitplan für Strom, Wasser und die Vermessung der Grundstücke kommt mit den Unterlagen.',q5:'Sind die Häuser im Video schon gebaut?',a5:'Nein. Das Video ist eine Simulation dessen, was gebaut werden kann. Verkauft wird das Grundstück.',
+f1:'Porto Novo, ein Projekt des Immobilienbereichs der Alter do Chão Group · Santarém, Pará, Brasilien',f2:'<a href="/painel/">Makler-Bereich</a> · WhatsApp-Support: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">+55 93 99127-2550</a>',f3:'Bilder von Chalets und Gebäuden sind illustrativ. Maße laut Plan, vorbehaltlich Prüfung. Der Verkauf jedes Grundstücks setzt die Vorlage der Unterlagen beim Käufer voraus.',
+fa:'Fläche',fm:'Maße',fp:'Lage',fs:'Status',ir2:'Dieses Grundstück reservieren',fn:'Vollständiger Name',fz:'WhatsApp mit Ländervorwahl',fe:'E-Mail (optional)',fc:'Stadt',ft:'Ein Makler betreut mich',fcn:'Name des Maklers',fcz:'WhatsApp des Maklers',conf:'Reservierung bestätigen',volt:'Zurück',okT:'Grundstück reserviert',zapB:'Reservierung per WhatsApp senden',pay:'5 % Anzahlung per Pix (bald verfügbar)',p3m:'Senden Sie die Reservierung per WhatsApp, damit unser Team Ihr Grundstück bestätigt. Vertrag und Maklerkontakt kommen per WhatsApp oder E-Mail. Support: +55 93 99127-2550.',fimB:'Zurück zur Karte'}
+};
+var SD={
+pt:{lote:'Lote',resLote:'Reservar o lote',disp:'Disponível',res:'Reservado',resv:'Reservado por você',rua:'Rua principal',aInst:'Área institucional',aVerde:'Área verde',aVerdeFim:'Área verde no fim da rua',beira:'na beira da estrada',dist:function(d){return 'a '+d+' m da estrada'},
+ sinal:function(s,p){return 'Sinal de '+s+' (5%), descontado do total.<br>Saldo em '+p+', sem reajuste.'},parc:function(q,v,r){return q+' parcelas fixas de '+v+(r?' e uma final de '+r:'')},
+ jaRes:'Este lote já foi reservado. Escolha outro no mapa.',gratis:'Reserva gratuita. Você não paga nada agora.',ok:function(n,l,a){return n+', o lote '+l+' ('+a+') está reservado no seu nome. Este é o código da sua reserva:'},
+ e1:'Digite seu nome e sobrenome.',e2:'Digite o WhatsApp com DDD, por exemplo (93) 99999-0000.',e3:'Preencha o nome e o CRECI do corretor.',e4:'Não foi possível registrar a reserva. Tente de novo.',e5:'Sem conexão com o servidor. Tente de novo ou fale pelo WhatsApp (93) 99127-2550.',e409:'Este lote acabou de ser reservado por outra pessoa. Escolha outro.',
+ conf:'Confirmar reserva',reg:'Registrando...',ref:function(n,c){return 'Você está sendo atendido por '+n+' (CRECI '+c+').'},cont:function(n){return n+' de 102 lotes disponíveis agora'},
+ lados:{}},
+en:{lote:'Lot',resLote:'Reserve lot',disp:'Available',res:'Reserved',resv:'Reserved by you',rua:'Main road',aInst:'Community area',aVerde:'Green area',aVerdeFim:'Green area at the end of the road',beira:'right on the road',dist:function(d){return d+' m from the road'},
+ sinal:function(s,p){return 'Deposit of '+s+' (5%), deducted from the total.<br>Balance in '+p+', no adjustment.'},parc:function(q,v,r){return q+' fixed instalments of '+v+(r?' and a final one of '+r:'')},
+ jaRes:'This lot has already been reserved. Please choose another one on the map.',gratis:'Free reservation. You pay nothing now.',ok:function(n,l,a){return n+', lot '+l+' ('+a+') is reserved in your name. This is your reservation code:'},
+ e1:'Please enter your first and last name.',e2:'Please enter your WhatsApp number with country code.',e3:'Please fill in the broker’s name and CRECI.',e4:'We couldn’t save the reservation. Please try again.',e5:'No connection to the server. Try again or contact us on WhatsApp +55 93 99127-2550.',e409:'Someone else has just reserved this lot. Please choose another one.',
+ conf:'Confirm reservation',reg:'Saving...',ref:function(n,c){return 'You are being assisted by '+n+' (CRECI '+c+').'},cont:function(n){return n+' of 102 lots available now'},
+ lados:{'Leste, frente para a estrada':'East side, facing the road','Oeste, frente para a estrada':'West side, facing the road','Lado leste':'East side','Lado leste, último da rua':'East side, last on the road','Lado oeste':'West side'}},
+es:{lote:'Lote',resLote:'Reservar el lote',disp:'Disponible',res:'Reservado',resv:'Reservado por usted',rua:'Calle principal',aInst:'Área institucional',aVerde:'Área verde',aVerdeFim:'Área verde al final de la calle',beira:'frente a la ruta',dist:function(d){return 'a '+d+' m de la ruta'},
+ sinal:function(s,p){return 'Seña de '+s+' (5%), descontada del total.<br>Saldo en '+p+', sin reajuste.'},parc:function(q,v,r){return q+' cuotas fijas de '+v+(r?' y una final de '+r:'')},
+ jaRes:'Este lote ya fue reservado. Elija otro en el mapa.',gratis:'Reserva gratuita. No paga nada ahora.',ok:function(n,l,a){return n+', el lote '+l+' ('+a+') está reservado a su nombre. Este es el código de su reserva:'},
+ e1:'Escriba su nombre y apellido.',e2:'Escriba su WhatsApp con código de país.',e3:'Complete el nombre y el CRECI del corredor.',e4:'No fue posible registrar la reserva. Intente de nuevo.',e5:'Sin conexión con el servidor. Intente de nuevo o escríbanos por WhatsApp +55 93 99127-2550.',e409:'Otra persona acaba de reservar este lote. Elija otro.',
+ conf:'Confirmar reserva',reg:'Registrando...',ref:function(n,c){return 'Lo atiende '+n+' (CRECI '+c+').'},cont:function(n){return n+' de 102 lotes disponibles ahora'},
+ lados:{'Leste, frente para a estrada':'Lado este, frente a la ruta','Oeste, frente para a estrada':'Lado oeste, frente a la ruta','Lado leste':'Lado este','Lado leste, último da rua':'Lado este, último de la calle','Lado oeste':'Lado oeste'}},
+fr:{lote:'Terrain',resLote:'Réserver le terrain',disp:'Disponible',res:'Réservé',resv:'Réservé par vous',rua:'Rue principale',aInst:'Espace collectif',aVerde:'Espace vert',aVerdeFim:'Espace vert en bout de rue',beira:'en bord de route',dist:function(d){return 'à '+d+' m de la route'},
+ sinal:function(s,p){return 'Acompte de '+s+' (5 %), déduit du total.<br>Solde en '+p+', sans révision.'},parc:function(q,v,r){return q+' mensualités fixes de '+v+(r?' et une dernière de '+r:'')},
+ jaRes:'Ce terrain est déjà réservé. Choisissez-en un autre sur la carte.',gratis:'Réservation gratuite. Vous ne payez rien maintenant.',ok:function(n,l,a){return n+', le terrain '+l+' ('+a+') est réservé à votre nom. Voici votre code de réservation :'},
+ e1:'Indiquez votre prénom et votre nom.',e2:'Indiquez votre WhatsApp avec l’indicatif du pays.',e3:'Indiquez le nom et le CRECI de l’agent.',e4:'Impossible d’enregistrer la réservation. Réessayez.',e5:'Pas de connexion au serveur. Réessayez ou écrivez-nous sur WhatsApp +55 93 99127-2550.',e409:'Quelqu’un vient de réserver ce terrain. Choisissez-en un autre.',
+ conf:'Confirmer la réservation',reg:'Enregistrement...',ref:function(n,c){return 'Vous êtes accompagné par '+n+' (CRECI '+c+').'},cont:function(n){return n+' terrains sur 102 disponibles'},
+ lados:{'Leste, frente para a estrada':'Côté est, face à la route','Oeste, frente para a estrada':'Côté ouest, face à la route','Lado leste':'Côté est','Lado leste, último da rua':'Côté est, dernier de la rue','Lado oeste':'Côté ouest'}},
+de:{lote:'Grundstück',resLote:'Grundstück reservieren',disp:'Verfügbar',res:'Reserviert',resv:'Von Ihnen reserviert',rua:'Hauptstraße',aInst:'Gemeinschaftsfläche',aVerde:'Grünfläche',aVerdeFim:'Grünfläche am Straßenende',beira:'direkt an der Straße',dist:function(d){return d+' m von der Straße'},
+ sinal:function(s,p){return 'Anzahlung '+s+' (5 %), vom Gesamtpreis abgezogen.<br>Rest in '+p+', ohne Anpassung.'},parc:function(q,v,r){return q+' festen Raten zu '+v+(r?' und einer Schlussrate von '+r:'')},
+ jaRes:'Dieses Grundstück ist bereits reserviert. Bitte wählen Sie ein anderes.',gratis:'Kostenlose Reservierung. Sie zahlen jetzt nichts.',ok:function(n,l,a){return n+', Grundstück '+l+' ('+a+') ist für Sie reserviert. Ihr Reservierungscode:'},
+ e1:'Bitte Vor- und Nachnamen eingeben.',e2:'Bitte WhatsApp-Nummer mit Ländervorwahl eingeben.',e3:'Bitte Name und CRECI des Maklers angeben.',e4:'Die Reservierung konnte nicht gespeichert werden. Bitte erneut versuchen.',e5:'Keine Verbindung zum Server. Bitte erneut versuchen oder per WhatsApp schreiben: +55 93 99127-2550.',e409:'Jemand hat dieses Grundstück gerade reserviert. Bitte wählen Sie ein anderes.',
+ conf:'Reservierung bestätigen',reg:'Wird gespeichert...',ref:function(n,c){return 'Sie werden betreut von '+n+' (CRECI '+c+').'},cont:function(n){return n+' von 102 Grundstücken jetzt verfügbar'},
+ lados:{'Leste, frente para a estrada':'Ostseite, an der Straße','Oeste, frente para a estrada':'Westseite, an der Straße','Lado leste':'Ostseite','Lado leste, último da rua':'Ostseite, letztes der Straße','Lado oeste':'Westseite'}}
+};
+function S(){return SD[LG]||SD.pt}
+document.querySelectorAll('[data-i]').forEach(function(el){T.pt[el.dataset.i]=el.innerHTML});
+var HL={pt:'pt-BR',en:'en',es:'es',fr:'fr',de:'de'};
+function idioma(l){
+  LG=SD[l]?l:'pt';
+  document.querySelectorAll('[data-i]').forEach(function(el){var t=T[LG][el.dataset.i]; el.innerHTML=(t!=null?t:T.pt[el.dataset.i])});
+  document.querySelectorAll('.idiomas button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===LG?'true':'false')});
+  document.documentElement.lang=HL[LG];
+  try{localStorage.setItem('pn_lang',LG)}catch(e){}
+  if(typeof monta==='function'){monta();}
+  if(typeof carrega==='function'){carrega();}
+}
+document.querySelectorAll('.idiomas button').forEach(function(b){b.addEventListener('click',function(){idioma(b.dataset.l)})});
+(function(){var l=null,m=location.search.match(/[?&]lang=(pt|en|es|fr|de)/);
+  if(m)l=m[1]; if(!l){try{l=localStorage.getItem('pn_lang')}catch(e){}}
+  if(!l){var n=(navigator.language||'pt').slice(0,2).toLowerCase();l=SD[n]?n:'pt'}
+  LG=SD[l]?l:'pt';
+  window.__lgInicial=LG;
+})();
+
 /* ===== Configuração: mude aqui ===== */
 var WHATS = '5593991272550';
 /* Faixas de preço: mais barato no fundo, mais caro perto da estrada */
@@ -405,7 +513,7 @@ function preco(n){
   return 20000;                                        // segunda metade, até a área verde
 }
 function rs(v){return 'R$ '+v.toLocaleString('pt-BR')}
-function mil(v){return (v/1000)+' mil'}
+function mil(v){return (v/1000)+(LG==='pt'||LG==='es'?' mil':'k')}
 /* Pagamento: sinal de 5% descontado do total; saldo em parcelas fixas de R$ 500, sem reajuste */
 var PARCELA = 500;
 function plano(n){
@@ -445,13 +553,13 @@ function botao(n,curto){
   var b=document.createElement('button');
   var oc = ocupados[n] && !minhas[n];
   b.type='button'; b.className='lote'+(minhas[n]?' meu':(oc?' oc':'')); b.dataset.n=n;
-  b.setAttribute('aria-label','Lote '+n+', '+L[n].area+', '+rs(preco(n))+(minhas[n]?', reservado por você':(oc?', reservado':', disponível')));
+  b.setAttribute('aria-label',S().lote+' '+n+', '+L[n].area+', '+rs(preco(n))+', '+(minhas[n]?S().resv:(oc?S().res:S().disp)).toLowerCase());
   b.innerHTML = curto ? String(n) : '<span>'+n+'</span><small>'+mil(preco(n))+'</small>';
   b.addEventListener('click',function(){abre(n)});
   return b;
 }
 function fixo(t){var d=document.createElement('div');d.className='fixo';d.textContent=t;return d}
-function rua(k){var d=document.createElement('div');d.className='rua';d.style.gridRow='1 / span '+k;d.innerHTML='<span>Rua principal</span>';return d}
+function rua(k){var d=document.createElement('div');d.className='rua';d.style.gridRow='1 / span '+k;d.innerHTML='<span>'+S().rua+'</span>';return d}
 
 function monta(){
   var t1=document.getElementById('t1'), t2=document.getElementById('t2');
@@ -470,14 +578,14 @@ function monta(){
   t2.appendChild(rua(20));
   for(i=0;i<20;i++){
     var no=85+i, a2;
-    if(no===87) a2=fixo('Área institucional');
-    else if(no>103) a2=fixo('Área verde');
+    if(no===87) a2=fixo(S().aInst);
+    else if(no>103) a2=fixo(S().aVerde);
     else a2=botao(no);
     var b2=botao(33+i);
     a2.style.gridColumn='1'; b2.style.gridColumn='3';
     t2.appendChild(a2); t2.appendChild(b2);
   }
-  var v=fixo('Área verde no fim da rua'); v.style.gridColumn='1 / -1'; v.style.minHeight='56px'; v.style.gridRow='auto';
+  var v=fixo(S().aVerdeFim); v.style.gridColumn='1 / -1'; v.style.minHeight='56px'; v.style.gridRow='auto';
   t2.appendChild(v);
 }
 
@@ -488,19 +596,19 @@ function abre(n){
   atual=n; var l=L[n];
   document.querySelectorAll('.lote.sel').forEach(function(e){e.classList.remove('sel')});
   var el=document.querySelector('.lote[data-n="'+n+'"]'); if(el) el.classList.add('sel');
-  document.getElementById('jlado').textContent=l.lado;
-  document.getElementById('jt').textContent='Lote '+n;
-  document.getElementById('jt2').textContent='Reservar o lote '+n;
+  document.getElementById('jlado').textContent=S().lados[l.lado]||l.lado;
+  document.getElementById('jt').textContent=S().lote+' '+n;
+  document.getElementById('jt2').textContent=S().resLote+' '+n;
   document.getElementById('jarea').textContent=l.area;
   document.getElementById('jpreco').textContent=rs(preco(n));
   var pl=plano(n);
-  document.getElementById('jsinal').innerHTML='Sinal de '+rs(pl.sinal)+' (5%), descontado do total.<br>Saldo em '+pl.txt+', sem reajuste.';
+  document.getElementById('jsinal').innerHTML=S().sinal(rs(pl.sinal),S().parc(pl.q,rs(PARCELA),pl.resto?rs(pl.resto):''));
   document.getElementById('jmed').textContent=l.med;
-  document.getElementById('jpos').textContent=l.dist?('a '+l.dist+' m da estrada'):'na beira da estrada';
+  document.getElementById('jpos').textContent=l.dist?S().dist(l.dist):S().beira;
   var oc = ocupados[n] && !minhas[n];
-  document.getElementById('jsit').textContent=minhas[n]?'Reservado por você':(oc?'Reservado':'Disponível');
+  document.getElementById('jsit').textContent=minhas[n]?S().resv:(oc?S().res:S().disp);
   document.getElementById('ir2').hidden=!!oc;
-  document.getElementById('nota1').textContent=oc?'Este lote já foi reservado. Escolha outro no mapa.':'Reserva gratuita. Você não paga nada agora.';
+  document.getElementById('nota1').textContent=oc?S().jaRes:S().gratis;
   if(minhas[n]){ mostraOk(minhas[n]); passo(3); } else { passo(1); }
   if(jan.showModal) jan.showModal(); else jan.setAttribute('open','');
 }
@@ -515,7 +623,7 @@ document.getElementById('f-tem').addEventListener('change',function(e){document.
 function v(id){return document.getElementById(id).value.trim()}
 function mostraOk(r){
   var l=L[r.lote];
-  document.getElementById('okmsg').textContent=r.nome.split(' ')[0]+', o lote '+r.lote+' ('+l.area+') está reservado no seu nome. Este é o código da sua reserva:';
+  document.getElementById('okmsg').textContent=S().ok(r.nome.split(' ')[0],r.lote,l.area);
   document.getElementById('cod').textContent=r.codigo;
   var t='Olá! Fiz uma reserva no site Alter do Chão Estates (Porto Novo).\n\nCódigo: '+r.codigo+'\nLote: '+r.lote+' ('+l.area+', '+l.med+')\nValor: '+rs(preco(r.lote))+' (sinal de '+rs(plano(r.lote).sinal)+' + '+plano(r.lote).txt+')\nNome: '+r.nome+'\nWhatsApp: '+r.zap+(r.email?'\nE-mail: '+r.email:'')+(r.cidade?'\nCidade: '+r.cidade:'')+(r.corretor?'\n\nCorretor: '+r.corretor+' · CRECI '+r.creci+(r.czap?' · '+r.czap:''):'')+'\n\nQuero receber o contrato.';
   document.getElementById('zaplink').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
@@ -523,21 +631,21 @@ function mostraOk(r){
 document.getElementById('form').addEventListener('submit',function(e){
   e.preventDefault();
   var erro=document.getElementById('erro'), nome=v('f-nome'), zap=v('f-zap'), tem=document.getElementById('f-tem').checked, msg='';
-  if(nome.split(/\s+/).length<2) msg='Digite seu nome e sobrenome.';
-  else if(zap.replace(/\D/g,'').length<10) msg='Digite o WhatsApp com DDD, por exemplo (93) 99999-0000.';
-  else if(tem && (!v('f-cnome') || !v('f-creci'))) msg='Preencha o nome e o CRECI do corretor.';
+  if(nome.split(/\s+/).length<2) msg=S().e1;
+  else if(zap.replace(/\D/g,'').length<10) msg=S().e2;
+  else if(tem && (!v('f-cnome') || !v('f-creci'))) msg=S().e3;
   if(msg){erro.textContent=msg;erro.hidden=false;return}
   erro.hidden=true;
   var r={ref:REF,lote:atual,nome:nome,zap:zap,email:v('f-email'),cidade:v('f-cidade'),
     corretor:tem?v('f-cnome'):'',creci:tem?v('f-creci'):'',czap:tem?v('f-czap'):'',quando:new Date().toISOString()};
-  var bt=e.target.querySelector('button[type=submit]'); bt.disabled=true; bt.textContent='Registrando...';
-  function fim(){bt.disabled=false;bt.textContent='Confirmar reserva'}
+  var bt=e.target.querySelector('button[type=submit]'); bt.disabled=true; bt.textContent=S().reg;
+  function fim(){bt.disabled=false;bt.textContent=S().conf}
   fetch('/api/reservar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(r)})
     .then(function(x){return x.json().then(function(j){return {s:x.status,j:j}})})
     .then(function(o){
       fim();
       if(o.s!==200||!o.j.ok){
-        erro.textContent=(o.j&&o.j.erro)||'Não foi possível registrar a reserva. Tente de novo.';erro.hidden=false;
+        erro.textContent=o.s===409?S().e409:(LG==='pt'&&o.j&&o.j.erro)||S().e4;erro.hidden=false;
         if(o.s===409){ocupados[atual]=true;monta();}
         return;
       }
@@ -545,24 +653,24 @@ document.getElementById('form').addEventListener('submit',function(e){
       var el=document.querySelector('.lote[data-n="'+atual+'"]'); if(el) el.classList.add('sel');
       mostraOk(r); passo(3);
     })
-    .catch(function(){fim();erro.textContent='Sem conexão com o servidor. Tente de novo ou fale pelo WhatsApp (93) 99127-2550.';erro.hidden=false;});
+    .catch(function(){fim();erro.textContent=S().e5;erro.hidden=false;});
 });
 
 function carregaRef(){
   if(!REF)return;
   fetch('/api/ref?id='+REF).then(function(x){return x.ok?x.json():null}).then(function(j){
     if(!j||!j.nome)return; REFINFO=j;
-    var b=document.getElementById('refbox'); b.textContent='Você está sendo atendido por '+j.nome+' (CRECI '+j.creci+'-'+j.uf+').'; b.hidden=false;
+    var b=document.getElementById('refbox'); b.textContent=S().ref(j.nome,j.creci+'-'+j.uf); b.hidden=false;
     document.getElementById('f-tem').closest('label').hidden=true;
   }).catch(function(){});
 }
 function carrega(){
   fetch('/api/lotes',{cache:'no-store'}).then(function(x){return x.json()}).then(function(j){
     ocupados={}; (j.reservados||[]).forEach(function(n){ocupados[n]=true}); monta();
-    var livres=102-(j.reservados||[]).length, c=document.getElementById('cont'); if(c) c.textContent=livres+' de 102 lotes disponíveis agora';
+    var livres=102-(j.reservados||[]).length, c=document.getElementById('cont'); if(c) c.textContent=S().cont(livres);
   }).catch(function(){});
 }
-monta(); carrega(); carregaRef(); setInterval(carrega,60000);
+idioma(window.__lgInicial); carregaRef(); setInterval(carrega,60000);
 document.querySelectorAll('#videos video').forEach(function(v){v.addEventListener('play',function(){document.querySelectorAll('#videos video').forEach(function(o){if(o!==v)o.pause()})})});
 if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
   var hv=document.querySelector('.quadro video'); if(hv){hv.removeAttribute('autoplay');hv.pause();hv.controls=true;}
