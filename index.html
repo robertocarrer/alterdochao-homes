@@ -8,7 +8,7 @@
 <meta name="description" content="Lotes de 660 m² na mata, na Estrada Interpraias, entre Alter do Chão e Belterra. Escolha seu lote no mapa e reserve online.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   /* Layout: coluna única de leitura; o mapa repete a planta real, uma rua de areia com lotes dos dois lados. */
@@ -22,18 +22,18 @@
   --suave:#5d6661;     /* texto secundário */
   --branco:#ffffff;
   --alerta:#b4541a;
-  --display:"Marcellus","Palatino Linotype",Georgia,serif;
+  --display:"Cormorant Garamond","Palatino Linotype",Georgia,serif;
   --corpo:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--corpo);font-size:17px;line-height:1.55}
+body{font-variant-numeric:lining-nums;margin:0;background:var(--papel);color:var(--tinta);font-family:var(--corpo);font-size:17px;line-height:1.55}
 img,video{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0;color:var(--mata)}
-h1{font-size:clamp(2.3rem,6.2vw,4.2rem);font-weight:400;letter-spacing:-.01em}
-h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:400}
-h3{font-size:1.2rem;font-weight:400}
+h1{font-size:clamp(2.7rem,7vw,5rem);font-weight:500;letter-spacing:-.015em;line-height:1}
+h2{font-size:clamp(2.1rem,4.4vw,3.1rem);font-weight:500;letter-spacing:-.01em}
+h3{font-size:1.45rem;font-weight:600}
 p{margin:0}
 a{color:var(--rio)}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
@@ -106,13 +106,17 @@ nav a:hover{color:var(--folha)}
 .rua span{position:sticky;top:90px;display:block;writing-mode:vertical-rl;margin:14px auto;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#5c4b25;font-weight:700}
 .frente{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
 .lote{appearance:none;border:0;border-radius:6px;background:#6d8a7c;color:#fff;font:600 .9rem var(--corpo);min-height:34px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-variant-numeric:tabular-nums;width:100%}
-.lote small{font-weight:500;opacity:.8;font-size:.72rem}
+.lote small{font-weight:600;opacity:.9;font-size:.74rem}
 .frente .lote{justify-content:center;padding:0;min-height:44px}
 .lote:hover{background:#84a091}
 .lote.meu{background:var(--areia);color:#2b2416}.lote{color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.18)}.lote.meu{text-shadow:none}
 .lote.oc{background:#3d4744;color:#8f9a95;text-shadow:none;text-decoration:line-through}.lote.oc:hover{background:#3d4744}
 .lote.sel{outline:3px solid #fff;outline-offset:1px}
 .fixo{border-radius:6px;min-height:34px;display:flex;align-items:center;justify-content:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#b3bdb7;border:1px dashed #5d6b66;text-align:center;padding:2px 6px}
+.faixas{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #5d6b66;border-bottom:1px solid #5d6b66}
+.faixas div{padding:14px 16px;border-left:1px solid #5d6b66}.faixas div:first-child{border-left:0;padding-left:0}
+.faixas b{display:block;font-family:var(--display);font-size:1.6rem;font-weight:600;color:#fff;line-height:1.1}.faixas span{font-size:.85rem;color:#c9d0cb}
+@media(max-width:760px){.faixas{grid-template-columns:1fr 1fr}.faixas div:nth-child(3){border-left:0;padding-left:0}.faixas div:nth-child(n+3){border-top:1px solid #5d6b66}}
 .nota-mapa{font-size:.85rem;color:#b3bdb7;margin-top:20px;max-width:75ch}
 
 /* passos */
@@ -177,7 +181,9 @@ input:focus{border-color:var(--folha);outline:0}
 .pilha{display:grid;gap:10px}
 [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-.numeros b,.ficha b,.dist b,.preco b,.codigo{font-weight:400}
+.numeros b,.ficha b,.dist b,.preco b,.codigo{font-weight:600}
+.numeros b{font-size:2.1rem}.ficha b,.dist b{font-size:1.3rem}.preco b{font-size:2.3rem}
+h1 em{font-style:italic;color:var(--rio)}
 </style>
 </head>
 <body>
@@ -202,7 +208,7 @@ input:focus{border-color:var(--folha);outline:0}
   <div class="wrap">
     <div class="txt">
       <p class="onde">Porto Novo · Estrada Interpraias, Santarém (PA)</p>
-      <h1>Seu lote de 660&nbsp;m² na mata, perto das praias do Tapajós.</h1>
+      <h1>Seu lote de 660&nbsp;m² na mata, <em>perto das praias</em> do Tapajós.</h1>
       <p class="lead">Uma rua reta de 800 metros, 102 lotes dos dois lados e floresta em volta. Escolha o seu no mapa e reserve pelo celular em dois minutos.</p>
       <div class="acoes">
         <a class="btn" href="#mapa">Escolher meu lote</a>
@@ -215,7 +221,7 @@ input:focus{border-color:var(--folha);outline:0}
   </div>
   <div class="wrap" style="display:block">
     <div class="numeros" style="margin-top:48px">
-      <div><b>R$&nbsp;20.000</b><span>valor de cada lote</span></div>
+      <div><b>R$&nbsp;20&nbsp;mil</b><span>lotes a partir deste valor</span></div>
       <div><b>15&nbsp;×&nbsp;44&nbsp;m</b><span>lote padrão, cerca de 660 m²</span></div>
       <div><b>102</b><span>lotes à venda</span></div>
       <div><b>15 min</b><span>da praia de Pindobal</span></div>
@@ -244,6 +250,12 @@ input:focus{border-color:var(--folha);outline:0}
     <div class="cab">
       <h2>Escolha seu lote</h2>
       <p class="lead">O mapa segue a planta do empreendimento. Toque em um lote para ver a medida e reservar.</p>
+      <div class="faixas">
+        <div><b>R$ 40 mil</b><span>Beira da estrada · lotes 1 a 3 e 53 a 55</span></div>
+        <div><b>R$ 30 mil</b><span>Início da rua · lotes 4 a 17 e 56 a 69</span></div>
+        <div><b>R$ 25 mil</b><span>Meio da rua · lotes 18 a 32 e 70 a 84</span></div>
+        <div><b>R$ 20 mil</b><span>Fundo, perto da área verde · lotes 33 a 52 e 85 a 103</span></div>
+      </div>
       <p id="cont" style="font-weight:600;color:var(--areia)"></p>
       <div class="legenda">
         <span><i style="background:#6d8a7c"></i>Disponível</span>
@@ -273,9 +285,9 @@ input:focus{border-color:var(--folha);outline:0}
   <div class="wrap">
     <h2>Como funciona</h2>
     <ol>
-      <li><h3>Escolha no mapa</h3><p>Veja a medida, a posição na rua e o valor de cada lote. Todos custam R$ 20.000.</p></li>
+      <li><h3>Escolha no mapa</h3><p>Veja a medida, a posição na rua e o valor de cada lote. Os preços vão de R$ 20 mil, no fundo, a R$ 40 mil, na beira da estrada.</p></li>
       <li><h3>Reserve com seus dados</h3><p>Nome e WhatsApp bastam. A reserva não custa nada e segura o lote enquanto você analisa.</p></li>
-      <li><h3>Receba a documentação e pague o sinal</h3><p>Enviamos os documentos do empreendimento e o contrato. Só depois disso o sinal de R$ 2.000 é pago por Pix.</p></li>
+      <li><h3>Receba a documentação e pague o sinal</h3><p>Enviamos os documentos do empreendimento e o contrato. Só depois disso o sinal, de 10% do valor do lote, é pago por Pix.</p></li>
     </ol>
   </div>
 </section>
@@ -304,7 +316,7 @@ input:focus{border-color:var(--folha);outline:0}
       <a class="btn" href="#mapa" style="align-self:flex-start">Abrir o mapa de lotes</a>
     </div>
     <ul>
-      <li><b>Tabela única</b><span>O mesmo valor para todo mundo. Ninguém vende por fora mais barato.</span></li>
+      <li><b>Tabela única</b><span>A mesma tabela para todo mundo. Ninguém vende por fora mais barato.</span></li>
       <li><b>Disponibilidade na hora</b><span>O mapa mostra quais lotes estão livres, sem precisar ligar para confirmar.</span></li>
       <li><b>Venda registrada</b><span>Seu CRECI entra na reserva e a comissão é acertada com a administração do empreendimento.</span></li>
     </ul>
@@ -316,7 +328,7 @@ input:focus{border-color:var(--folha);outline:0}
     <h2>Dúvidas comuns</h2>
     <div class="faq">
       <details><summary>A reserva me obriga a comprar?</summary><p>Não. A reserva é gratuita e serve para segurar o lote enquanto você recebe e analisa a documentação.</p></details>
-      <details><summary>Quando eu pago alguma coisa?</summary><p>Só depois de receber os documentos do empreendimento e o contrato. O sinal é de R$ 2.000, pago por Pix, e o restante segue a condição combinada em contrato.</p></details>
+      <details><summary>Quando eu pago alguma coisa?</summary><p>Só depois de receber os documentos do empreendimento e o contrato. O sinal é de 10% do valor do lote, pago por Pix, e o restante segue a condição combinada em contrato.</p></details>
       <details><summary>Posso visitar antes?</summary><p>Pode e deve. Depois da reserva, combinamos a visita pelo WhatsApp e mostramos o seu lote na rua.</p></details>
       <details><summary>O que já existe no local?</summary><p>A rua principal está aberta e sendo nivelada. O cronograma de energia, água e demarcação dos lotes é informado junto com a documentação.</p></details>
       <details><summary>Os chalés do desenho já estão construídos?</summary><p>Não. O desenho mostra o que pode ser construído em cada lote. O que está à venda é o lote.</p></details>
@@ -347,7 +359,7 @@ input:focus{border-color:var(--folha);outline:0}
         <div><span>Posição</span><b id="jpos"></b></div>
         <div><span>Situação</span><b id="jsit"></b></div>
       </div>
-      <div class="preco"><b>R$ 20.000</b><span>sinal de R$ 2.000 após a documentação</span></div>
+      <div class="preco"><b id="jpreco"></b><span id="jsinal"></span></div>
       <button class="btn" type="button" id="ir2">Reservar este lote</button>
       <p class="miudo" id="nota1">Reserva gratuita. Você não paga nada agora.</p>
     </div>
@@ -385,7 +397,16 @@ input:focus{border-color:var(--folha);outline:0}
 
 <script>
 /* ===== Configuração: mude aqui ===== */
-var PRECO = 20000, SINAL = 2000, WHATS = '5593991272550';
+var WHATS = '5593991272550';
+/* Faixas de preço: mais barato no fundo, mais caro perto da estrada */
+function preco(n){
+  if(n<=3 || (n>=53&&n<=55)) return 40000;            // beira da estrada
+  if((n>=4&&n<=17) || (n>=56&&n<=69)) return 30000;   // início da rua
+  if((n>=18&&n<=32) || (n>=70&&n<=84)) return 25000;  // meio da rua
+  return 20000;                                        // fundo
+}
+function rs(v){return 'R$ '+v.toLocaleString('pt-BR')}
+function mil(v){return (v/1000)+' mil'}
 /* ===== Lotes, conforme a planta ===== */
 function f2(n){return n.toFixed(2).replace('.',',')}
 var L = {};
@@ -416,8 +437,8 @@ function botao(n,curto){
   var b=document.createElement('button');
   var oc = ocupados[n] && !minhas[n];
   b.type='button'; b.className='lote'+(minhas[n]?' meu':(oc?' oc':'')); b.dataset.n=n;
-  b.setAttribute('aria-label','Lote '+n+', '+L[n].area+(minhas[n]?', reservado por você':(oc?', reservado':', disponível')));
-  b.innerHTML = curto ? String(n) : '<span>'+n+'</span><small>'+L[n].area.replace(' m²','').replace('≈ ','')+'</small>';
+  b.setAttribute('aria-label','Lote '+n+', '+L[n].area+', '+rs(preco(n))+(minhas[n]?', reservado por você':(oc?', reservado':', disponível')));
+  b.innerHTML = curto ? String(n) : '<span>'+n+'</span><small>'+mil(preco(n))+'</small>';
   b.addEventListener('click',function(){abre(n)});
   return b;
 }
@@ -463,6 +484,8 @@ function abre(n){
   document.getElementById('jt').textContent='Lote '+n;
   document.getElementById('jt2').textContent='Reservar o lote '+n;
   document.getElementById('jarea').textContent=l.area;
+  document.getElementById('jpreco').textContent=rs(preco(n));
+  document.getElementById('jsinal').textContent='sinal de '+rs(preco(n)/10)+' após a documentação';
   document.getElementById('jmed').textContent=l.med;
   document.getElementById('jpos').textContent=l.dist?('a '+l.dist+' m da estrada'):'na beira da estrada';
   var oc = ocupados[n] && !minhas[n];
@@ -485,7 +508,7 @@ function mostraOk(r){
   var l=L[r.lote];
   document.getElementById('okmsg').textContent=r.nome.split(' ')[0]+', o lote '+r.lote+' ('+l.area+') está reservado no seu nome. Este é o código da sua reserva:';
   document.getElementById('cod').textContent=r.codigo;
-  var t='Olá! Fiz uma reserva no site Alter do Chão Homes (Porto Novo).\n\nCódigo: '+r.codigo+'\nLote: '+r.lote+' ('+l.area+', '+l.med+')\nValor: R$ 20.000\nNome: '+r.nome+'\nWhatsApp: '+r.zap+(r.email?'\nE-mail: '+r.email:'')+(r.cidade?'\nCidade: '+r.cidade:'')+(r.corretor?'\n\nCorretor: '+r.corretor+' · CRECI '+r.creci+(r.czap?' · '+r.czap:''):'')+'\n\nQuero receber a documentação.';
+  var t='Olá! Fiz uma reserva no site Alter do Chão Homes (Porto Novo).\n\nCódigo: '+r.codigo+'\nLote: '+r.lote+' ('+l.area+', '+l.med+')\nValor: '+rs(preco(r.lote))+'\nNome: '+r.nome+'\nWhatsApp: '+r.zap+(r.email?'\nE-mail: '+r.email:'')+(r.cidade?'\nCidade: '+r.cidade:'')+(r.corretor?'\n\nCorretor: '+r.corretor+' · CRECI '+r.creci+(r.czap?' · '+r.czap:''):'')+'\n\nQuero receber a documentação.';
   document.getElementById('zaplink').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
 }
 document.getElementById('form').addEventListener('submit',function(e){
