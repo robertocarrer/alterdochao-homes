@@ -188,7 +188,7 @@ h1 em{font-style:italic;color:var(--rio)}
 </head>
 <body>
 
-<div class="faixa"><b>Pré-lançamento.</b> Reserve seu lote agora, sem pagar nada. O sinal só é cobrado depois que você recebe a documentação.</div>
+<div class="faixa"><b>Pré-lançamento.</b> Reserve seu lote agora, sem pagar nada. Na abertura das vendas, o sinal de 5% confirma o lote e você recebe o contrato.</div>
 
 <header class="topo">
   <div class="wrap">
@@ -286,8 +286,8 @@ h1 em{font-style:italic;color:var(--rio)}
     <h2>Como funciona</h2>
     <ol>
       <li><h3>Escolha no mapa</h3><p>Veja a medida, a posição na rua e o valor de cada lote. Os preços vão de R$ 20 mil, no fundo, a R$ 40 mil, na beira da estrada.</p></li>
-      <li><h3>Reserve com seus dados</h3><p>Nome e WhatsApp bastam. A reserva não custa nada e segura o lote enquanto você analisa.</p></li>
-      <li><h3>Receba a documentação e pague o sinal</h3><p>Enviamos os documentos do empreendimento e o contrato. Só depois disso o sinal, de 10% do valor do lote, é pago por Pix.</p></li>
+      <li><h3>Reserve e pague o sinal de 5%</h3><p>Nome e WhatsApp bastam. O sinal é pago por Pix e garante o lote no seu nome. No pré-lançamento a reserva é gratuita.</p></li>
+      <li><h3>Receba o contrato e o contato do corretor</h3><p>O contrato chega por WhatsApp ou e-mail, junto com o contato do corretor que atendeu você ou de um corretor da equipe.</p></li>
     </ol>
   </div>
 </section>
@@ -327,8 +327,8 @@ h1 em{font-style:italic;color:var(--rio)}
   <div class="wrap">
     <h2>Dúvidas comuns</h2>
     <div class="faq">
-      <details><summary>A reserva me obriga a comprar?</summary><p>Não. A reserva é gratuita e serve para segurar o lote enquanto você recebe e analisa a documentação.</p></details>
-      <details><summary>Quando eu pago alguma coisa?</summary><p>Só depois de receber os documentos do empreendimento e o contrato. O sinal é de 10% do valor do lote, pago por Pix, e o restante segue a condição combinada em contrato.</p></details>
+      <details><summary>A reserva me obriga a comprar?</summary><p>Não. No pré-lançamento a reserva é gratuita e serve para segurar o lote até a abertura das vendas.</p></details>
+      <details><summary>Quando eu pago alguma coisa?</summary><p>No pré-lançamento, nada. Quando as vendas abrirem, o sinal de 5% do valor do lote é pago por Pix e confirma a reserva. O restante segue a condição combinada em contrato. A documentação do empreendimento fica disponível para você conferir antes de pagar.</p></details>
       <details><summary>Posso visitar antes?</summary><p>Pode e deve. Depois da reserva, combinamos a visita pelo WhatsApp e mostramos o seu lote na rua.</p></details>
       <details><summary>O que já existe no local?</summary><p>A rua principal está aberta e sendo nivelada. O cronograma de energia, água e demarcação dos lotes é informado junto com a documentação.</p></details>
       <details><summary>Os chalés do desenho já estão construídos?</summary><p>Não. O desenho mostra o que pode ser construído em cada lote. O que está à venda é o lote.</p></details>
@@ -388,8 +388,8 @@ h1 em{font-style:italic;color:var(--rio)}
       <p id="okmsg"></p>
       <div class="codigo" id="cod"></div>
       <a class="btn zap" id="zaplink" href="#" target="_blank" rel="noopener">Enviar reserva pelo WhatsApp</a>
-      <button class="btn" type="button" disabled>Pagar sinal por Pix (liberado após a documentação)</button>
-      <p class="miudo">Envie a reserva pelo WhatsApp para a equipe confirmar seu lote e mandar a documentação. Atendimento: (93) 99127-2550.</p>
+      <button class="btn" type="button" disabled>Pagar sinal de 5% por Pix (em breve)</button>
+      <p class="miudo">Envie a reserva pelo WhatsApp para a equipe confirmar seu lote. O contrato e o contato do corretor chegam por WhatsApp ou e-mail. Atendimento: (93) 99127-2550.</p>
       <button class="btn sec" type="button" id="fim">Voltar ao mapa</button>
     </div>
   </div>
@@ -485,7 +485,7 @@ function abre(n){
   document.getElementById('jt2').textContent='Reservar o lote '+n;
   document.getElementById('jarea').textContent=l.area;
   document.getElementById('jpreco').textContent=rs(preco(n));
-  document.getElementById('jsinal').textContent='sinal de '+rs(preco(n)/10)+' após a documentação';
+  document.getElementById('jsinal').textContent='sinal de 5%: '+rs(preco(n)*0.05);
   document.getElementById('jmed').textContent=l.med;
   document.getElementById('jpos').textContent=l.dist?('a '+l.dist+' m da estrada'):'na beira da estrada';
   var oc = ocupados[n] && !minhas[n];
@@ -508,7 +508,7 @@ function mostraOk(r){
   var l=L[r.lote];
   document.getElementById('okmsg').textContent=r.nome.split(' ')[0]+', o lote '+r.lote+' ('+l.area+') está reservado no seu nome. Este é o código da sua reserva:';
   document.getElementById('cod').textContent=r.codigo;
-  var t='Olá! Fiz uma reserva no site Alter do Chão Homes (Porto Novo).\n\nCódigo: '+r.codigo+'\nLote: '+r.lote+' ('+l.area+', '+l.med+')\nValor: '+rs(preco(r.lote))+'\nNome: '+r.nome+'\nWhatsApp: '+r.zap+(r.email?'\nE-mail: '+r.email:'')+(r.cidade?'\nCidade: '+r.cidade:'')+(r.corretor?'\n\nCorretor: '+r.corretor+' · CRECI '+r.creci+(r.czap?' · '+r.czap:''):'')+'\n\nQuero receber a documentação.';
+  var t='Olá! Fiz uma reserva no site Alter do Chão Homes (Porto Novo).\n\nCódigo: '+r.codigo+'\nLote: '+r.lote+' ('+l.area+', '+l.med+')\nValor: '+rs(preco(r.lote))+'\nNome: '+r.nome+'\nWhatsApp: '+r.zap+(r.email?'\nE-mail: '+r.email:'')+(r.cidade?'\nCidade: '+r.cidade:'')+(r.corretor?'\n\nCorretor: '+r.corretor+' · CRECI '+r.creci+(r.czap?' · '+r.czap:''):'')+'\n\nQuero receber o contrato.';
   document.getElementById('zaplink').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
 }
 document.getElementById('form').addEventListener('submit',function(e){
