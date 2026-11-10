@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alter do Chão Homes</title>
+<title>Alter do Chão Estates</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="96x96" href="/media/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://alterdochao.estate/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Alter do Chão Homes">
-<meta property="og:title" content="Alter do Chão Homes">
+<meta property="og:site_name" content="Alter do Chão Estates">
+<meta property="og:title" content="Alter do Chão Estates">
 <meta property="og:description" content="Lotes de 660 m² na mata, perto das praias do Tapajós. Escolha seu lote no mapa e reserve online.">
 <meta property="og:url" content="https://alterdochao.estate/">
 <meta property="og:image" content="https://alterdochao.estate/media/og-b.jpg">
@@ -517,7 +517,7 @@ function mostraOk(r){
   var l=L[r.lote];
   document.getElementById('okmsg').textContent=r.nome.split(' ')[0]+', o lote '+r.lote+' ('+l.area+') está reservado no seu nome. Este é o código da sua reserva:';
   document.getElementById('cod').textContent=r.codigo;
-  var t='Olá! Fiz uma reserva no site Alter do Chão Homes (Porto Novo).\n\nCódigo: '+r.codigo+'\nLote: '+r.lote+' ('+l.area+', '+l.med+')\nValor: '+rs(preco(r.lote))+' (sinal de '+rs(plano(r.lote).sinal)+' + '+plano(r.lote).txt+')\nNome: '+r.nome+'\nWhatsApp: '+r.zap+(r.email?'\nE-mail: '+r.email:'')+(r.cidade?'\nCidade: '+r.cidade:'')+(r.corretor?'\n\nCorretor: '+r.corretor+' · CRECI '+r.creci+(r.czap?' · '+r.czap:''):'')+'\n\nQuero receber o contrato.';
+  var t='Olá! Fiz uma reserva no site Alter do Chão Estates (Porto Novo).\n\nCódigo: '+r.codigo+'\nLote: '+r.lote+' ('+l.area+', '+l.med+')\nValor: '+rs(preco(r.lote))+' (sinal de '+rs(plano(r.lote).sinal)+' + '+plano(r.lote).txt+')\nNome: '+r.nome+'\nWhatsApp: '+r.zap+(r.email?'\nE-mail: '+r.email:'')+(r.cidade?'\nCidade: '+r.cidade:'')+(r.corretor?'\n\nCorretor: '+r.corretor+' · CRECI '+r.creci+(r.czap?' · '+r.czap:''):'')+'\n\nQuero receber o contrato.';
   document.getElementById('zaplink').href='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
 }
 document.getElementById('form').addEventListener('submit',function(e){
