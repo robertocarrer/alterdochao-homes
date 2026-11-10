@@ -119,6 +119,17 @@ td{padding:10px 10px 10px 0;border-bottom:1px solid var(--nevoa);vertical-align:
     <p class="miudo">Toda reserva feita por este link fica registrada no seu nome, com seu CRECI.</p>
     <div class="link"><input type="text" id="k-link" readonly aria-label="Seu link de indicação"><button class="btn" id="k-copia" type="button">Copiar link</button></div>
   </div>
+<div class="cartao" id="alertas-k">
+    <h3>Receber alertas de reserva no WhatsApp</h3>
+    <p class="miudo" id="ak-status"></p>
+    <ol class="miudo" style="margin:0;padding-left:18px;display:grid;gap:4px">
+      <li>Abra <a href="https://www.callmebot.com/blog/free-api-whatsapp-messages/" target="_blank" rel="noopener">callmebot.com</a> e salve nos seus contatos o número do CallMeBot que aparece lá.</li>
+      <li>Do seu WhatsApp, mande para esse contato: <b>I allow callmebot to send me messages</b></li>
+      <li>Ele responde com a sua <b>apikey</b>. Cole aqui embaixo.</li>
+    </ol>
+    <div class="link"><input type="text" id="ak-key" inputmode="numeric" placeholder="Sua apikey" aria-label="Apikey do CallMeBot"><button class="btn" id="ak-salva" type="button">Ativar alertas</button></div>
+    <p class="erro" id="ak-erro" hidden></p>
+  </div>
   <div class="cartao">
     <h3>Suas reservas</h3>
     <p class="miudo" id="k-vazio">Ainda não há reservas no seu nome. Envie seu link para os clientes ou faça a reserva junto com eles no site.</p>
@@ -135,6 +146,17 @@ td{padding:10px 10px 10px 0;border-bottom:1px solid var(--nevoa);vertical-align:
     <div><b id="a-l">0</b><span>lotes livres</span></div>
     <div><b id="a-v">R$ 0</b><span>valor das reservas</span></div>
     <div><b id="a-p">0</b><span>corretores aguardando aprovação</span></div>
+  </div>
+<div class="cartao" id="alertas">
+    <h3>Receber alertas de reserva no WhatsApp</h3>
+    <p class="miudo" id="al-status"></p>
+    <ol class="miudo" style="margin:0;padding-left:18px;display:grid;gap:4px">
+      <li>Abra <a href="https://www.callmebot.com/blog/free-api-whatsapp-messages/" target="_blank" rel="noopener">callmebot.com</a> e salve nos seus contatos o número do CallMeBot que aparece lá.</li>
+      <li>Do seu WhatsApp, mande para esse contato: <b>I allow callmebot to send me messages</b></li>
+      <li>Ele responde com a sua <b>apikey</b>. Cole aqui embaixo.</li>
+    </ol>
+    <div class="link"><input type="text" id="al-key" inputmode="numeric" placeholder="Sua apikey" aria-label="Apikey do CallMeBot"><button class="btn" id="al-salva" type="button">Ativar alertas</button></div>
+    <p class="erro" id="al-erro" hidden></p>
   </div>
   <div class="cartao">
     <h3>Reservas</h3>
@@ -161,12 +183,22 @@ function zapLink(z){var n=String(z).replace(/\D/g,'');if(n.length<=11)n='55'+n;r
 function api(url,corpo){return fetch(url,corpo?{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corpo)}:{cache:'no-store'}).then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})}
 function ver(v){['v-entrar','v-corretor','v-admin'].forEach(function(id){$(id).hidden=(id!==v)});$('sair').hidden=(v==='v-entrar')}
 
+
+function ligaAlerta(p,u){
+  $(p+'-status').textContent=u.callmebot_key?'Ativado para o WhatsApp '+u.zap+'.':'Desativado. Leva um minuto para ativar:';
+  $(p+'-salva').onclick=function(){
+    var b=$(p+'-salva'),er=$(p+'-erro'); er.hidden=true; b.disabled=true;
+    api('/api/alerta',{key:$(p+'-key').value}).then(function(o){b.disabled=false;
+      if(o.s!==200){er.textContent=o.j.erro||'Não foi possível ativar.';er.hidden=false;return}
+      $(p+'-key').value=''; $(p+'-status').textContent='Ativado. Enviamos uma mensagem de teste para o seu WhatsApp.';});
+  };
+}
 function carrega(){
   api('/api/eu').then(function(o){
     if(o.s!==200){ver('v-entrar');return}
     var u=o.j.usuario, R=o.j.reservas||[];
     if(u.tipo==='admin'){
-      ver('v-admin'); $('a-sub').textContent='Você entrou como '+u.nome+'.';
+      ver('v-admin'); $('a-sub').textContent='Você entrou como '+u.nome+'.'; ligaAlerta('al',u);
       $('a-n').textContent=R.length; $('a-l').textContent=102-R.length;
       $('a-v').textContent=rs(R.reduce(function(a,r){return a+r.valor},0));
       var C=o.j.corretores||[]; $('a-p').textContent=C.filter(function(c){return !c.ativo}).length;
@@ -179,7 +211,7 @@ function carrega(){
       $('a-ctab').querySelector('tbody').innerHTML=C.map(function(c){
         return '<tr><td>'+esc(c.nome)+'<br><span class="miudo">'+esc(c.email)+'</span></td><td>'+esc(c.creci)+'-'+esc(c.uf)+'</td><td>'+esc(c.cidade||'')+'</td><td>'+zapLink(c.zap)+'</td><td><span class="pill '+(c.ativo?'on':'off')+'">'+(c.ativo?'Ativo':'Aguardando')+'</span></td><td><button class="btn '+(c.ativo?'sec ':'')+'peq apr" data-id="'+c.id+'" data-ativo="'+(c.ativo?0:1)+'">'+(c.ativo?'Suspender':'Aprovar')+'</button></td></tr>'}).join('');
     } else {
-      ver('v-corretor'); $('k-ola').textContent='Olá, '+u.nome.split(' ')[0];
+      ver('v-corretor'); $('k-ola').textContent='Olá, '+u.nome.split(' ')[0]; ligaAlerta('ak',u);
       $('k-sub').textContent='CRECI '+u.creci+'-'+u.uf+(u.cidade?' · '+u.cidade:'');
       $('k-pend').hidden=!!u.ativo;
       $('k-link').value=location.origin+'/?ref='+u.id;

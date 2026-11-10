@@ -14,9 +14,9 @@ export async function onRequestPost({ request, env, waitUntil }) {
   let cor = null;
   const eu = await usuarioDe(request, env);
   if (eu && eu.tipo === "corretor") cor = eu;
-  if (!cor && Number(d.ref)) cor = await env.DB.prepare("SELECT id,nome,creci,zap FROM usuarios WHERE id=? AND tipo='corretor' AND ativo=1").bind(Number(d.ref)).first();
+  if (!cor && Number(d.ref)) cor = await env.DB.prepare("SELECT id,nome,creci,zap,callmebot_key FROM usuarios WHERE id=? AND tipo='corretor' AND ativo=1").bind(Number(d.ref)).first();
   const creciInf = limpa(d.creci, 30).toUpperCase();
-  if (!cor && creciInf) cor = await env.DB.prepare("SELECT id,nome,creci,zap FROM usuarios WHERE creci=? AND tipo='corretor' AND ativo=1").bind(creciInf).first();
+  if (!cor && creciInf) cor = await env.DB.prepare("SELECT id,nome,creci,zap,callmebot_key FROM usuarios WHERE creci=? AND tipo='corretor' AND ativo=1").bind(creciInf).first();
 
   const ip = request.headers.get("cf-connecting-ip") || "";
   if (!cor) {
@@ -34,7 +34,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   waitUntil(alertaReserva(env, {
     lote, codigo, nome, zap, email: limpa(d.email, 120), cidade: limpa(d.cidade, 80), valor: preco(lote),
     corretorNome: cor ? cor.nome : limpa(d.corretor, 120), corretorCreci: cor ? cor.creci : creciInf,
-    corretorZap: cor ? cor.zap : null,
+    corretorZap: cor ? cor.zap : null, corretorKey: cor ? (cor.callmebot_key || (eu && eu.id===cor.id ? null : null)) : null,
   }).catch(() => {}));
   return json({ ok: true, lote, codigo, corretor: cor ? { nome: cor.nome, creci: cor.creci } : null });
 }
