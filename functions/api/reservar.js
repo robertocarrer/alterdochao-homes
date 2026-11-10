@@ -1,8 +1,9 @@
 // Registra a reserva de um lote. Um lote só pode ter uma reserva.
-import { json, limpa, usuarioDe } from "../../lib/auth.js";
+import { json, limpa, usuarioDe, preco } from "../../lib/auth.js";
+import { alertaReserva } from "../../lib/zap.js";
 const VALIDOS = new Set([...Array(103).keys()].map((i) => i + 1).filter((n) => n !== 87));
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   let d; try { d = await request.json(); } catch { return json({ erro: "Dados inválidos." }, 400); }
   const lote = Number(d.lote), nome = limpa(d.nome, 120), zap = limpa(d.zap, 30);
   if (!VALIDOS.has(lote)) return json({ erro: "Lote inválido." }, 400);
@@ -30,5 +31,10 @@ export async function onRequestPost({ request, env }) {
   } catch (e) {
     return json({ erro: "Este lote acabou de ser reservado por outra pessoa. Escolha outro." }, 409);
   }
+  waitUntil(alertaReserva(env, {
+    lote, codigo, nome, zap, email: limpa(d.email, 120), cidade: limpa(d.cidade, 80), valor: preco(lote),
+    corretorNome: cor ? cor.nome : limpa(d.corretor, 120), corretorCreci: cor ? cor.creci : creciInf,
+    corretorZap: cor ? cor.zap : null,
+  }).catch(() => {}));
   return json({ ok: true, lote, codigo, corretor: cor ? { nome: cor.nome, creci: cor.creci } : null });
 }
