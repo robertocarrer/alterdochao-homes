@@ -128,10 +128,10 @@ nav a:hover{color:var(--folha)}
 .lote.oc{background:#3d4744;color:#8f9a95;text-shadow:none;text-decoration:line-through}.lote.oc:hover{background:#3d4744}
 .lote.sel{outline:3px solid #fff;outline-offset:1px}
 .fixo{border-radius:6px;min-height:34px;display:flex;align-items:center;justify-content:center;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#b3bdb7;border:1px dashed #5d6b66;text-align:center;padding:2px 6px}
-.faixas{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #5d6b66;border-bottom:1px solid #5d6b66}
+.faixas{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #5d6b66;border-bottom:1px solid #5d6b66}
 .faixas div{padding:14px 16px;border-left:1px solid #5d6b66}.faixas div:first-child{border-left:0;padding-left:0}
 .faixas b{display:block;font-family:var(--display);font-size:1.6rem;font-weight:600;color:#fff;line-height:1.1}.faixas span{font-size:.85rem;color:#c9d0cb}
-@media(max-width:760px){.faixas{grid-template-columns:1fr 1fr}.faixas div:nth-child(3){border-left:0;padding-left:0}.faixas div:nth-child(n+3){border-top:1px solid #5d6b66}}
+@media(max-width:760px){.faixas{grid-template-columns:1fr}.faixas div{border-left:0;padding-left:0}.faixas div:nth-child(n+2){border-top:1px solid #5d6b66}}
 .nota-mapa{font-size:.85rem;color:#b3bdb7;margin-top:20px;max-width:75ch}
 
 /* passos */
@@ -269,9 +269,8 @@ h1 em{font-style:italic;color:var(--rio)}
       <p class="lead">O mapa segue a planta do empreendimento. Toque em um lote para ver a medida e reservar.</p>
       <div class="faixas">
         <div><b>R$ 40 mil</b><span>Beira da estrada · lotes 1 a 3 e 53 a 55</span></div>
-        <div><b>R$ 30 mil</b><span>Início da rua · lotes 4 a 17 e 56 a 69</span></div>
-        <div><b>R$ 25 mil</b><span>Meio da rua · lotes 18 a 32 e 70 a 84</span></div>
-        <div><b>R$ 20 mil</b><span>Fundo, perto da área verde · lotes 33 a 52 e 85 a 103</span></div>
+        <div><b>R$ 30 mil</b><span>Primeira metade da rua · lotes 4 a 32 e 56 a 84</span></div>
+        <div><b>R$ 20 mil</b><span>Segunda metade, até a área verde · lotes 33 a 52 e 85 a 103</span></div>
       </div>
       <p id="cont" style="font-weight:600;color:var(--areia)"></p>
       <div class="legenda">
@@ -302,7 +301,7 @@ h1 em{font-style:italic;color:var(--rio)}
   <div class="wrap">
     <h2>Como funciona</h2>
     <ol>
-      <li><h3>Escolha no mapa</h3><p>Veja a medida, a posição na rua e o valor de cada lote. Os preços vão de R$ 20 mil, no fundo, a R$ 40 mil, na beira da estrada.</p></li>
+      <li><h3>Escolha no mapa</h3><p>Veja a medida, a posição na rua e o valor de cada lote. São três faixas de preço: R$ 20 mil, R$ 30 mil e R$ 40 mil, conforme a posição.</p></li>
       <li><h3>Reserve e pague o sinal de 5%</h3><p>Nome e WhatsApp bastam. O sinal é pago por Pix, garante o lote no seu nome e é descontado do valor total. No pré-lançamento a reserva é gratuita.</p></li>
       <li><h3>Receba o contrato e o contato do corretor</h3><p>O contrato chega por WhatsApp ou e-mail, junto com o contato do corretor que atendeu você ou de um corretor da equipe.</p></li>
     </ol>
@@ -422,9 +421,8 @@ var WHATS = '5593991272550';
 /* Faixas de preço: mais barato no fundo, mais caro perto da estrada */
 function preco(n){
   if(n<=3 || (n>=53&&n<=55)) return 40000;            // beira da estrada
-  if((n>=4&&n<=17) || (n>=56&&n<=69)) return 30000;   // início da rua
-  if((n>=18&&n<=32) || (n>=70&&n<=84)) return 25000;  // meio da rua
-  return 20000;                                        // fundo
+  if((n>=4&&n<=32) || (n>=56&&n<=84)) return 30000;   // primeira metade da rua
+  return 20000;                                        // segunda metade, até a área verde
 }
 function rs(v){return 'R$ '+v.toLocaleString('pt-BR')}
 function mil(v){return (v/1000)+' mil'}
