@@ -57,48 +57,114 @@ td{padding:10px 10px 10px 0;border-bottom:1px solid var(--nevoa);vertical-align:
 .link input{flex:1;min-width:220px;background:var(--papel)}
 .acoes{display:flex;gap:6px;flex-wrap:wrap}
 [hidden]{display:none!important}
+.dir{display:flex;align-items:center;gap:12px}
+.idiomas{display:flex;border:1px solid var(--nevoa);border-radius:99px;overflow:hidden;background:#fff}
+.idiomas button{border:0;background:transparent;font:600 .74rem var(--corpo);letter-spacing:.06em;color:var(--suave);padding:6px 9px;cursor:pointer}
+.idiomas button[aria-pressed="true"]{background:var(--mata);color:#fff}
+.apres{display:flex;flex-direction:column;gap:28px;margin-bottom:28px}
+.capa{border-radius:20px;overflow:hidden;background:linear-gradient(180deg,rgba(35,42,39,.15),rgba(35,42,39,.82)),url(/media/apres-aerea.jpg) center 40%/cover;min-height:440px;display:flex;align-items:flex-end}
+.capa-txt{padding:40px clamp(20px,5vw,48px);display:flex;flex-direction:column;gap:16px;max-width:760px}
+.capa h1{color:#fff;font-size:clamp(2.3rem,5.6vw,3.8rem)}
+.capa .olho{color:var(--areia);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.capa .lead{color:#e9e4da;font-size:1.1rem;max-width:58ch}
+.btn.ouro{background:var(--areia);color:#1f2522;align-self:flex-start}.btn.ouro:hover{background:#d8b878}
+.premios{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--nevoa);border-bottom:1px solid var(--nevoa)}
+.premios article{padding:22px 22px 22px 0;display:flex;flex-direction:column;gap:6px}
+.premios article+article{border-left:1px solid var(--nevoa);padding-left:22px}
+.premios .ano{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rio);font-weight:600}
+.premios p:not(.ano){color:var(--suave);font-size:.95rem}
+@media(max-width:820px){.premios{grid-template-columns:1fr}.premios article+article{border-left:0;padding-left:0;border-top:1px solid var(--nevoa)}}
+.mundo{background:var(--mata);color:#e9e4da;border-radius:20px;padding:32px clamp(20px,4vw,40px);display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center}
+.mundo h2{color:#fff;font-size:clamp(1.7rem,3.4vw,2.3rem);margin-bottom:10px}
+.mundo p{color:#c9d0cb}
+.fatos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0}
+.fatos li{padding:14px 0;border-top:1px solid #5d6b66;display:flex;flex-direction:column}
+.fatos b{font-family:var(--display);font-size:1.8rem;font-weight:600;color:var(--areia);line-height:1.1}
+.fatos span{font-size:.85rem;color:#c9d0cb}
+@media(max-width:820px){.mundo{grid-template-columns:1fr}}
+.passos3{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:p}
+.passos3 li{counter-increment:p;border-top:3px solid var(--mata);padding-top:12px;display:flex;flex-direction:column;gap:4px}
+.passos3 li::before{content:counter(p);font-family:var(--display);font-size:1.9rem;font-weight:600;color:var(--rio);line-height:1}
+.passos3 b{font-family:var(--display);font-size:1.3rem;font-weight:600;color:var(--mata)}
+.passos3 span{color:var(--suave);font-size:.95rem}
+@media(max-width:760px){.passos3{grid-template-columns:1fr}}
+@media(max-width:560px){.marca div{display:none}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <a class="marca" href="/"><img class="b" src="/media/botos-ouro.png" alt=""><div><img class="m" src="/media/marca-escuro.png" alt="Alter do Chão"><span>Painel</span></div></a>
-  <button class="btn sec peq" id="sair" hidden>Sair</button>
+  <div class="dir"><div class="idiomas" role="group" aria-label="Idioma">
+    <button type="button" data-l="pt">PT</button><button type="button" data-l="en">EN</button><button type="button" data-l="es">ES</button><button type="button" data-l="fr">FR</button><button type="button" data-l="de">DE</button>
+  </div><button class="btn sec peq" id="sair" hidden data-i="sair">Sair</button></div>
 </div></header>
 
 <main class="wrap">
 
 <!-- ENTRAR / CADASTRAR -->
 <section id="v-entrar" hidden>
-  <h1>Painel do corretor</h1>
-  <p class="miudo" style="margin:8px 0 24px;font-size:1rem">Acompanhe suas reservas e use seu link exclusivo para vender os lotes do Porto Novo.</p>
+  <div class="apres">
+    <div class="capa"><div class="capa-txt">
+      <p class="olho" data-i="olho">Para corretores parceiros</p>
+      <h1 data-i="h1">Venda lotes no destino mais desejado da Amazônia.</h1>
+      <p class="lead" data-i="lead">Alter do Chão está entre os destinos mais procurados do Brasil. O Porto Novo chega com marca, site e divulgação para trazer compradores de todo o país e do exterior até você.</p>
+      <a class="btn ouro" href="#acesso" data-i="cta">Quero ser parceiro</a>
+    </div></div>
+
+    <div class="premios">
+      <article><p class="ano">The Guardian · 2009</p><h3 data-i="p1t">1º lugar entre as praias mais bonitas do Brasil</h3><p data-i="p1">O jornal britânico colocou Alter do Chão no topo da sua lista das 10 praias brasileiras e a chamou de "Caribe amazônico".</p></article>
+      <article><p class="ano">Prêmio UPIS de Turismo · 2021</p><h3 data-i="p2t">Melhor Destino Turístico Nacional</h3><p data-i="p2">Eleito com 97,55% dos votos, à frente da Chapada Diamantina e do Jalapão.</p></article>
+      <article><p class="ano" data-i="p3a">Acesso fácil</p><h3 data-i="p3t">A 34 km do aeroporto de Santarém</h3><p data-i="p3">Praias de água doce do rio Tapajós, floresta e uma vila conhecida no Brasil inteiro.</p></article>
+    </div>
+
+    <div class="mundo">
+      <div>
+        <h2 data-i="m-t">Compradores do Brasil, dos Estados Unidos e da Europa</h2>
+        <p data-i="m-p">O site terá campanhas patrocinadas no Brasil, nos Estados Unidos e na Europa, em cinco idiomas. Cada visitante que chega pelo seu link fica registrado no seu nome, de qualquer lugar do mundo.</p>
+      </div>
+      <ul class="fatos">
+        <li><b>102</b><span data-i="f1">lotes de cerca de 660 m²</span></li>
+        <li><b>R$ 20–40 mil</b><span data-i="f2">três faixas de preço</span></li>
+        <li><b>R$ 500</b><span data-i="f3">parcelas fixas, sem reajuste</span></li>
+        <li><b>5%</b><span data-i="f4">de sinal, descontado do total</span></li>
+      </ul>
+    </div>
+
+    <ol class="passos3">
+      <li><b data-i="s1t">Cadastre-se com seu CRECI</b><span data-i="s1">Leva dois minutos. A administração aprova seu cadastro.</span></li>
+      <li><b data-i="s2t">Receba seu link exclusivo</b><span data-i="s2">Divulgue para seus clientes. Toda reserva feita por ele fica no seu nome.</span></li>
+      <li><b data-i="s3t">Acompanhe tudo no painel</b><span data-i="s3">Reservas, situação de cada venda e alertas no seu WhatsApp.</span></li>
+    </ol>
+  </div>
+  <h2 id="acesso" style="margin:8px 0 18px" data-i="acesso">Acesso do corretor</h2>
   <div class="dois">
     <div class="cartao">
-      <h2>Entrar</h2>
+      <h2 data-i="entrar">Entrar</h2>
       <form id="f-login" novalidate>
-        <label for="l-email">E-mail<input type="email" id="l-email" autocomplete="username" required></label>
-        <label for="l-senha">Senha<input type="password" id="l-senha" autocomplete="current-password" required></label>
+        <label for="l-email"><span data-i="email">E-mail</span><input type="email" id="l-email" autocomplete="username" required></label>
+        <label for="l-senha"><span data-i="senha">Senha</span><input type="password" id="l-senha" autocomplete="current-password" required></label>
         <p class="erro" id="l-erro" hidden></p>
-        <button class="btn" type="submit">Entrar</button>
+        <button class="btn" type="submit" data-i="entrar">Entrar</button>
       </form>
     </div>
     <div class="cartao">
-      <h2>Cadastro de corretor</h2>
+      <h2 data-i="cad">Cadastro de corretor</h2>
       <form id="f-cad" novalidate>
-        <label for="c-nome">Nome completo<input type="text" id="c-nome" autocomplete="name" required></label>
+        <label for="c-nome"><span data-i="nome">Nome completo</span><input type="text" id="c-nome" autocomplete="name" required></label>
         <div class="linha">
           <label for="c-cpf">CPF<input type="text" id="c-cpf" inputmode="numeric" placeholder="000.000.000-00" required></label>
           <label for="c-creci">CRECI<input type="text" id="c-creci" placeholder="Ex.: 12345" required></label>
         </div>
         <div class="linha">
-          <label for="c-uf">Estado<select id="c-uf" required></select></label>
-          <label for="c-cidade">Cidade<input type="text" id="c-cidade" autocomplete="address-level2"></label>
+          <label for="c-uf"><span data-i="uf">Estado</span><select id="c-uf" required></select></label>
+          <label for="c-cidade"><span data-i="cidade">Cidade</span><input type="text" id="c-cidade" autocomplete="address-level2"></label>
         </div>
-        <label for="c-zap">WhatsApp com DDD<input type="tel" id="c-zap" inputmode="tel" autocomplete="tel" placeholder="(93) 90000-0000" required></label>
-        <label for="c-email">E-mail<input type="email" id="c-email" autocomplete="email" required></label>
-        <label for="c-senha">Crie uma senha (mínimo 8 caracteres)<input type="password" id="c-senha" autocomplete="new-password" required></label>
+        <label for="c-zap"><span data-i="zap">WhatsApp com DDD</span><input type="tel" id="c-zap" inputmode="tel" autocomplete="tel" placeholder="(93) 90000-0000" required></label>
+        <label for="c-email"><span data-i="email">E-mail</span><input type="email" id="c-email" autocomplete="email" required></label>
+        <label for="c-senha"><span data-i="nsenha">Crie uma senha (mínimo 8 caracteres)</span><input type="password" id="c-senha" autocomplete="new-password" required></label>
         <p class="erro" id="c-erro" hidden></p>
-        <button class="btn" type="submit">Criar cadastro</button>
-        <p class="miudo">Seus dados são usados só para identificar suas vendas e falar com você sobre o empreendimento.</p>
+        <button class="btn" type="submit" data-i="criar">Criar cadastro</button>
+        <p class="miudo" data-i="lgpd">Seus dados são usados só para identificar suas vendas e falar com você sobre o empreendimento.</p>
       </form>
     </div>
   </div>
@@ -255,6 +321,47 @@ document.addEventListener('click',function(e){
     pend=null; api('/api/admin/reserva',{lote:t.dataset.lote,acao:'liberar'}).then(carrega);
   }
 });
+/* ===== Idiomas ===== */
+var T={
+pt:{},
+en:{sair:'Sign out',olho:'For partner brokers',h1:'Sell lots in the most sought-after destination in the Amazon.',lead:'Alter do Chão is one of the most searched destinations in Brazil. Porto Novo arrives with a brand, a website and promotion to bring buyers from across the country and abroad to you.',cta:'Become a partner',
+p1t:'No. 1 among the most beautiful beaches in Brazil',p1:'The British newspaper put Alter do Chão at the top of its list of 10 Brazilian beaches and called it the "Amazonian Caribbean".',p2t:'Best National Tourist Destination',p2:'Voted with 97.55% of the votes, ahead of Chapada Diamantina and Jalapão.',p3a:'Easy access',p3t:'34 km from Santarém airport',p3:'Freshwater beaches on the Tapajós river, rainforest and a village known throughout Brazil.',
+'m-t':'Buyers from Brazil, the United States and Europe','m-p':'The website will run sponsored campaigns in Brazil, the United States and Europe, in five languages. Every visitor who arrives through your link is recorded under your name, from anywhere in the world.',
+f1:'lots of about 660 m²',f2:'three price tiers',f3:'fixed instalments, no adjustment',f4:'deposit, deducted from the total',
+s1t:'Sign up with your CRECI',s1:'Takes two minutes. The administration approves your registration.',s2t:'Get your exclusive link',s2:'Share it with your clients. Every reservation made through it is recorded under your name.',s3t:'Track everything in the panel',s3:'Reservations, the status of each sale and alerts on your WhatsApp.',
+acesso:'Broker access',entrar:'Sign in',email:'E-mail',senha:'Password',cad:'Broker registration',nome:'Full name',uf:'State',cidade:'City',zap:'WhatsApp with area code',nsenha:'Create a password (at least 8 characters)',criar:'Create account',lgpd:'Your data is used only to identify your sales and to contact you about the development.'},
+es:{sair:'Salir',olho:'Para corredores asociados',h1:'Venda lotes en el destino más deseado de la Amazonía.',lead:'Alter do Chão está entre los destinos más buscados de Brasil. Porto Novo llega con marca, sitio web y divulgación para traerle compradores de todo el país y del exterior.',cta:'Quiero ser socio',
+p1t:'1.er lugar entre las playas más bonitas de Brasil',p1:'El diario británico puso a Alter do Chão en el primer lugar de su lista de 10 playas brasileñas y la llamó el "Caribe amazónico".',p2t:'Mejor Destino Turístico Nacional',p2:'Elegido con el 97,55 % de los votos, por delante de la Chapada Diamantina y el Jalapão.',p3a:'Fácil acceso',p3t:'A 34 km del aeropuerto de Santarém',p3:'Playas de agua dulce del río Tapajós, selva y un pueblo conocido en todo Brasil.',
+'m-t':'Compradores de Brasil, Estados Unidos y Europa','m-p':'El sitio tendrá campañas patrocinadas en Brasil, Estados Unidos y Europa, en cinco idiomas. Cada visitante que llega por su enlace queda registrado a su nombre, desde cualquier lugar del mundo.',
+f1:'lotes de unos 660 m²',f2:'tres franjas de precio',f3:'cuotas fijas, sin reajuste',f4:'de seña, descontada del total',
+s1t:'Regístrese con su CRECI',s1:'Toma dos minutos. La administración aprueba su registro.',s2t:'Reciba su enlace exclusivo',s2:'Compártalo con sus clientes. Toda reserva hecha por él queda a su nombre.',s3t:'Siga todo en el panel',s3:'Reservas, la situación de cada venta y alertas en su WhatsApp.',
+acesso:'Acceso del corredor',entrar:'Entrar',email:'Correo electrónico',senha:'Contraseña',cad:'Registro de corredor',nome:'Nombre completo',uf:'Estado',cidade:'Ciudad',zap:'WhatsApp con código de área',nsenha:'Cree una contraseña (mínimo 8 caracteres)',criar:'Crear registro',lgpd:'Sus datos se usan solo para identificar sus ventas y contactarle sobre el emprendimiento.'},
+fr:{sair:'Se déconnecter',olho:'Pour les agents partenaires',h1:'Vendez des terrains dans la destination la plus convoitée d’Amazonie.',lead:'Alter do Chão fait partie des destinations les plus recherchées du Brésil. Porto Novo arrive avec une marque, un site et une promotion pour vous amener des acheteurs de tout le pays et de l’étranger.',cta:'Devenir partenaire',
+p1t:'1re place parmi les plus belles plages du Brésil',p1:'Le journal britannique a placé Alter do Chão en tête de sa liste des 10 plages brésiliennes et l’a surnommée les « Caraïbes amazoniennes ».',p2t:'Meilleure destination touristique nationale',p2:'Élue avec 97,55 % des voix, devant la Chapada Diamantina et le Jalapão.',p3a:'Accès facile',p3t:'À 34 km de l’aéroport de Santarém',p3:'Plages d’eau douce sur le fleuve Tapajós, forêt et un village connu dans tout le Brésil.',
+'m-t':'Des acheteurs du Brésil, des États-Unis et d’Europe','m-p':'Le site aura des campagnes sponsorisées au Brésil, aux États-Unis et en Europe, en cinq langues. Chaque visiteur qui arrive par votre lien est enregistré à votre nom, où qu’il soit dans le monde.',
+f1:'terrains d’environ 660 m²',f2:'trois gammes de prix',f3:'mensualités fixes, sans révision',f4:'d’acompte, déduit du total',
+s1t:'Inscrivez-vous avec votre CRECI',s1:'Cela prend deux minutes. L’administration valide votre inscription.',s2t:'Recevez votre lien exclusif',s2:'Partagez-le avec vos clients. Chaque réservation faite par ce lien est enregistrée à votre nom.',s3t:'Suivez tout dans votre espace',s3:'Réservations, état de chaque vente et alertes sur votre WhatsApp.',
+acesso:'Accès agent',entrar:'Se connecter',email:'E-mail',senha:'Mot de passe',cad:'Inscription agent',nome:'Nom complet',uf:'État',cidade:'Ville',zap:'WhatsApp avec indicatif',nsenha:'Créez un mot de passe (8 caractères minimum)',criar:'Créer le compte',lgpd:'Vos données servent uniquement à identifier vos ventes et à vous contacter au sujet du projet.'},
+de:{sair:'Abmelden',olho:'Für Partner-Makler',h1:'Verkaufen Sie Grundstücke am begehrtesten Reiseziel Amazoniens.',lead:'Alter do Chão gehört zu den gefragtesten Reisezielen Brasiliens. Porto Novo bringt Marke, Website und Werbung mit, um Käufer aus ganz Brasilien und dem Ausland zu Ihnen zu führen.',cta:'Partner werden',
+p1t:'Platz 1 unter den schönsten Stränden Brasiliens',p1:'Die britische Zeitung setzte Alter do Chão an die Spitze ihrer Liste der 10 brasilianischen Strände und nannte es die „Karibik Amazoniens“.',p2t:'Bestes nationales Reiseziel',p2:'Mit 97,55 % der Stimmen gewählt, vor der Chapada Diamantina und dem Jalapão.',p3a:'Gut erreichbar',p3t:'34 km vom Flughafen Santarém',p3:'Süßwasserstrände am Tapajós, Regenwald und ein Dorf, das man in ganz Brasilien kennt.',
+'m-t':'Käufer aus Brasilien, den USA und Europa','m-p':'Die Website wird gesponserte Kampagnen in Brasilien, den USA und Europa schalten, in fünf Sprachen. Jeder Besucher, der über Ihren Link kommt, wird Ihnen zugeordnet, egal von wo auf der Welt.',
+f1:'Grundstücke mit ca. 660 m²',f2:'drei Preisstufen',f3:'feste Raten, ohne Anpassung',f4:'Anzahlung, vom Gesamtpreis abgezogen',
+s1t:'Mit Ihrer CRECI registrieren',s1:'Dauert zwei Minuten. Die Verwaltung bestätigt Ihre Registrierung.',s2t:'Ihren exklusiven Link erhalten',s2:'Teilen Sie ihn mit Ihren Kunden. Jede Reservierung darüber wird Ihnen zugeordnet.',s3t:'Alles im Panel verfolgen',s3:'Reservierungen, der Stand jedes Verkaufs und Benachrichtigungen per WhatsApp.',
+acesso:'Makler-Zugang',entrar:'Anmelden',email:'E-Mail',senha:'Passwort',cad:'Makler-Registrierung',nome:'Vollständiger Name',uf:'Bundesstaat',cidade:'Stadt',zap:'WhatsApp mit Vorwahl',nsenha:'Passwort erstellen (mindestens 8 Zeichen)',criar:'Konto erstellen',lgpd:'Ihre Daten dienen nur dazu, Ihre Verkäufe zuzuordnen und Sie zum Projekt zu kontaktieren.'}
+};
+document.querySelectorAll('[data-i]').forEach(function(el){T.pt[el.dataset.i]=el.textContent});
+var HL={pt:'pt-BR',en:'en',es:'es',fr:'fr',de:'de'};
+function idioma(l){
+  if(!T[l])l='pt';
+  document.querySelectorAll('[data-i]').forEach(function(el){var t=T[l][el.dataset.i]||T.pt[el.dataset.i];if(t!=null)el.textContent=t});
+  document.querySelectorAll('.idiomas button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l?'true':'false')});
+  document.documentElement.lang=HL[l];
+  try{localStorage.setItem('pn_lang',l)}catch(e){}
+}
+document.querySelectorAll('.idiomas button').forEach(function(b){b.addEventListener('click',function(){idioma(b.dataset.l)})});
+(function(){var l=null;try{l=localStorage.getItem('pn_lang')}catch(e){}
+  if(!l){var n=(navigator.language||'pt').slice(0,2).toLowerCase();l=T[n]?n:'pt'}
+  idioma(l)})();
 carrega();
 </script>
 </body>
