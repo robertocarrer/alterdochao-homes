@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel do Corretor · Alter do Chão Homes</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--mata:#38433f;--folha:#4a5855;--areia:#c9a765;--rio:#8a6a2f;--papel:#f5f1ea;--tinta:#232a27;--nevoa:#e2dcd1;--suave:#5d6661;--branco:#fff;--alerta:#b4541a;--ok:#2f6b4a;
+--display:"Cormorant Garamond","Palatino Linotype",Georgia,serif;--corpo:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--corpo);font-size:16px;line-height:1.5;font-variant-numeric:lining-nums}
+h1,h2,h3{font-family:var(--display);color:var(--mata);margin:0;line-height:1.1;font-weight:500;text-wrap:balance}
+h1{font-size:clamp(2rem,5vw,2.8rem)}h2{font-size:1.7rem}h3{font-size:1.3rem;font-weight:600}
+p{margin:0}a{color:var(--rio)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--nevoa);background:var(--papel)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:12px;padding-bottom:12px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--mata)}
+.marca img.b{height:38px}.marca img.m{height:16px;display:block}.marca span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.marca div{display:flex;flex-direction:column;gap:5px}
+main{padding:36px 0 64px;display:flex;flex-direction:column;gap:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--folha);color:#fff;border:0;border-radius:10px;padding:13px 20px;font:600 1rem var(--corpo);cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--mata)}.btn.sec{background:transparent;color:var(--mata);border:1.5px solid var(--mata)}
+.btn.peq{padding:7px 12px;font-size:.85rem;border-radius:8px}
+.btn[disabled]{opacity:.6;cursor:wait}
+:focus-visible{outline:3px solid var(--rio);outline-offset:2px}
+.cartao{background:var(--branco);border:1px solid var(--nevoa);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media(max-width:820px){.dois{grid-template-columns:1fr}}
+form{display:grid;gap:13px}
+.linha{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+@media(max-width:520px){.linha{grid-template-columns:1fr}}
+label{display:grid;gap:5px;font-weight:600;font-size:.9rem}
+input,select{font:400 1rem var(--corpo);padding:11px 13px;border:1.5px solid #c5d0c7;border-radius:10px;background:#fff;color:var(--tinta);width:100%}
+input:focus,select:focus{border-color:var(--folha);outline:0}
+.erro{color:var(--alerta);font-weight:600;font-size:.9rem}
+.miudo{font-size:.85rem;color:var(--suave)}
+.aviso{background:#fbf3df;border:1px solid #e6d3a3;border-radius:12px;padding:14px 16px}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--nevoa);border-bottom:1px solid var(--nevoa)}
+.nums div{padding:16px;border-left:1px solid var(--nevoa)}.nums div:first-child{border-left:0;padding-left:0}
+.nums b{display:block;font-family:var(--display);font-size:1.9rem;font-weight:600;color:var(--mata);line-height:1.1}
+.nums span{font-size:.85rem;color:var(--suave)}
+@media(max-width:700px){.nums{grid-template-columns:1fr 1fr}.nums div:nth-child(3){border-left:0;padding-left:0}.nums div:nth-child(n+3){border-top:1px solid var(--nevoa)}}
+.rolagem{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:640px}
+th{text-align:left;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);padding:8px 10px 8px 0;border-bottom:2px solid var(--mata)}
+td{padding:10px 10px 10px 0;border-bottom:1px solid var(--nevoa);vertical-align:middle}
+.pill{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:600;white-space:nowrap}
+.pill.reservado{background:#fbf3df;color:#7a5a12}.pill.sinal_pago{background:#e3efe7;color:#22553a}.pill.concluido{background:var(--mata);color:#fff}
+.pill.on{background:#e3efe7;color:#22553a}.pill.off{background:#fbf3df;color:#7a5a12}
+.link{display:flex;gap:8px;flex-wrap:wrap}
+.link input{flex:1;min-width:220px;background:var(--papel)}
+.acoes{display:flex;gap:6px;flex-wrap:wrap}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="marca" href="/"><img class="b" src="/media/botos-ouro.png" alt=""><div><img class="m" src="/media/marca-escuro.png" alt="Alter do Chão"><span>Painel</span></div></a>
+  <button class="btn sec peq" id="sair" hidden>Sair</button>
+</div></header>
+
+<main class="wrap">
+
+<!-- ENTRAR / CADASTRAR -->
+<section id="v-entrar" hidden>
+  <h1>Painel do corretor</h1>
+  <p class="miudo" style="margin:8px 0 24px;font-size:1rem">Acompanhe suas reservas e use seu link exclusivo para vender os lotes do Porto Novo.</p>
+  <div class="dois">
+    <div class="cartao">
+      <h2>Entrar</h2>
+      <form id="f-login" novalidate>
+        <label for="l-email">E-mail<input type="email" id="l-email" autocomplete="username" required></label>
+        <label for="l-senha">Senha<input type="password" id="l-senha" autocomplete="current-password" required></label>
+        <p class="erro" id="l-erro" hidden></p>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+    </div>
+    <div class="cartao">
+      <h2>Cadastro de corretor</h2>
+      <form id="f-cad" novalidate>
+        <label for="c-nome">Nome completo<input type="text" id="c-nome" autocomplete="name" required></label>
+        <div class="linha">
+          <label for="c-cpf">CPF<input type="text" id="c-cpf" inputmode="numeric" placeholder="000.000.000-00" required></label>
+          <label for="c-creci">CRECI<input type="text" id="c-creci" placeholder="Ex.: 12345" required></label>
+        </div>
+        <div class="linha">
+          <label for="c-uf">Estado<select id="c-uf" required></select></label>
+          <label for="c-cidade">Cidade<input type="text" id="c-cidade" autocomplete="address-level2"></label>
+        </div>
+        <label for="c-zap">WhatsApp com DDD<input type="tel" id="c-zap" inputmode="tel" autocomplete="tel" placeholder="(93) 90000-0000" required></label>
+        <label for="c-email">E-mail<input type="email" id="c-email" autocomplete="email" required></label>
+        <label for="c-senha">Crie uma senha (mínimo 8 caracteres)<input type="password" id="c-senha" autocomplete="new-password" required></label>
+        <p class="erro" id="c-erro" hidden></p>
+        <button class="btn" type="submit">Criar cadastro</button>
+        <p class="miudo">Seus dados são usados só para identificar suas vendas e falar com você sobre o empreendimento.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PAINEL DO CORRETOR -->
+<section id="v-corretor" hidden style="display:flex;flex-direction:column;gap:24px">
+  <div><h1 id="k-ola"></h1><p class="miudo" id="k-sub" style="font-size:1rem;margin-top:6px"></p></div>
+  <p class="aviso" id="k-pend" hidden>Seu cadastro está aguardando aprovação da administração. Você já pode ver o painel; o link de indicação passa a valer assim que for aprovado.</p>
+  <div class="nums">
+    <div><b id="k-n">0</b><span>reservas no seu nome</span></div>
+    <div><b id="k-s">0</b><span>com sinal pago</span></div>
+    <div><b id="k-c">0</b><span>concluídas</span></div>
+    <div><b id="k-v">R$ 0</b><span>valor total dos lotes</span></div>
+  </div>
+  <div class="cartao">
+    <h3>Seu link exclusivo</h3>
+    <p class="miudo">Toda reserva feita por este link fica registrada no seu nome, com seu CRECI.</p>
+    <div class="link"><input type="text" id="k-link" readonly aria-label="Seu link de indicação"><button class="btn" id="k-copia" type="button">Copiar link</button></div>
+  </div>
+  <div class="cartao">
+    <h3>Suas reservas</h3>
+    <p class="miudo" id="k-vazio">Ainda não há reservas no seu nome. Envie seu link para os clientes ou faça a reserva junto com eles no site.</p>
+    <div class="rolagem"><table id="k-tab" hidden><thead><tr><th>Lote</th><th>Cliente</th><th>WhatsApp</th><th>Valor</th><th>Situação</th><th>Data</th></tr></thead><tbody></tbody></table></div>
+    <p class="miudo">A comissão de cada venda é combinada com a administração do empreendimento.</p>
+  </div>
+</section>
+
+<!-- PAINEL DO ADMINISTRADOR -->
+<section id="v-admin" hidden style="display:flex;flex-direction:column;gap:24px">
+  <div><h1>Administração</h1><p class="miudo" id="a-sub" style="font-size:1rem;margin-top:6px"></p></div>
+  <div class="nums">
+    <div><b id="a-n">0</b><span>lotes reservados</span></div>
+    <div><b id="a-l">0</b><span>lotes livres</span></div>
+    <div><b id="a-v">R$ 0</b><span>valor das reservas</span></div>
+    <div><b id="a-p">0</b><span>corretores aguardando aprovação</span></div>
+  </div>
+  <div class="cartao">
+    <h3>Reservas</h3>
+    <p class="miudo" id="a-vazio">Nenhuma reserva ainda.</p>
+    <div class="rolagem"><table id="a-tab" hidden><thead><tr><th>Lote</th><th>Cliente</th><th>WhatsApp</th><th>Corretor</th><th>Valor</th><th>Situação</th><th>Ações</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <div class="cartao">
+    <h3>Corretores</h3>
+    <p class="miudo" id="a-cvazio">Nenhum corretor cadastrado ainda.</p>
+    <div class="rolagem"><table id="a-ctab" hidden><thead><tr><th>Nome</th><th>CRECI</th><th>Cidade</th><th>WhatsApp</th><th>Situação</th><th>Ações</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+
+</main>
+<script>
+var UFS='AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'.split(' ');
+var sel=document.getElementById('c-uf'); sel.innerHTML='<option value="">Escolha</option>'+UFS.map(function(u){return '<option'+(u==='PA'?' selected':'')+'>'+u+'</option>'}).join('');
+function $(id){return document.getElementById(id)}
+function rs(v){return 'R$ '+Number(v).toLocaleString('pt-BR')}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var ROT={reservado:'Aguardando documentação',sinal_pago:'Sinal pago',concluido:'Concluído'};
+function data(s){var d=new Date(String(s).replace(' ','T')+'Z');return isNaN(d)?'':d.toLocaleDateString('pt-BR')}
+function zapLink(z){var n=String(z).replace(/\D/g,'');if(n.length<=11)n='55'+n;return '<a href="https://wa.me/'+n+'" target="_blank" rel="noopener">'+esc(z)+'</a>'}
+function api(url,corpo){return fetch(url,corpo?{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corpo)}:{cache:'no-store'}).then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})}
+function ver(v){['v-entrar','v-corretor','v-admin'].forEach(function(id){$(id).hidden=(id!==v)});$('sair').hidden=(v==='v-entrar')}
+
+function carrega(){
+  api('/api/eu').then(function(o){
+    if(o.s!==200){ver('v-entrar');return}
+    var u=o.j.usuario, R=o.j.reservas||[];
+    if(u.tipo==='admin'){
+      ver('v-admin'); $('a-sub').textContent='Você entrou como '+u.nome+'.';
+      $('a-n').textContent=R.length; $('a-l').textContent=102-R.length;
+      $('a-v').textContent=rs(R.reduce(function(a,r){return a+r.valor},0));
+      var C=o.j.corretores||[]; $('a-p').textContent=C.filter(function(c){return !c.ativo}).length;
+      $('a-vazio').hidden=R.length>0; $('a-tab').hidden=!R.length;
+      $('a-tab').querySelector('tbody').innerHTML=R.map(function(r){
+        return '<tr><td><b>'+r.lote+'</b><br><span class="miudo">'+esc(r.codigo)+'</span></td><td>'+esc(r.nome)+'<br><span class="miudo">'+esc(r.cidade||'')+'</span></td><td>'+zapLink(r.zap)+'</td><td>'+esc(r.corretor_nome||r.corretor||'Sem corretor')+(r.creci?'<br><span class="miudo">CRECI '+esc(r.creci)+'</span>':'')+'</td><td>'+rs(r.valor)+'</td><td><span class="pill '+r.status+'">'+ROT[r.status]+'</span></td><td><div class="acoes">'+
+          '<select data-lote="'+r.lote+'" class="st" aria-label="Situação do lote '+r.lote+'">'+Object.keys(ROT).map(function(k){return '<option value="'+k+'"'+(k===r.status?' selected':'')+'>'+ROT[k]+'</option>'}).join('')+'</select>'+
+          '<button class="btn sec peq lib" data-lote="'+r.lote+'">Liberar lote</button></div></td></tr>'}).join('');
+      $('a-cvazio').hidden=C.length>0; $('a-ctab').hidden=!C.length;
+      $('a-ctab').querySelector('tbody').innerHTML=C.map(function(c){
+        return '<tr><td>'+esc(c.nome)+'<br><span class="miudo">'+esc(c.email)+'</span></td><td>'+esc(c.creci)+'-'+esc(c.uf)+'</td><td>'+esc(c.cidade||'')+'</td><td>'+zapLink(c.zap)+'</td><td><span class="pill '+(c.ativo?'on':'off')+'">'+(c.ativo?'Ativo':'Aguardando')+'</span></td><td><button class="btn '+(c.ativo?'sec ':'')+'peq apr" data-id="'+c.id+'" data-ativo="'+(c.ativo?0:1)+'">'+(c.ativo?'Suspender':'Aprovar')+'</button></td></tr>'}).join('');
+    } else {
+      ver('v-corretor'); $('k-ola').textContent='Olá, '+u.nome.split(' ')[0];
+      $('k-sub').textContent='CRECI '+u.creci+'-'+u.uf+(u.cidade?' · '+u.cidade:'');
+      $('k-pend').hidden=!!u.ativo;
+      $('k-link').value=location.origin+'/?ref='+u.id;
+      $('k-n').textContent=R.length;
+      $('k-s').textContent=R.filter(function(r){return r.status==='sinal_pago'}).length;
+      $('k-c').textContent=R.filter(function(r){return r.status==='concluido'}).length;
+      $('k-v').textContent=rs(R.reduce(function(a,r){return a+r.valor},0));
+      $('k-vazio').hidden=R.length>0; $('k-tab').hidden=!R.length;
+      $('k-tab').querySelector('tbody').innerHTML=R.map(function(r){
+        return '<tr><td><b>'+r.lote+'</b></td><td>'+esc(r.nome)+'</td><td>'+zapLink(r.zap)+'</td><td>'+rs(r.valor)+'</td><td><span class="pill '+r.status+'">'+ROT[r.status]+'</span></td><td>'+data(r.criado)+'</td></tr>'}).join('');
+    }
+  }).catch(function(){ver('v-entrar')});
+}
+
+function envia(form,url,campos,erroId){
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); var c={},er=$(erroId),bt=form.querySelector('button[type=submit]');
+    Object.keys(campos).forEach(function(k){c[k]=$(campos[k]).value});
+    er.hidden=true; bt.disabled=true;
+    api(url,c).then(function(o){bt.disabled=false;if(o.s!==200){er.textContent=o.j.erro||'Não foi possível concluir. Tente de novo.';er.hidden=false;return}carrega()})
+      .catch(function(){bt.disabled=false;er.textContent='Sem conexão. Tente de novo.';er.hidden=false});
+  });
+}
+envia($('f-login'),'/api/login',{email:'l-email',senha:'l-senha'},'l-erro');
+envia($('f-cad'),'/api/cadastro',{nome:'c-nome',cpf:'c-cpf',creci:'c-creci',uf:'c-uf',cidade:'c-cidade',zap:'c-zap',email:'c-email',senha:'c-senha'},'c-erro');
+$('sair').addEventListener('click',function(){api('/api/logout',{}).then(carrega)});
+$('k-copia').addEventListener('click',function(){
+  var i=$('k-link'),b=$('k-copia'); i.select();
+  (navigator.clipboard?navigator.clipboard.writeText(i.value):Promise.reject()).then(function(){b.textContent='Link copiado'}).catch(function(){b.textContent='Selecione e copie'});
+  setTimeout(function(){b.textContent='Copiar link'},2500);
+});
+document.addEventListener('change',function(e){
+  if(e.target.classList.contains('st')) api('/api/admin/reserva',{lote:e.target.dataset.lote,status:e.target.value}).then(carrega);
+});
+var pend=null;
+document.addEventListener('click',function(e){
+  var t=e.target;
+  if(t.classList.contains('apr')) api('/api/admin/corretor',{id:t.dataset.id,ativo:t.dataset.ativo==='1'}).then(carrega);
+  if(t.classList.contains('lib')){
+    if(pend!==t){ if(pend) pend.textContent='Liberar lote'; pend=t; t.textContent='Confirmar: apagar reserva'; return; }
+    pend=null; api('/api/admin/reserva',{lote:t.dataset.lote,acao:'liberar'}).then(carrega);
+  }
+});
+carrega();
+</script>
+</body>
+</html>

@@ -333,12 +333,12 @@ h1 em{font-style:italic;color:var(--rio)}
     <div class="txt">
       <h2>Corretor: feche a venda pelo site, junto com o cliente.</h2>
       <p class="lead">Você abre o mapa com o comprador, escolhe o lote e preenche a reserva informando seu nome e CRECI. A venda fica registrada no seu nome.</p>
-      <a class="btn" href="#mapa" style="align-self:flex-start">Abrir o mapa de lotes</a>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="/painel/">Cadastro e painel do corretor</a><a class="btn sec" href="#mapa">Abrir o mapa de lotes</a></div>
     </div>
     <ul>
       <li><b>Tabela única</b><span>A mesma tabela para todo mundo. Ninguém vende por fora mais barato.</span></li>
       <li><b>Disponibilidade na hora</b><span>O mapa mostra quais lotes estão livres, sem precisar ligar para confirmar.</span></li>
-      <li><b>Venda registrada</b><span>Seu CRECI entra na reserva e a comissão é acertada com a administração do empreendimento.</span></li>
+      <li><b>Link exclusivo</b><span>Depois de aprovado, você recebe um link só seu. Toda reserva feita por ele fica no seu nome e aparece no seu painel.</span></li>
     </ul>
   </div>
 </section>
@@ -361,7 +361,7 @@ h1 em{font-style:italic;color:var(--rio)}
   <div class="wrap">
     <img src="media/marca-claro.png" alt="Alter do Chão" style="height:26px;width:auto;align-self:flex-start">
     <span>Porto Novo, um empreendimento da vertical imobiliária do Alter do Chão Group · Santarém, Pará</span>
-    <span>Atendimento pelo WhatsApp: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">(93) 99127-2550</a></span>
+    <span><a href="/painel/">Área do corretor</a> · Atendimento pelo WhatsApp: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">(93) 99127-2550</a></span>
     <span class="miudo" style="color:#a9b3ad">Imagens de chalés e construções são ilustrativas. Medidas conforme planta, sujeitas a conferência. A venda de cada lote depende da apresentação da documentação ao comprador.</span>
   </div>
 </footer>
@@ -391,6 +391,7 @@ h1 em{font-style:italic;color:var(--rio)}
         <label for="f-zap">WhatsApp com DDD<input type="tel" id="f-zap" autocomplete="tel" inputmode="tel" placeholder="(93) 90000-0000" required></label>
         <label for="f-email">E-mail (opcional)<input type="email" id="f-email" autocomplete="email"></label>
         <label for="f-cidade">Cidade<input type="text" id="f-cidade" autocomplete="address-level2"></label>
+        <p class="miudo" id="refbox" hidden style="background:var(--papel);border-radius:10px;padding:10px 12px;color:var(--tinta)"></p>
         <label class="check" for="f-tem"><input type="checkbox" id="f-tem"><span>Estou sendo atendido por um corretor</span></label>
         <div class="bloco-corr" id="bcorr" hidden>
           <label for="f-cnome">Nome do corretor<input type="text" id="f-cnome"></label>
@@ -457,6 +458,8 @@ add(103,'550,00 m²','12,5 × 44 m','Lado oeste',38+47*15);
 var minhas = {};
 try{ minhas = JSON.parse(localStorage.getItem('pn_reservas')||'{}') || {}; }catch(e){ minhas = {}; }
 var ocupados = {};
+var REF=(function(){var m=location.search.match(/[?&]ref=(\d+)/);var r=m?m[1]:null;try{if(r)localStorage.setItem('pn_ref',r);else r=localStorage.getItem('pn_ref')}catch(e){}return r})();
+var REFINFO=null;
 function salva(){ try{ localStorage.setItem('pn_reservas',JSON.stringify(minhas)); }catch(e){} }
 
 function botao(n,curto){
@@ -546,7 +549,7 @@ document.getElementById('form').addEventListener('submit',function(e){
   else if(tem && (!v('f-cnome') || !v('f-creci'))) msg='Preencha o nome e o CRECI do corretor.';
   if(msg){erro.textContent=msg;erro.hidden=false;return}
   erro.hidden=true;
-  var r={lote:atual,nome:nome,zap:zap,email:v('f-email'),cidade:v('f-cidade'),
+  var r={ref:REF,lote:atual,nome:nome,zap:zap,email:v('f-email'),cidade:v('f-cidade'),
     corretor:tem?v('f-cnome'):'',creci:tem?v('f-creci'):'',czap:tem?v('f-czap'):'',quando:new Date().toISOString()};
   var bt=e.target.querySelector('button[type=submit]'); bt.disabled=true; bt.textContent='Registrando...';
   function fim(){bt.disabled=false;bt.textContent='Confirmar reserva'}
@@ -559,20 +562,28 @@ document.getElementById('form').addEventListener('submit',function(e){
         if(o.s===409){ocupados[atual]=true;monta();}
         return;
       }
-      r.codigo=o.j.codigo; minhas[atual]=r; ocupados[atual]=true; salva(); monta();
+      r.codigo=o.j.codigo; if(o.j.corretor){r.corretor=o.j.corretor.nome;r.creci=o.j.corretor.creci;} minhas[atual]=r; ocupados[atual]=true; salva(); monta();
       var el=document.querySelector('.lote[data-n="'+atual+'"]'); if(el) el.classList.add('sel');
       mostraOk(r); passo(3);
     })
     .catch(function(){fim();erro.textContent='Sem conexão com o servidor. Tente de novo ou fale pelo WhatsApp (93) 99127-2550.';erro.hidden=false;});
 });
 
+function carregaRef(){
+  if(!REF)return;
+  fetch('/api/ref?id='+REF).then(function(x){return x.ok?x.json():null}).then(function(j){
+    if(!j||!j.nome)return; REFINFO=j;
+    var b=document.getElementById('refbox'); b.textContent='Você está sendo atendido por '+j.nome+' (CRECI '+j.creci+'-'+j.uf+').'; b.hidden=false;
+    document.getElementById('f-tem').closest('label').hidden=true;
+  }).catch(function(){});
+}
 function carrega(){
   fetch('/api/lotes',{cache:'no-store'}).then(function(x){return x.json()}).then(function(j){
     ocupados={}; (j.reservados||[]).forEach(function(n){ocupados[n]=true}); monta();
     var livres=102-(j.reservados||[]).length, c=document.getElementById('cont'); if(c) c.textContent=livres+' de 102 lotes disponíveis agora';
   }).catch(function(){});
 }
-monta(); carrega(); setInterval(carrega,60000);
+monta(); carrega(); carregaRef(); setInterval(carrega,60000);
 document.querySelectorAll('#videos video').forEach(function(v){v.addEventListener('play',function(){document.querySelectorAll('#videos video').forEach(function(o){if(o!==v)o.pause()})})});
 if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
   var hv=document.querySelector('.quadro video'); if(hv){hv.removeAttribute('autoplay');hv.pause();hv.controls=true;}
