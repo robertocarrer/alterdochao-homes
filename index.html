@@ -46,7 +46,7 @@ html{scroll-behavior:smooth}
 body{font-variant-numeric:lining-nums;margin:0;background:var(--papel);color:var(--tinta);font-family:var(--corpo);font-size:17px;line-height:1.55}
 img,video{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0;color:var(--mata)}
-h1{font-size:clamp(2.7rem,7vw,5rem);font-weight:500;letter-spacing:-.015em;line-height:1}
+h1{font-size:clamp(2.5rem,5.4vw,4.4rem);font-weight:500;letter-spacing:-.015em;line-height:1}
 h2{font-size:clamp(2.1rem,4.4vw,3.1rem);font-weight:500;letter-spacing:-.01em}
 h3{font-size:1.45rem;font-weight:600}
 p{margin:0}
@@ -77,18 +77,18 @@ nav a:hover{color:var(--folha)}
 @media(max-width:760px){nav a:not(.btn){display:none}}
 
 /* abertura */
-.abre{padding:48px 0 56px}
+.abre{padding:24px 0 40px}
 .abre .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-.abre .txt{display:flex;flex-direction:column;gap:22px}
+.abre .txt{display:flex;flex-direction:column;gap:18px}
 .onde{font-weight:600;color:var(--rio);font-size:.95rem;letter-spacing:.02em}
 .acoes{display:flex;gap:12px;flex-wrap:wrap}
-.quadro{border-radius:18px;overflow:hidden;background:var(--mata);aspect-ratio:9/16;max-height:680px;justify-self:end;width:100%;max-width:382px;box-shadow:0 24px 50px -24px rgba(56,67,63,.5)}
+.quadro{border-radius:18px;overflow:hidden;background:var(--mata);aspect-ratio:415/640;height:min(620px,calc(100svh - 175px));min-height:380px;justify-self:end;width:auto;max-width:100%;box-shadow:0 24px 50px -24px rgba(56,67,63,.5)}
 .quadro{position:relative;display:block}.quadro img{width:100%;height:100%;object-fit:cover;display:block}
 .legq{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;color:#fff;font-size:.9rem;font-weight:500;background:linear-gradient(180deg,transparent,rgba(0,0,0,.55))}
 .hoje{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:40px;align-items:center;margin:28px 0 56px}.hoje video{width:100%;aspect-ratio:9/16;border-radius:14px;background:var(--mata);display:block}
 .hoje p{color:var(--suave);font-size:1.05rem;max-width:46ch}
 @media(max-width:760px){.hoje{grid-template-columns:1fr;gap:18px}.hoje video{max-width:340px;margin:0 auto}}
-@media(max-width:860px){.abre .wrap{grid-template-columns:1fr;gap:28px}.quadro{justify-self:center;max-width:340px;aspect-ratio:9/16}}
+@media(max-width:860px){.abre .wrap{grid-template-columns:1fr;gap:28px}.quadro{justify-self:center;height:auto;width:100%;max-width:340px;min-height:0}}
 
 /* números */
 .numeros{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--nevoa);border-bottom:1px solid var(--nevoa)}
@@ -275,7 +275,7 @@ h1 em{font-style:italic;color:var(--rio)}
         <a class="btn sec" href="#videos" data-i="bVer">Ver o terreno</a>
       </div>
     </div>
-    <a class="quadro" href="#alter"><img src="media/ilha-do-amor.jpg" alt="Ilha do Amor, em Alter do Chão, vista do alto" fetchpriority="high"><span class="legq" data-i="hC">Ilha do Amor, Alter do Chão</span></a>
+    <a class="quadro" href="#alter"><img src="media/ilha-do-amor-c.jpg" alt="Ilha do Amor, em Alter do Chão, vista do alto" fetchpriority="high"><span class="legq" data-i="hC">Ilha do Amor, Alter do Chão</span></a>
   </div>
   <div class="wrap" style="display:block">
     <div class="numeros" style="margin-top:48px">
