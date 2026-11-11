@@ -89,12 +89,16 @@ td{padding:10px 10px 10px 0;border-bottom:1px solid var(--nevoa);vertical-align:
 .passos3 span{color:var(--suave);font-size:.95rem}
 @media(max-width:760px){.passos3{grid-template-columns:1fr}}
 @media(max-width:560px){.marca div{display:none}}
+.voltar{font-size:.85rem;color:var(--mata);text-decoration:none;font-weight:600;white-space:nowrap}
+.voltar:hover{text-decoration:underline}
+.aviso-pre{background:#f3ead6;border-left:4px solid #b8893b;border-radius:10px;padding:12px 14px;font-size:.92rem;margin:10px 0}
+@media(max-width:600px){.voltar{font-size:0}.voltar::before{content:"←";font-size:1.3rem}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <a class="marca" href="/"><img class="b" src="/media/botos-ouro.png" alt=""><div><img class="m" src="/media/marca-escuro.png" alt="Alter do Chão"><span>Painel</span></div></a>
-  <div class="dir"><div class="idiomas" role="group" aria-label="Idioma">
+  <div class="dir"><a class="voltar" href="/" data-i="voltar">← Voltar ao site</a><div class="idiomas" role="group" aria-label="Idioma">
     <button type="button" data-l="pt">PT</button><button type="button" data-l="en">EN</button><button type="button" data-l="es">ES</button><button type="button" data-l="fr">FR</button><button type="button" data-l="de">DE</button>
   </div><button class="btn sec peq" id="sair" hidden data-i="sair">Sair</button></div>
 </div></header>
@@ -123,7 +127,7 @@ td{padding:10px 10px 10px 0;border-bottom:1px solid var(--nevoa);vertical-align:
         <p data-i="m-p">O site terá campanhas patrocinadas no Brasil, nos Estados Unidos e na Europa, em cinco idiomas. Cada visitante que chega pelo seu link fica registrado no seu nome, de qualquer lugar do mundo.</p>
       </div>
       <ul class="fatos">
-        <li><b>102</b><span data-i="f1">mini chácaras de cerca de 660 m²</span></li>
+        <li><b>102</b><span data-i="f1">mini chácaras de 600 a 660 m²</span></li>
         <li><b>R$ 20–40 mil</b><span data-i="f2">três faixas de preço</span></li>
         <li><b>R$ 500</b><span data-i="f3">parcelas fixas, sem reajuste</span></li>
         <li><b>5%</b><span data-i="f4">de sinal, descontado do total</span></li>
@@ -199,6 +203,7 @@ td{padding:10px 10px 10px 0;border-bottom:1px solid var(--nevoa);vertical-align:
   <div class="cartao">
     <h3>Suas reservas</h3>
     <p class="miudo" id="k-vazio">Ainda não há reservas no seu nome. Envie seu link para os clientes ou faça a reserva junto com eles no site.</p>
+    <p class="aviso-pre" id="k-pre" hidden>Fase de pré-lançamento: por enquanto as reservas são feitas direto no site e atendidas pela administração. A lista de interessados será aberta para os corretores no lançamento do empreendimento.</p>
     <div class="rolagem"><table id="k-tab" hidden><thead><tr><th>Chácara</th><th>Cliente</th><th>WhatsApp</th><th>Valor</th><th>Situação</th><th>Data</th></tr></thead><tbody></tbody></table></div>
     <p class="miudo">A comissão de cada venda é combinada com a administração do empreendimento.</p>
   </div>
@@ -285,7 +290,8 @@ function carrega(){
       $('k-s').textContent=R.filter(function(r){return r.status==='sinal_pago'}).length;
       $('k-c').textContent=R.filter(function(r){return r.status==='concluido'}).length;
       $('k-v').textContent=rs(R.reduce(function(a,r){return a+r.valor},0));
-      $('k-vazio').hidden=R.length>0; $('k-tab').hidden=!R.length;
+      $('k-pre').hidden=!o.j.prelancamento;
+      $('k-vazio').hidden=R.length>0||!!o.j.prelancamento; $('k-tab').hidden=!R.length;
       $('k-tab').querySelector('tbody').innerHTML=R.map(function(r){
         return '<tr><td><b>'+r.lote+'</b></td><td>'+esc(r.nome)+'</td><td>'+zapLink(r.zap)+'</td><td>'+rs(r.valor)+'</td><td><span class="pill '+r.status+'">'+ROT[r.status]+'</span></td><td>'+data(r.criado)+'</td></tr>'}).join('');
     }
@@ -324,28 +330,28 @@ document.addEventListener('click',function(e){
 /* ===== Idiomas ===== */
 var T={
 pt:{},
-en:{sair:'Sign out',olho:'For partner brokers',h1:'Sell lots in the most sought-after destination in the Amazon.',lead:'Alter do Chão is one of the most searched destinations in Brazil. Porto Novo arrives with a brand, a website and promotion to bring buyers from across the country and abroad to you.',cta:'Become a partner',
+en:{sair:'Sign out',voltar:'← Back to site',olho:'For partner brokers',h1:'Sell lots in the most sought-after destination in the Amazon.',lead:'Alter do Chão is one of the most searched destinations in Brazil. Porto Novo arrives with a brand, a website and promotion to bring buyers from across the country and abroad to you.',cta:'Become a partner',
 p1t:'No. 1 among the most beautiful beaches in Brazil',p1:'The British newspaper put Alter do Chão at the top of its list of 10 Brazilian beaches and called it the "Amazonian Caribbean".',p2t:'Best National Tourist Destination',p2:'Voted with 97.55% of the votes, ahead of Chapada Diamantina and Jalapão.',p3a:'Easy access',p3t:'34 km from Santarém airport',p3:'Freshwater beaches on the Tapajós river, rainforest and a village known throughout Brazil.',
 'm-t':'Buyers from Brazil, the United States and Europe','m-p':'The website will run sponsored campaigns in Brazil, the United States and Europe, in five languages. Every visitor who arrives through your link is recorded under your name, from anywhere in the world.',
-f1:'lots of about 660 m²',f2:'three price tiers',f3:'fixed instalments, no adjustment',f4:'deposit, deducted from the total',
+f1:'lots of 600 to 660 m²',f2:'three price tiers',f3:'fixed instalments, no adjustment',f4:'deposit, deducted from the total',
 s1t:'Sign up with your CRECI',s1:'Takes two minutes. The administration approves your registration.',s2t:'Get your exclusive link',s2:'Share it with your clients. Every reservation made through it is recorded under your name.',s3t:'Track everything in the panel',s3:'Reservations, the status of each sale and alerts on your WhatsApp.',
 acesso:'Broker access',entrar:'Sign in',email:'E-mail',senha:'Password',cad:'Broker registration',nome:'Full name',uf:'State',cidade:'City',zap:'WhatsApp with area code',nsenha:'Create a password (at least 8 characters)',criar:'Create account',lgpd:'Your data is used only to identify your sales and to contact you about the development.'},
-es:{sair:'Salir',olho:'Para corredores asociados',h1:'Venda lotes en el destino más deseado de la Amazonía.',lead:'Alter do Chão está entre los destinos más buscados de Brasil. Porto Novo llega con marca, sitio web y divulgación para traerle compradores de todo el país y del exterior.',cta:'Quiero ser socio',
+es:{sair:'Salir',voltar:'← Volver al sitio',olho:'Para corredores asociados',h1:'Venda lotes en el destino más deseado de la Amazonía.',lead:'Alter do Chão está entre los destinos más buscados de Brasil. Porto Novo llega con marca, sitio web y divulgación para traerle compradores de todo el país y del exterior.',cta:'Quiero ser socio',
 p1t:'1.er lugar entre las playas más bonitas de Brasil',p1:'El diario británico puso a Alter do Chão en el primer lugar de su lista de 10 playas brasileñas y la llamó el "Caribe amazónico".',p2t:'Mejor Destino Turístico Nacional',p2:'Elegido con el 97,55 % de los votos, por delante de la Chapada Diamantina y el Jalapão.',p3a:'Fácil acceso',p3t:'A 34 km del aeropuerto de Santarém',p3:'Playas de agua dulce del río Tapajós, selva y un pueblo conocido en todo Brasil.',
 'm-t':'Compradores de Brasil, Estados Unidos y Europa','m-p':'El sitio tendrá campañas patrocinadas en Brasil, Estados Unidos y Europa, en cinco idiomas. Cada visitante que llega por su enlace queda registrado a su nombre, desde cualquier lugar del mundo.',
-f1:'lotes de unos 660 m²',f2:'tres franjas de precio',f3:'cuotas fijas, sin reajuste',f4:'de seña, descontada del total',
+f1:'lotes de 600 a 660 m²',f2:'tres franjas de precio',f3:'cuotas fijas, sin reajuste',f4:'de seña, descontada del total',
 s1t:'Regístrese con su CRECI',s1:'Toma dos minutos. La administración aprueba su registro.',s2t:'Reciba su enlace exclusivo',s2:'Compártalo con sus clientes. Toda reserva hecha por él queda a su nombre.',s3t:'Siga todo en el panel',s3:'Reservas, la situación de cada venta y alertas en su WhatsApp.',
 acesso:'Acceso del corredor',entrar:'Entrar',email:'Correo electrónico',senha:'Contraseña',cad:'Registro de corredor',nome:'Nombre completo',uf:'Estado',cidade:'Ciudad',zap:'WhatsApp con código de área',nsenha:'Cree una contraseña (mínimo 8 caracteres)',criar:'Crear registro',lgpd:'Sus datos se usan solo para identificar sus ventas y contactarle sobre el emprendimiento.'},
-fr:{sair:'Se déconnecter',olho:'Pour les agents partenaires',h1:'Vendez des terrains dans la destination la plus convoitée d’Amazonie.',lead:'Alter do Chão fait partie des destinations les plus recherchées du Brésil. Porto Novo arrive avec une marque, un site et une promotion pour vous amener des acheteurs de tout le pays et de l’étranger.',cta:'Devenir partenaire',
+fr:{sair:'Se déconnecter',voltar:'← Retour au site',olho:'Pour les agents partenaires',h1:'Vendez des terrains dans la destination la plus convoitée d’Amazonie.',lead:'Alter do Chão fait partie des destinations les plus recherchées du Brésil. Porto Novo arrive avec une marque, un site et une promotion pour vous amener des acheteurs de tout le pays et de l’étranger.',cta:'Devenir partenaire',
 p1t:'1re place parmi les plus belles plages du Brésil',p1:'Le journal britannique a placé Alter do Chão en tête de sa liste des 10 plages brésiliennes et l’a surnommée les « Caraïbes amazoniennes ».',p2t:'Meilleure destination touristique nationale',p2:'Élue avec 97,55 % des voix, devant la Chapada Diamantina et le Jalapão.',p3a:'Accès facile',p3t:'À 34 km de l’aéroport de Santarém',p3:'Plages d’eau douce sur le fleuve Tapajós, forêt et un village connu dans tout le Brésil.',
 'm-t':'Des acheteurs du Brésil, des États-Unis et d’Europe','m-p':'Le site aura des campagnes sponsorisées au Brésil, aux États-Unis et en Europe, en cinq langues. Chaque visiteur qui arrive par votre lien est enregistré à votre nom, où qu’il soit dans le monde.',
-f1:'terrains d’environ 660 m²',f2:'trois gammes de prix',f3:'mensualités fixes, sans révision',f4:'d’acompte, déduit du total',
+f1:'terrains de 600 à 660 m²',f2:'trois gammes de prix',f3:'mensualités fixes, sans révision',f4:'d’acompte, déduit du total',
 s1t:'Inscrivez-vous avec votre CRECI',s1:'Cela prend deux minutes. L’administration valide votre inscription.',s2t:'Recevez votre lien exclusif',s2:'Partagez-le avec vos clients. Chaque réservation faite par ce lien est enregistrée à votre nom.',s3t:'Suivez tout dans votre espace',s3:'Réservations, état de chaque vente et alertes sur votre WhatsApp.',
 acesso:'Accès agent',entrar:'Se connecter',email:'E-mail',senha:'Mot de passe',cad:'Inscription agent',nome:'Nom complet',uf:'État',cidade:'Ville',zap:'WhatsApp avec indicatif',nsenha:'Créez un mot de passe (8 caractères minimum)',criar:'Créer le compte',lgpd:'Vos données servent uniquement à identifier vos ventes et à vous contacter au sujet du projet.'},
-de:{sair:'Abmelden',olho:'Für Partner-Makler',h1:'Verkaufen Sie Grundstücke am begehrtesten Reiseziel Amazoniens.',lead:'Alter do Chão gehört zu den gefragtesten Reisezielen Brasiliens. Porto Novo bringt Marke, Website und Werbung mit, um Käufer aus ganz Brasilien und dem Ausland zu Ihnen zu führen.',cta:'Partner werden',
+de:{sair:'Abmelden',voltar:'← Zurück zur Website',olho:'Für Partner-Makler',h1:'Verkaufen Sie Grundstücke am begehrtesten Reiseziel Amazoniens.',lead:'Alter do Chão gehört zu den gefragtesten Reisezielen Brasiliens. Porto Novo bringt Marke, Website und Werbung mit, um Käufer aus ganz Brasilien und dem Ausland zu Ihnen zu führen.',cta:'Partner werden',
 p1t:'Platz 1 unter den schönsten Stränden Brasiliens',p1:'Die britische Zeitung setzte Alter do Chão an die Spitze ihrer Liste der 10 brasilianischen Strände und nannte es die „Karibik Amazoniens“.',p2t:'Bestes nationales Reiseziel',p2:'Mit 97,55 % der Stimmen gewählt, vor der Chapada Diamantina und dem Jalapão.',p3a:'Gut erreichbar',p3t:'34 km vom Flughafen Santarém',p3:'Süßwasserstrände am Tapajós, Regenwald und ein Dorf, das man in ganz Brasilien kennt.',
 'm-t':'Käufer aus Brasilien, den USA und Europa','m-p':'Die Website wird gesponserte Kampagnen in Brasilien, den USA und Europa schalten, in fünf Sprachen. Jeder Besucher, der über Ihren Link kommt, wird Ihnen zugeordnet, egal von wo auf der Welt.',
-f1:'Grundstücke mit ca. 660 m²',f2:'drei Preisstufen',f3:'feste Raten, ohne Anpassung',f4:'Anzahlung, vom Gesamtpreis abgezogen',
+f1:'Grundstücke mit 600 bis 660 m²',f2:'drei Preisstufen',f3:'feste Raten, ohne Anpassung',f4:'Anzahlung, vom Gesamtpreis abgezogen',
 s1t:'Mit Ihrer CRECI registrieren',s1:'Dauert zwei Minuten. Die Verwaltung bestätigt Ihre Registrierung.',s2t:'Ihren exklusiven Link erhalten',s2:'Teilen Sie ihn mit Ihren Kunden. Jede Reservierung darüber wird Ihnen zugeordnet.',s3t:'Alles im Panel verfolgen',s3:'Reservierungen, der Stand jedes Verkaufs und Benachrichtigungen per WhatsApp.',
 acesso:'Makler-Zugang',entrar:'Anmelden',email:'E-Mail',senha:'Passwort',cad:'Makler-Registrierung',nome:'Vollständiger Name',uf:'Bundesstaat',cidade:'Stadt',zap:'WhatsApp mit Vorwahl',nsenha:'Passwort erstellen (mindestens 8 Zeichen)',criar:'Konto erstellen',lgpd:'Ihre Daten dienen nur dazu, Ihre Verkäufe zuzuordnen und Sie zum Projekt zu kontaktieren.'}
 };

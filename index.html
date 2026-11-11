@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Alter do Chão Estates">
 <meta property="og:title" content="Alter do Chão Estates">
-<meta property="og:description" content="Mini chácaras de 660 m² na mata, perto das praias do Tapajós. Escolha a sua no mapa e reserve online.">
+<meta property="og:description" content="Mini chácaras de 600 a 660 m² na mata, perto das praias do Tapajós. Escolha a sua no mapa e reserve online.">
 <meta property="og:url" content="https://alterdochao.estate/">
 <meta property="og:image" content="https://alterdochao.estate/media/og-b.jpg">
 <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alterdochao.estate/media/og-b.jpg">
 <meta name="theme-color" content="#38433f">
-<meta name="description" content="Mini chácaras de 660 m² na mata, na Estrada Interpraias, entre Alter do Chão e Belterra. Escolha a sua no mapa e reserve online.">
+<meta name="description" content="Mini chácaras de 600 a 660 m² na mata, na Estrada Interpraias, entre Alter do Chão e Belterra. Escolha a sua no mapa e reserve online.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -82,9 +82,9 @@ nav a:hover{color:var(--folha)}
 .abre .txt{display:flex;flex-direction:column;gap:22px}
 .onde{font-weight:600;color:var(--rio);font-size:.95rem;letter-spacing:.02em}
 .acoes{display:flex;gap:12px;flex-wrap:wrap}
-.quadro{border-radius:18px;overflow:hidden;background:var(--mata);aspect-ratio:9/14;max-height:600px;justify-self:end;width:100%;max-width:400px;box-shadow:0 24px 50px -24px rgba(56,67,63,.5)}
+.quadro{border-radius:18px;overflow:hidden;background:var(--mata);aspect-ratio:9/16;max-height:680px;justify-self:end;width:100%;max-width:382px;box-shadow:0 24px 50px -24px rgba(56,67,63,.5)}
 .quadro video{width:100%;height:100%;object-fit:cover}
-@media(max-width:860px){.abre .wrap{grid-template-columns:1fr;gap:28px}.quadro{justify-self:stretch;max-width:none;aspect-ratio:4/5}}
+@media(max-width:860px){.abre .wrap{grid-template-columns:1fr;gap:28px}.quadro{justify-self:center;max-width:340px;aspect-ratio:9/16}}
 
 /* números */
 .numeros{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--nevoa);border-bottom:1px solid var(--nevoa)}
@@ -211,7 +211,20 @@ h1 em{font-style:italic;color:var(--rio)}
 .galeria{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:10px}
 .galeria figure{margin:0;position:relative;border-radius:14px;overflow:hidden;background:var(--nevoa)}
 .galeria .f1{grid-row:1/3}
-.galeria img{width:100%;height:100%;object-fit:cover;display:block}
+.galeria img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:transform .4s}
+.galeria figure:hover img{transform:scale(1.03)}
+#luz{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;margin:0}
+#luz::backdrop{background:rgba(10,14,12,.92)}
+#luz .palco{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:56px 64px}
+#luz img{max-width:100%;max-height:calc(100vh - 140px);border-radius:10px;object-fit:contain}
+#luz p{color:#fff;margin:0;font-size:.95rem;text-align:center}
+#luz button{position:fixed;background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:50%;width:48px;height:48px;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#luz button:hover{background:rgba(255,255,255,.28)}
+#luz .x{top:14px;right:14px}#luz .ant{left:12px;top:50%;transform:translateY(-50%)}#luz .prox{right:12px;top:50%;transform:translateY(-50%)}
+@media(max-width:600px){#luz .palco{padding:56px 10px 70px}#luz .ant,#luz .prox{top:auto;bottom:14px;transform:none}#luz .ant{left:calc(50% - 60px)}#luz .prox{right:calc(50% - 60px)}}
+#topo{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;background:var(--mata);color:#fff;border:0;font-size:1.3rem;box-shadow:0 8px 20px -8px rgba(0,0,0,.5);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40;display:flex;align-items:center;justify-content:center;text-decoration:none}
+#topo.on{opacity:1;pointer-events:auto}
+.volta-secao{display:inline-block;margin-top:22px;font-size:.88rem;color:inherit;opacity:.75;text-decoration:none}.volta-secao:hover{opacity:1;text-decoration:underline}
 .galeria figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;font-size:.8rem;color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,.55))}
 @media(max-width:760px){.galeria{grid-template-columns:1fr 1fr;grid-template-rows:240px 150px 150px}.galeria .f1{grid-column:1/3;grid-row:auto}}
 .alter .premios{display:grid;grid-template-columns:repeat(3,1fr);margin-top:28px;border-top:1px solid var(--nevoa);border-bottom:1px solid var(--nevoa)}
@@ -251,7 +264,7 @@ h1 em{font-style:italic;color:var(--rio)}
   <div class="wrap">
     <div class="txt">
       <p class="onde">Porto Novo · Estrada Interpraias, Santarém (PA)</p>
-      <h1 data-i="h1">Sua mini chácara de 660&nbsp;m² na mata, <em>perto das praias</em> do Tapajós.</h1>
+      <h1 data-i="h1">Sua mini chácara de 600 a 660&nbsp;m² na mata, <em>perto das praias</em> do Tapajós.</h1>
       <p class="lead" data-i="hlead">Uma rua reta de 800 metros, 102 mini chácaras dos dois lados e floresta em volta. Escolha a sua no mapa e reserve pelo celular em dois minutos.</p>
       <div class="acoes">
         <a class="btn" href="#mapa" data-i="bEsc">Escolher minha chácara</a>
@@ -265,7 +278,7 @@ h1 em{font-style:italic;color:var(--rio)}
   <div class="wrap" style="display:block">
     <div class="numeros" style="margin-top:48px">
       <div><b data-i="nb1">R$&nbsp;20&nbsp;mil</b><span data-i="n1">mini chácaras a partir deste valor</span></div>
-      <div><b>15&nbsp;×&nbsp;44&nbsp;m</b><span data-i="n2">chácara padrão, cerca de 660 m²</span></div>
+      <div><b>600‑660&nbsp;m²</b><span data-i="n2">tamanho das mini chácaras</span></div>
       <div><b>102</b><span data-i="n3">mini chácaras à venda</span></div>
       <div><b>R$&nbsp;500</b><span data-i="n4">parcelas fixas, sem reajuste</span></div>
     </div>
@@ -279,7 +292,7 @@ h1 em{font-style:italic;color:var(--rio)}
       <h2 data-i="adH">O Caribe amazônico, a poucos minutos da sua mini chácara.</h2>
       <p class="lead" data-i="adP">Areia branca, água doce e morna do rio Tapajós e uma vila que recebe visitantes do Brasil inteiro e do exterior. Na época da seca surgem as praias que deram fama ao lugar, como a Ilha do Amor.</p>
     </div>
-    <div class="galeria"><figure class="f1"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/TiagoSilveira_AlterDoChao_Santarem_Para_%2827087443968%29.jpg/1280px-TiagoSilveira_AlterDoChao_Santarem_Para_%2827087443968%29.jpg" alt="A vila e a Ilha do Amor vistas do alto" loading="lazy"><figcaption data-i="g1">A vila e a Ilha do Amor vistas do alto</figcaption></figure><figure class="f2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Alter_do_Ch%C3%A3o_487a.jpg/1280px-Alter_do_Ch%C3%A3o_487a.jpg" alt="Praia de Alter do Chão" loading="lazy"><figcaption data-i="g2">Praia de Alter do Chão</figcaption></figure><figure class="f3"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Alter_do_Ch%C3%A3o_no_Par%C3%A1_%28Brasil%29.JPG/1280px-Alter_do_Ch%C3%A3o_no_Par%C3%A1_%28Brasil%29.JPG" alt="Bancos de areia no Tapajós" loading="lazy"><figcaption data-i="g3">Bancos de areia no Tapajós</figcaption></figure><figure class="f4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Alter_do_Ch%C3%A3o_Gui_Falc%C3%A3o-5.jpg/1280px-Alter_do_Ch%C3%A3o_Gui_Falc%C3%A3o-5.jpg" alt="Canoas na beira do rio" loading="lazy"><figcaption data-i="g4">Canoas na beira do rio</figcaption></figure><figure class="f5"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Alter_do_Ch%C3%A3o_561a.jpg/1280px-Alter_do_Ch%C3%A3o_561a.jpg" alt="Pôr do sol sobre o rio" loading="lazy"><figcaption data-i="g5">Pôr do sol sobre o rio</figcaption></figure></div>
+    <div class="galeria"><figure class="f1"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Alter_do_Ch%C3%A3o_no_Par%C3%A1_%28Brasil%29.JPG/1280px-Alter_do_Ch%C3%A3o_no_Par%C3%A1_%28Brasil%29.JPG" alt="Bancos de areia no Tapajós" loading="lazy"><figcaption data-i="g3">Bancos de areia no Tapajós</figcaption></figure><figure class="f2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Alter_do_Ch%C3%A3o_487a.jpg/1280px-Alter_do_Ch%C3%A3o_487a.jpg" alt="Praia de Alter do Chão" loading="lazy"><figcaption data-i="g2">Praia de Alter do Chão</figcaption></figure><figure class="f3"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/TiagoSilveira_AlterDoChao_Santarem_Para_%2827087443968%29.jpg/1280px-TiagoSilveira_AlterDoChao_Santarem_Para_%2827087443968%29.jpg" alt="A vila e a Ilha do Amor vistas do alto" loading="lazy"><figcaption data-i="g1">A vila e a Ilha do Amor vistas do alto</figcaption></figure><figure class="f4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Alter_do_Ch%C3%A3o_Gui_Falc%C3%A3o-5.jpg/1280px-Alter_do_Ch%C3%A3o_Gui_Falc%C3%A3o-5.jpg" alt="Canoas na beira do rio" loading="lazy"><figcaption data-i="g4">Canoas na beira do rio</figcaption></figure><figure class="f5"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Alter_do_Ch%C3%A3o_561a.jpg/1280px-Alter_do_Ch%C3%A3o_561a.jpg" alt="Pôr do sol sobre o rio" loading="lazy"><figcaption data-i="g5">Pôr do sol sobre o rio</figcaption></figure></div>
     <div class="premios">
       <div><p class="ano">The Guardian · 2009</p><b data-i="adP1">1º lugar entre as praias mais bonitas do Brasil</b><span data-i="adP1s">O jornal britânico chamou Alter do Chão de “Caribe amazônico”.</span></div>
       <div><p class="ano">Prêmio UPIS de Turismo · 2021</p><b data-i="adP2">Melhor Destino Turístico Nacional</b><span data-i="adP2s">Eleito com 97,55% dos votos, à frente da Chapada Diamantina e do Jalapão.</span></div>
@@ -409,13 +422,6 @@ h1 em{font-style:italic;color:var(--rio)}
         <label for="f-zap"><span data-i="fz">WhatsApp com DDD</span><input type="tel" id="f-zap" autocomplete="tel" inputmode="tel" placeholder="(93) 90000-0000" required></label>
         <label for="f-email"><span data-i="fe">E-mail (opcional)</span><input type="email" id="f-email" autocomplete="email"></label>
         <label for="f-cidade"><span data-i="fc">Cidade</span><input type="text" id="f-cidade" autocomplete="address-level2"></label>
-        <p class="miudo" id="refbox" hidden style="background:var(--papel);border-radius:10px;padding:10px 12px;color:var(--tinta)"></p>
-        <label class="check" for="f-tem"><input type="checkbox" id="f-tem"><span data-i="ft">Estou sendo atendido por um corretor</span></label>
-        <div class="bloco-corr" id="bcorr" hidden>
-          <label for="f-cnome"><span data-i="fcn">Nome do corretor</span><input type="text" id="f-cnome"></label>
-          <label for="f-creci">CRECI<input type="text" id="f-creci" placeholder="Ex.: 12345-PA"></label>
-          <label for="f-czap"><span data-i="fcz">WhatsApp do corretor</span><input type="tel" id="f-czap" inputmode="tel"></label>
-        </div>
         <p class="erro" id="erro" hidden></p>
         <button class="btn" type="submit" data-i="conf">Confirmar reserva</button>
         <button class="btn sec" type="button" id="volta1" data-i="volt">Voltar</button>
@@ -440,8 +446,8 @@ h1 em{font-style:italic;color:var(--rio)}
 var LG='pt';
 var T={pt:{},
 en:{"nAlter":"Alter do Chão","adOlho":"Alter do Chão · Pará","adH":"The Amazonian Caribbean, minutes from your lot.","adP":"White sand, warm fresh water from the Tapajós river and a village that welcomes visitors from all over Brazil and abroad. In the dry season the beaches that made the place famous appear, such as Ilha do Amor.","g1":"The village and Ilha do Amor from above","g2":"Alter do Chão beach","g3":"Sandbanks on the Tapajós","g4":"Canoes on the riverbank","g5":"Sunset over the river","adP1":"No. 1 among the most beautiful beaches in Brazil","adP1s":"The British newspaper called Alter do Chão the “Amazonian Caribbean”.","adP2":"Best National Tourist Destination","adP2s":"Voted with 97.55% of the votes, ahead of Chapada Diamantina and Jalapão.","adP3a":"Access","adP3":"34 km from Santarém airport","adP3s":"Easy to reach by car from the airport.","cred":"Photos","vH":"How the development could look",faixa:'<b>Pre-launch.</b> Reserve your lot now at no cost. When sales open, a 5% deposit confirms the lot and you receive the contract.',mLot:'Porto Novo · Lots',nLoc:'Location',nLot:'Lots',nComo:'How it works',nCor:'Brokers',nEsc:'Choose a lot',
-h1:'Your 660&nbsp;m² lot in the rainforest, <em>close to the beaches</em> of the Tapajós.',hlead:'A straight 800-metre road, 102 lots on both sides and forest all around. Pick yours on the map and reserve it from your phone in two minutes.',bEsc:'Choose my lot',bVer:'See the land',
-nb1:'R$&nbsp;20k',n1:'lots starting from',n2:'standard lot, about 660 m²',n3:'lots for sale',n4:'fixed instalments, no adjustment',
+h1:'Your 600‑660&nbsp;m² lot in the rainforest, <em>close to the beaches</em> of the Tapajós.',hlead:'A straight 800-metre road, 102 lots on both sides and forest all around. Pick yours on the map and reserve it from your phone in two minutes.',bEsc:'Choose my lot',bVer:'See the land',
+nb1:'R$&nbsp;20k',n1:'lots starting from',n2:'size of the lots',n3:'lots for sale',n4:'fixed instalments, no adjustment',
 lH:'Between Alter do Chão and Belterra, with the river right there.',lLead:'The entrance is right on the Interpraias road. You get there in an ordinary car and are only minutes from the sand.',d1:'10 minutes',d2:'15 minutes',d3s:'Facing the road',d3:'6 lots',d4s:'Green and community areas',d4:'set aside in the plan',
 mH:'Choose your lot',mLead:'The map follows the development plan. Tap a lot to see its size and reserve it.',fb1:'R$ 40k',fx1:'Roadside · lots 1 to 3 and 53 to 55',fb2:'R$ 30k',fx2:'First half of the road · lots 4 to 32 and 56 to 84',fb3:'R$ 20k',fx3:'Second half, up to the green area · lots 33 to 52 and 85 to 103',
 lg1:'Available',lg2:'Reserved by you',lg3:'Reserved',lg4:'Green or community area',tr1:'Section 1',tr1s:'From the road up to 470 m in · lots 1 to 32 and 53 to 84',tr2:'Section 2',tr2s:'Continuation of the same road, up to the green area · lots 33 to 52 and 85 to 103',nm:'Sizes as per the development plan, subject to confirmation when the lots are marked out. The map is a diagram and not to scale.',
@@ -451,8 +457,8 @@ qH:'Frequently asked questions',q1:'Does the reservation commit me to buy?',a1:'
 f1:'Porto Novo, a development of the Alter do Chão Group real-estate division · Santarém, Pará, Brazil',f2:'<a href="/painel/">Broker area</a> · WhatsApp support: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">+55 93 99127-2550</a>',f3:'Images of chalets and buildings are illustrative. Sizes as per plan, subject to confirmation. The sale of each lot depends on the documentation being presented to the buyer.',
 fa:'Area',fm:'Dimensions',fp:'Position',fs:'Status',ir2:'Reserve this lot',fn:'Full name',fz:'WhatsApp with country code',fe:'E-mail (optional)',fc:'City',ft:'A broker is helping me',fcn:'Broker’s name',fcz:'Broker’s WhatsApp',conf:'Confirm reservation',volt:'Back',okT:'Lot reserved',zapB:'Send reservation by WhatsApp',pay:'Pay 5% deposit by Pix (coming soon)',p3m:'Send the reservation by WhatsApp so our team can confirm your lot. The contract and the broker’s contact arrive by WhatsApp or e-mail. Support: +55 93 99127-2550.',fimB:'Back to the map'},
 es:{"nAlter":"Alter do Chão","adOlho":"Alter do Chão · Pará","adH":"El Caribe amazónico, a pocos minutos de su lote.","adP":"Arena blanca, agua dulce y tibia del río Tapajós y un pueblo que recibe visitantes de todo Brasil y del exterior. En la época seca aparecen las playas que hicieron famoso el lugar, como la Ilha do Amor.","g1":"El pueblo y la Ilha do Amor desde lo alto","g2":"Playa de Alter do Chão","g3":"Bancos de arena en el Tapajós","g4":"Canoas a orillas del río","g5":"Atardecer sobre el río","adP1":"1.er lugar entre las playas más bonitas de Brasil","adP1s":"El diario británico llamó a Alter do Chão el “Caribe amazónico”.","adP2":"Mejor Destino Turístico Nacional","adP2s":"Elegido con el 97,55 % de los votos, por delante de la Chapada Diamantina y el Jalapão.","adP3a":"Acceso","adP3":"A 34 km del aeropuerto de Santarém","adP3s":"Fácil de llegar en auto desde el aeropuerto.","cred":"Fotos","vH":"Cómo podría verse el loteo",faixa:'<b>Prelanzamiento.</b> Reserve su lote ahora, sin pagar nada. Al abrir las ventas, la seña del 5% confirma el lote y usted recibe el contrato.',mLot:'Porto Novo · Lotes',nLoc:'Ubicación',nLot:'Lotes',nComo:'Cómo funciona',nCor:'Corredores',nEsc:'Elegir lote',
-h1:'Su lote de 660&nbsp;m² en la selva, <em>cerca de las playas</em> del Tapajós.',hlead:'Una calle recta de 800 metros, 102 lotes a ambos lados y bosque alrededor. Elija el suyo en el mapa y resérvelo desde el celular en dos minutos.',bEsc:'Elegir mi lote',bVer:'Ver el terreno',
-nb1:'R$&nbsp;20&nbsp;mil',n1:'lotes desde este valor',n2:'lote estándar, unos 660 m²',n3:'lotes en venta',n4:'cuotas fijas, sin reajuste',
+h1:'Su lote de 600 a 660&nbsp;m² en la selva, <em>cerca de las playas</em> del Tapajós.',hlead:'Una calle recta de 800 metros, 102 lotes a ambos lados y bosque alrededor. Elija el suyo en el mapa y resérvelo desde el celular en dos minutos.',bEsc:'Elegir mi lote',bVer:'Ver el terreno',
+nb1:'R$&nbsp;20&nbsp;mil',n1:'lotes desde este valor',n2:'tamaño de los lotes',n3:'lotes en venta',n4:'cuotas fijas, sin reajuste',
 lH:'Entre Alter do Chão y Belterra, con el río a un paso.',lLead:'La entrada del loteo está sobre la Estrada Interpraias. Se llega en auto común y queda a pocos minutos de la arena.',d1:'10 minutos',d2:'15 minutos',d3s:'Frente a la ruta',d3:'6 lotes',d4s:'Áreas verdes e institucional',d4:'reservadas en el plano',
 mH:'Elija su lote',mLead:'El mapa sigue el plano del emprendimiento. Toque un lote para ver la medida y reservarlo.',fb1:'R$ 40 mil',fx1:'Frente a la ruta · lotes 1 a 3 y 53 a 55',fb2:'R$ 30 mil',fx2:'Primera mitad de la calle · lotes 4 a 32 y 56 a 84',fb3:'R$ 20 mil',fx3:'Segunda mitad, hasta el área verde · lotes 33 a 52 y 85 a 103',
 lg1:'Disponible',lg2:'Reservado por usted',lg3:'Reservado',lg4:'Área verde o institucional',tr1:'Tramo 1',tr1s:'Desde la ruta hasta 470 m adentro · lotes 1 a 32 y 53 a 84',tr2:'Tramo 2',tr2s:'Continuación de la misma calle, hasta el área verde · lotes 33 a 52 y 85 a 103',nm:'Medidas según el plano del emprendimiento, sujetas a verificación en la demarcación. El mapa es un esquema y no está a escala.',
@@ -462,8 +468,8 @@ qH:'Preguntas frecuentes',q1:'¿La reserva me obliga a comprar?',a1:'No. En el p
 f1:'Porto Novo, un emprendimiento de la división inmobiliaria de Alter do Chão Group · Santarém, Pará, Brasil',f2:'<a href="/painel/">Área del corredor</a> · Atención por WhatsApp: <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">+55 93 99127-2550</a>',f3:'Las imágenes de chalés y construcciones son ilustrativas. Medidas según plano, sujetas a verificación. La venta de cada lote depende de presentar la documentación al comprador.',
 fa:'Área',fm:'Medidas',fp:'Posición',fs:'Situación',ir2:'Reservar este lote',fn:'Nombre completo',fz:'WhatsApp con código de país',fe:'Correo electrónico (opcional)',fc:'Ciudad',ft:'Me atiende un corredor',fcn:'Nombre del corredor',fcz:'WhatsApp del corredor',conf:'Confirmar reserva',volt:'Volver',okT:'Lote reservado',zapB:'Enviar reserva por WhatsApp',pay:'Pagar seña del 5% por Pix (próximamente)',p3m:'Envíe la reserva por WhatsApp para que el equipo confirme su lote. El contrato y el contacto del corredor llegan por WhatsApp o correo. Atención: +55 93 99127-2550.',fimB:'Volver al mapa'},
 fr:{"nAlter":"Alter do Chão","adOlho":"Alter do Chão · Pará","adH":"Les Caraïbes amazoniennes, à quelques minutes de votre terrain.","adP":"Sable blanc, eau douce et tiède du fleuve Tapajós et un village qui accueille des visiteurs de tout le Brésil et de l’étranger. À la saison sèche apparaissent les plages qui ont fait la renommée du lieu, comme l’Ilha do Amor.","g1":"Le village et l’Ilha do Amor vus d’en haut","g2":"La plage d’Alter do Chão","g3":"Bancs de sable sur le Tapajós","g4":"Pirogues au bord du fleuve","g5":"Coucher de soleil sur le fleuve","adP1":"1re place parmi les plus belles plages du Brésil","adP1s":"Le journal britannique a surnommé Alter do Chão les « Caraïbes amazoniennes ».","adP2":"Meilleure destination touristique nationale","adP2s":"Élue avec 97,55 % des voix, devant la Chapada Diamantina et le Jalapão.","adP3a":"Accès","adP3":"À 34 km de l’aéroport de Santarém","adP3s":"Facile d’accès en voiture depuis l’aéroport.","cred":"Photos","vH":"Ce que pourrait devenir le lotissement",faixa:'<b>Pré-lancement.</b> Réservez votre terrain dès maintenant, sans rien payer. À l’ouverture des ventes, un acompte de 5 % confirme le terrain et vous recevez le contrat.',mLot:'Porto Novo · Terrains',nLoc:'Situation',nLot:'Terrains',nComo:'Comment ça marche',nCor:'Agents',nEsc:'Choisir un terrain',
-h1:'Votre terrain de 660&nbsp;m² en forêt, <em>près des plages</em> du Tapajós.',hlead:'Une rue droite de 800 mètres, 102 terrains des deux côtés et la forêt tout autour. Choisissez le vôtre sur la carte et réservez-le depuis votre téléphone en deux minutes.',bEsc:'Choisir mon terrain',bVer:'Voir le terrain',
-nb1:'R$&nbsp;20&nbsp;000',n1:'terrains à partir de',n2:'terrain standard, environ 660 m²',n3:'terrains à vendre',n4:'mensualités fixes, sans révision',
+h1:'Votre terrain de 600 à 660&nbsp;m² en forêt, <em>près des plages</em> du Tapajós.',hlead:'Une rue droite de 800 mètres, 102 terrains des deux côtés et la forêt tout autour. Choisissez le vôtre sur la carte et réservez-le depuis votre téléphone en deux minutes.',bEsc:'Choisir mon terrain',bVer:'Voir le terrain',
+nb1:'R$&nbsp;20&nbsp;000',n1:'terrains à partir de',n2:'taille des terrains',n3:'terrains à vendre',n4:'mensualités fixes, sans révision',
 lH:'Entre Alter do Chão et Belterra, avec le fleuve tout près.',lLead:'L’entrée du lotissement donne sur la route Interpraias. On y arrive en voiture ordinaire, à quelques minutes du sable.',d1:'10 minutes',d2:'15 minutes',d3s:'Face à la route',d3:'6 terrains',d4s:'Espaces verts et collectifs',d4:'réservés sur le plan',
 mH:'Choisissez votre terrain',mLead:'La carte suit le plan du lotissement. Touchez un terrain pour voir ses dimensions et le réserver.',fb1:'R$ 40 000',fx1:'Bord de route · terrains 1 à 3 et 53 à 55',fb2:'R$ 30 000',fx2:'Première moitié de la rue · terrains 4 à 32 et 56 à 84',fb3:'R$ 20 000',fx3:'Seconde moitié, jusqu’à l’espace vert · terrains 33 à 52 et 85 à 103',
 lg1:'Disponible',lg2:'Réservé par vous',lg3:'Réservé',lg4:'Espace vert ou collectif',tr1:'Section 1',tr1s:'De la route jusqu’à 470 m · terrains 1 à 32 et 53 à 84',tr2:'Section 2',tr2s:'Suite de la même rue, jusqu’à l’espace vert · terrains 33 à 52 et 85 à 103',nm:'Dimensions selon le plan du lotissement, à confirmer lors du bornage. La carte est un schéma, pas à l’échelle.',
@@ -473,8 +479,8 @@ qH:'Questions fréquentes',q1:'La réservation m’oblige-t-elle à acheter ?',a
 f1:'Porto Novo, un projet de la division immobilière d’Alter do Chão Group · Santarém, Pará, Brésil',f2:'<a href="/painel/">Espace agent</a> · Assistance WhatsApp : <a href="https://wa.me/5593991272550" target="_blank" rel="noopener">+55 93 99127-2550</a>',f3:'Les images de chalets et de constructions sont illustratives. Dimensions selon le plan, à confirmer. La vente de chaque terrain dépend de la présentation des documents à l’acheteur.',
 fa:'Surface',fm:'Dimensions',fp:'Position',fs:'Statut',ir2:'Réserver ce terrain',fn:'Nom complet',fz:'WhatsApp avec indicatif pays',fe:'E-mail (facultatif)',fc:'Ville',ft:'Un agent m’accompagne',fcn:'Nom de l’agent',fcz:'WhatsApp de l’agent',conf:'Confirmer la réservation',volt:'Retour',okT:'Terrain réservé',zapB:'Envoyer la réservation par WhatsApp',pay:'Payer l’acompte de 5 % par Pix (bientôt)',p3m:'Envoyez la réservation par WhatsApp pour que l’équipe confirme votre terrain. Le contrat et le contact de l’agent arrivent par WhatsApp ou e-mail. Assistance : +55 93 99127-2550.',fimB:'Retour à la carte'},
 de:{"nAlter":"Alter do Chão","adOlho":"Alter do Chão · Pará","adH":"Die Karibik Amazoniens, wenige Minuten von Ihrem Grundstück.","adP":"Weißer Sand, warmes Süßwasser des Tapajós und ein Dorf, das Besucher aus ganz Brasilien und dem Ausland empfängt. In der Trockenzeit tauchen die Strände auf, die den Ort berühmt gemacht haben, etwa die Ilha do Amor.","g1":"Das Dorf und die Ilha do Amor von oben","g2":"Strand von Alter do Chão","g3":"Sandbänke im Tapajós","g4":"Kanus am Flussufer","g5":"Sonnenuntergang über dem Fluss","adP1":"Platz 1 unter den schönsten Stränden Brasiliens","adP1s":"Die britische Zeitung nannte Alter do Chão die „Karibik Amazoniens“.","adP2":"Bestes nationales Reiseziel","adP2s":"Mit 97,55 % der Stimmen gewählt, vor der Chapada Diamantina und dem Jalapão.","adP3a":"Anreise","adP3":"34 km vom Flughafen Santarém","adP3s":"Vom Flughafen aus bequem mit dem Auto erreichbar.","cred":"Fotos","vH":"So könnte die Siedlung aussehen",faixa:'<b>Vorverkauf.</b> Reservieren Sie Ihr Grundstück jetzt kostenlos. Mit Verkaufsstart bestätigt eine Anzahlung von 5 % das Grundstück und Sie erhalten den Vertrag.',mLot:'Porto Novo · Grundstücke',nLoc:'Lage',nLot:'Grundstücke',nComo:'So funktioniert’s',nCor:'Makler',nEsc:'Grundstück wählen',
-h1:'Ihr 660&nbsp;m²-Grundstück im Regenwald, <em>nah an den Stränden</em> des Tapajós.',hlead:'Eine gerade, 800 Meter lange Straße, 102 Grundstücke auf beiden Seiten und ringsum Wald. Wählen Sie Ihres auf der Karte und reservieren Sie es in zwei Minuten per Handy.',bEsc:'Mein Grundstück wählen',bVer:'Gelände ansehen',
-nb1:'R$&nbsp;20.000',n1:'Grundstücke ab',n2:'Standardgrundstück, ca. 660 m²',n3:'Grundstücke zum Verkauf',n4:'feste Raten, ohne Anpassung',
+h1:'Ihr Grundstück mit 600‑660&nbsp;m² im Regenwald, <em>nah an den Stränden</em> des Tapajós.',hlead:'Eine gerade, 800 Meter lange Straße, 102 Grundstücke auf beiden Seiten und ringsum Wald. Wählen Sie Ihres auf der Karte und reservieren Sie es in zwei Minuten per Handy.',bEsc:'Mein Grundstück wählen',bVer:'Gelände ansehen',
+nb1:'R$&nbsp;20.000',n1:'Grundstücke ab',n2:'Größe der Grundstücke',n3:'Grundstücke zum Verkauf',n4:'feste Raten, ohne Anpassung',
 lH:'Zwischen Alter do Chão und Belterra, der Fluss gleich nebenan.',lLead:'Die Zufahrt liegt direkt an der Estrada Interpraias. Man kommt mit einem normalen Auto hin und ist in wenigen Minuten am Strand.',d1:'10 Minuten',d2:'15 Minuten',d3s:'An der Straße',d3:'6 Grundstücke',d4s:'Grün- und Gemeinschaftsflächen',d4:'im Plan vorgesehen',
 mH:'Wählen Sie Ihr Grundstück',mLead:'Die Karte folgt dem Bebauungsplan. Tippen Sie auf ein Grundstück, um Größe zu sehen und zu reservieren.',fb1:'R$ 40.000',fx1:'An der Straße · Grundstücke 1 bis 3 und 53 bis 55',fb2:'R$ 30.000',fx2:'Erste Straßenhälfte · Grundstücke 4 bis 32 und 56 bis 84',fb3:'R$ 20.000',fx3:'Zweite Hälfte, bis zur Grünfläche · Grundstücke 33 bis 52 und 85 bis 103',
 lg1:'Verfügbar',lg2:'Von Ihnen reserviert',lg3:'Reserviert',lg4:'Grün- oder Gemeinschaftsfläche',tr1:'Abschnitt 1',tr1s:'Von der Straße bis 470 m hinein · Grundstücke 1 bis 32 und 53 bis 84',tr2:'Abschnitt 2',tr2s:'Fortsetzung derselben Straße bis zur Grünfläche · Grundstücke 33 bis 52 und 85 bis 103',nm:'Maße laut Bebauungsplan, vorbehaltlich der Vermessung. Die Karte ist eine Skizze und nicht maßstabsgetreu.',
@@ -650,7 +656,6 @@ document.getElementById('fim').addEventListener('click',fecha);
 jan.addEventListener('click',function(e){ if(e.target===jan) fecha(); });
 document.getElementById('ir2').addEventListener('click',function(){passo(2);document.getElementById('f-nome').focus()});
 document.getElementById('volta1').addEventListener('click',function(){passo(1)});
-document.getElementById('f-tem').addEventListener('change',function(e){document.getElementById('bcorr').hidden=!e.target.checked});
 
 function v(id){return document.getElementById(id).value.trim()}
 function mostraOk(r){
@@ -662,7 +667,7 @@ function mostraOk(r){
 }
 document.getElementById('form').addEventListener('submit',function(e){
   e.preventDefault();
-  var erro=document.getElementById('erro'), nome=v('f-nome'), zap=v('f-zap'), tem=document.getElementById('f-tem').checked, msg='';
+  var erro=document.getElementById('erro'), nome=v('f-nome'), zap=v('f-zap'), tem=false, msg='';
   if(nome.split(/\s+/).length<2) msg=S().e1;
   else if(zap.replace(/\D/g,'').length<10) msg=S().e2;
   else if(tem && (!v('f-cnome') || !v('f-creci'))) msg=S().e3;
@@ -692,8 +697,6 @@ function carregaRef(){
   if(!REF)return;
   fetch('/api/ref?id='+REF).then(function(x){return x.ok?x.json():null}).then(function(j){
     if(!j||!j.nome)return; REFINFO=j;
-    var b=document.getElementById('refbox'); b.textContent=S().ref(j.nome,j.creci+'-'+j.uf); b.hidden=false;
-    document.getElementById('f-tem').closest('label').hidden=true;
   }).catch(function(){});
 }
 function carrega(){
@@ -707,6 +710,26 @@ document.querySelectorAll('#videos video').forEach(function(v){v.addEventListene
 if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
   var hv=document.querySelector('.quadro video'); if(hv){hv.removeAttribute('autoplay');hv.pause();hv.controls=true;}
 }
+</script>
+<dialog id="luz" aria-label="Foto ampliada"><div class="palco"><img id="luz-img" alt=""><p id="luz-cap"></p></div>
+<button class="x" type="button" id="luz-x" aria-label="Fechar">✕</button><button class="ant" type="button" id="luz-a" aria-label="Foto anterior">‹</button><button class="prox" type="button" id="luz-p" aria-label="Próxima foto">›</button></dialog>
+<a id="topo" href="#" aria-label="Voltar ao topo">↑</a>
+<script>
+(function(){
+  var figs=[].slice.call(document.querySelectorAll('.galeria figure')), luz=document.getElementById('luz'), i=0;
+  function mostra(k){ i=(k+figs.length)%figs.length; var im=figs[i].querySelector('img');
+    document.getElementById('luz-img').src=im.src.replace('/1280px-','/2560px-'); document.getElementById('luz-img').onerror=function(){this.onerror=null;this.src=im.src};
+    document.getElementById('luz-img').alt=im.alt; document.getElementById('luz-cap').textContent=figs[i].querySelector('figcaption').textContent; }
+  figs.forEach(function(f,k){ f.addEventListener('click',function(){ mostra(k); if(luz.showModal) luz.showModal(); else luz.setAttribute('open',''); }); });
+  function fecha(){ if(luz.close) luz.close(); else luz.removeAttribute('open'); }
+  document.getElementById('luz-x').onclick=fecha; document.getElementById('luz-a').onclick=function(){mostra(i-1)}; document.getElementById('luz-p').onclick=function(){mostra(i+1)};
+  luz.addEventListener('click',function(e){ if(e.target===luz||e.target.classList.contains('palco')) fecha(); });
+  document.addEventListener('keydown',function(e){ if(!luz.open) return; if(e.key==='ArrowLeft') mostra(i-1); if(e.key==='ArrowRight') mostra(i+1); });
+  var sx=0; luz.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  luz.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-sx; if(Math.abs(d)>50) mostra(d<0?i+1:i-1);});
+  var t=document.getElementById('topo'); t.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
+  addEventListener('scroll',function(){ t.classList.toggle('on',scrollY>600) },{passive:true});
+})();
 </script>
 </body>
 </html>

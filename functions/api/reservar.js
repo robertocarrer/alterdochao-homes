@@ -31,10 +31,13 @@ export async function onRequestPost({ request, env, waitUntil }) {
   } catch (e) {
     return json({ erro: "Este lote acabou de ser reservado por outra pessoa. Escolha outro." }, 409);
   }
+  // Pré-lançamento: alerta só para a administração.
+  const lc = await env.DB.prepare("SELECT valor FROM config WHERE chave='lancado'").first();
+  const lancado = lc && lc.valor === "1";
   waitUntil(alertaReserva(env, {
     lote, codigo, nome, zap, email: limpa(d.email, 120), cidade: limpa(d.cidade, 80), valor: preco(lote),
     corretorNome: cor ? cor.nome : limpa(d.corretor, 120), corretorCreci: cor ? cor.creci : creciInf,
-    corretorZap: cor ? cor.zap : null, corretorKey: cor ? (cor.callmebot_key || (eu && eu.id===cor.id ? null : null)) : null,
+    corretorZap: cor && lancado ? cor.zap : null, corretorKey: cor ? (cor.callmebot_key || (eu && eu.id===cor.id ? null : null)) : null,
   }).catch(() => {}));
   return json({ ok: true, lote, codigo, corretor: cor ? { nome: cor.nome, creci: cor.creci } : null });
 }

@@ -9,6 +9,9 @@ export async function onRequestGet({ request, env }) {
     const cor = await env.DB.prepare("SELECT id,nome,creci,uf,cidade,email,zap,ativo,criado FROM usuarios WHERE tipo='corretor' ORDER BY criado DESC").all();
     return json({ usuario: u, reservas: comValor(res.results), corretores: cor.results });
   }
+  // Pré-lançamento: a lista de interessados só abre para corretores quando config.lancado = '1'.
+  const lc = await env.DB.prepare("SELECT valor FROM config WHERE chave='lancado'").first();
+  if (!lc || lc.valor !== "1") return json({ usuario: u, reservas: [], prelancamento: true });
   const res = await env.DB.prepare("SELECT lote,codigo,nome,zap,status,criado FROM reservas WHERE corretor_id=? ORDER BY criado DESC").bind(u.id).all();
   return json({ usuario: u, reservas: comValor(res.results) });
 }
