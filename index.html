@@ -61,11 +61,11 @@ section{padding:64px 0}
 .faixa b{color:var(--areia)}
 header.topo{position:sticky;top:0;z-index:20;background:rgba(245,241,234,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--nevoa)}
 .topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
-.marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--mata)}.marca .botos{height:40px;width:auto}.marca .lk{display:flex;flex-direction:column;gap:5px}.marca .lk img{height:17px;width:auto}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--mata)}.marca .botos{height:40px;width:auto}.marca .lk{display:flex;flex-direction:column;gap:5px}.marca .lk img{height:22px;width:auto}
 .marca strong{font-family:var(--display);font-size:1.35rem;line-height:1}
 .marca span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
 nav{display:flex;gap:22px;align-items:center}
-nav a{color:var(--tinta);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a{color:var(--tinta);text-decoration:none;font-weight:500;font-size:.95rem;white-space:nowrap}
 nav a:hover{color:var(--folha)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--folha);color:#fff;border:0;border-radius:10px;padding:14px 22px;font:600 1rem var(--corpo);text-decoration:none;cursor:pointer}
 .btn:hover{background:#38433f}
@@ -204,7 +204,7 @@ h1 em{font-style:italic;color:var(--rio)}
 .idiomas{display:flex;border:1px solid var(--nevoa);border-radius:99px;overflow:hidden;background:#fff}
 .idiomas button{border:0;background:transparent;font:600 .72rem var(--corpo);letter-spacing:.06em;color:var(--suave);padding:6px 8px;cursor:pointer}
 .idiomas button[aria-pressed="true"]{background:var(--mata);color:#fff}
-@media(max-width:520px){.topo .btn.peq{display:none}.marca .lk{display:none}}
+@media(max-width:520px){.topo .btn.peq{display:none}.marca .lk img{height:17px}}
 .alter{padding:72px 0}
 .alter-cab{display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:28px}
 .alter .olho{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rio);font-weight:600}
@@ -244,7 +244,7 @@ h1 em{font-style:italic;color:var(--rio)}
 
 <header class="topo">
   <div class="wrap">
-    <a class="marca" href="#inicio" aria-label="Alter do Chão, início"><img class="botos" src="media/botos-ouro.png" alt=""><span class="lk"><img src="media/marca-escuro.png" alt="Alter do Chão"><span data-i="mLot">Porto Novo · Mini Chácaras</span></span></a>
+    <a class="marca" href="#inicio" aria-label="Alter do Chão, início"><img class="botos" src="media/botos-ouro.png" alt=""><span class="lk"><img src="media/marca-escuro.png" alt="Alter do Chão"></span></a>
     <nav>
       <a href="#alter" data-i="nAlter">Alter do Chão</a>
       <a href="#local" data-i="nLoc">Localização</a>
@@ -263,7 +263,7 @@ h1 em{font-style:italic;color:var(--rio)}
 <section class="abre">
   <div class="wrap">
     <div class="txt">
-      <p class="onde">Porto Novo · Estrada Interpraias, Santarém (PA)</p>
+      <p class="onde"><span data-i="mLot">Porto Novo · Mini Chácaras</span> · Estrada Interpraias, Santarém (PA)</p>
       <h1 data-i="h1">Sua mini chácara de 600 a 660&nbsp;m² na mata, <em>perto das praias</em> do Tapajós.</h1>
       <p class="lead" data-i="hlead">Uma rua reta de 800 metros, 102 mini chácaras dos dois lados e floresta em volta. Escolha a sua no mapa e reserve pelo celular em dois minutos.</p>
       <div class="acoes">
