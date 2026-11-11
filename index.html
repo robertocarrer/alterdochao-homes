@@ -103,8 +103,9 @@ nav a:hover{color:var(--folha)}
 @media(max-width:700px){.numeros{grid-template-columns:1fr 1fr}.numeros div:nth-child(3){border-left:0;padding-left:0}.numeros div:nth-child(n+3){border-top:1px solid var(--nevoa)}}
 
 /* localização */
-.local .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}
+.local .wrap{display:grid;grid-template-columns:minmax(0,360px) 1fr;gap:44px;align-items:center}
 .local img{border-radius:16px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.local .vloc{border-radius:16px;aspect-ratio:9/16;width:100%;max-width:360px;max-height:640px;background:var(--mata);display:block;justify-self:center}
 .local .txt{display:flex;flex-direction:column;gap:18px}
 .dist{list-style:none;margin:0;padding:0;display:grid;gap:0}
 .dist li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--nevoa)}
@@ -283,7 +284,7 @@ h1 em{font-style:italic;color:var(--rio)}
       <p class="lead" data-i="hlead">Uma rua reta de 800 metros, 102 mini chácaras dos dois lados e floresta em volta. Escolha a sua no mapa e reserve pelo celular em dois minutos.</p>
       <div class="acoes">
         <a class="btn" href="#mapa" data-i="bEsc">Escolher minha chácara</a>
-        <a class="btn sec" href="#videos" data-i="bVer">Ver o terreno</a>
+        <a class="btn sec" href="#local" data-i="bVer">Ver o terreno</a>
       </div>
     </div>
     <a class="quadro" href="#alter"><img src="media/ilha-do-amor-c.jpg" alt="Ilha do Amor, em Alter do Chão, vista do alto" fetchpriority="high"><span class="legq" data-i="hC">Ilha do Amor, Alter do Chão</span></a>
@@ -317,7 +318,7 @@ h1 em{font-style:italic;color:var(--rio)}
 
 <section class="local" id="local">
   <div class="wrap">
-    <img src="media/rio.jpg" alt="Vista aérea da mata com o rio Tapajós ao fundo" loading="lazy">
+    <video class="vloc" src="media/hero.mp4" poster="media/poster.jpg" controls muted loop playsinline preload="none" aria-label="Voo de drone sobre a rua do loteamento, com o rio Tapajós ao fundo"></video>
     <div class="txt">
       <h2 data-i="lH">Entre Alter do Chão e Belterra, com o rio logo ali.</h2>
       <p class="lead" data-i="lLead">A entrada do loteamento fica na beira da Estrada Interpraias. Você chega de carro comum e está a poucos minutos da areia.</p>
@@ -380,20 +381,6 @@ h1 em{font-style:italic;color:var(--rio)}
 
 <section class="videos" id="videos">
   <div class="wrap">
-    <div class="hoje">
-      <video src="media/hero.mp4" poster="media/poster.jpg" controls muted loop playsinline preload="none" aria-label="Voo de drone sobre a rua do loteamento"></video>
-      <div class="hoje-txt">
-        <h2 data-i="vR">O terreno hoje</h2>
-        <p data-i="vRp">Voo de drone sobre a rua principal do Porto Novo: 800 metros abertos no meio da mata, com as mini chácaras dos dois lados.</p>
-        <ul class="fatos">
-          <li><b>800 m</b><span data-i="hf1">de rua reta aberta na mata</span></li>
-          <li><b>102</b><span data-i="hf2">mini chácaras de 600 a 660 m²</span></li>
-          <li><b>10 min</b><span data-i="hf3">da vila de Alter do Chão, de carro ou de lancha</span></li>
-          <li><b>Interpraias</b><span data-i="hf4">entrada direto pela estrada que liga as praias</span></li>
-        </ul>
-        <div class="acoes"><a class="btn" href="#mapa" data-i="bEsc">Escolher minha chácara</a></div>
-      </div>
-    </div>
     <h2 data-i="vH">Como o loteamento pode ficar</h2>
     <figure class="largo">
       <video src="media/voo-rio.mp4" poster="media/voo-rio-capa.jpg" controls loop playsinline preload="none"></video>
